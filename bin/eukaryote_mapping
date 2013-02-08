@@ -1,0 +1,126 @@
+#!/usr/bin/env perl
+
+package Bio::VertRes::Config::Main::EukaryoteMapping;
+
+# ABSTRACT: Create config scripts to map eukaryotes
+# PODNAME: eukaryote_mapping
+
+=head1 SYNOPSIS
+
+Create config scripts to map and snp call eukaryotes.
+
+=cut
+
+BEGIN { unshift( @INC, '../lib' ) }
+BEGIN { unshift( @INC, './lib' ) }
+use Moose;
+use Getopt::Long;
+use Bio::VertRes::Config::CommandLine::LogParameters;
+use Bio::VertRes::Config::CommandLine::ConstructLimits;
+use Bio::VertRes::Config::Recipes::EukaryotesMappingUsingBwa;
+use Bio::VertRes::Config::Recipes::EukaryotesMappingUsingSmalt;
+use Bio::VertRes::Config::Recipes::EukaryotesMappingUsingSsaha2;
+use Bio::VertRes::Config::Recipes::EukaryotesMappingUsingStampy;
+use Bio::VertRes::Config::Recipes::EukaryotesMappingUsingTophat;
+with 'Bio::VertRes::Config::CommandLine::ReferenceHandlingRole';
+
+my $log_params = Bio::VertRes::Config::CommandLine::LogParameters->new( args => \@ARGV, script_name => $0 );
+
+my ( $database, $config_base, $reference_lookup_file, $available_references, $reference, $type, $id, $species, $mapper,$regeneration_log_file,
+    $help );
+
+GetOptions(
+    'd|database=s'              => \$database,
+    'c|config_base=s'           => \$config_base,
+    'l|reference_lookup_file=s' => \$reference_lookup_file,
+    'r|reference=s'             => \$reference,
+    'a|available_references=s'  => \$available_references,
+    't|type=s'                  => \$type,
+    'i|id=s'                    => \$id,
+    's|species=s'               => \$species,
+    'm|mapper=s'                => \$mapper,
+    'b|regeneration_log_file=s' => \$regeneration_log_file,
+    'h|help'                    => \$help,
+);
+
+$database              ||= 'pathogen_euk_track';
+$config_base           ||= '/nfs/pathnfs01/conf';
+$reference_lookup_file ||= '/lustre/scratch108/pathogen/pathpipe/refs/refs.index';
+$regeneration_log_file ||= join('/',($config_base,'command_line.log'));
+my $overwrite_existing_config_file = 0;
+
+$log_params->log_file($regeneration_log_file);
+$log_params->create();
+
+( ( ( defined($available_references) && $available_references ne "" ) || ( $reference && $type && $id ) ) && !$help )
+  or die <<USAGE;
+Usage: eukaryote_mapping [options]
+Pipeline for eukaryotes mapping
+
+# Search for an available reference
+eukaryote_mapping -a "Leishmania"
+
+# Map a study
+eukaryote_mapping -t study -i 1234 -r "Leishmania_donovani_21Apr2011"
+
+# Map a single lane
+eukaryote_mapping -t lane -i 1234_5#6 -r "Leishmania_donovani_21Apr2011"
+
+# Map a file of lanes
+eukaryote_mapping -t file -i file_of_lanes -r "Leishmania_donovani_21Apr2011"
+
+# Map a single species in a study
+eukaryote_mapping -t study -i 1234 -r "Leishmania_donovani_21Apr2011" -s "Leishmania donovani"
+
+# Map a study with BWA instead of the default (SMALT)
+eukaryote_mapping -t study -i 1234 -r "Leishmania_donovani_21Apr2011" -m bwa
+
+# This help message
+eukaryote_mapping -h
+
+USAGE
+
+handle_reference_inputs_or_exit($reference_lookup_file, $available_references, $reference);
+
+
+my $limits = Bio::VertRes::Config::CommandLine::ConstructLimits->new(
+    input_type => $type,
+    input_id   => $id,
+    species    => $species
+)->limits_hash;
+
+my %mapping_parameters = (
+    database                       => $database,
+    config_base                    => $config_base,
+    limits                         => $limits,
+    reference_lookup_file          => $reference_lookup_file,
+    reference                      => $reference,
+    overwrite_existing_config_file => $overwrite_existing_config_file
+);
+
+if ( defined($mapper) && $mapper eq 'bwa' ) {
+    Bio::VertRes::Config::Recipes::EukaryotesMappingUsingBwa->new( \%mapping_parameters )->create();
+}
+elsif ( defined($mapper) && $mapper eq 'ssaha2' ) {
+    Bio::VertRes::Config::Recipes::EukaryotesMappingUsingSsaha2->new( \%mapping_parameters )->create();
+}
+elsif ( defined($mapper) && $mapper eq 'stampy' ) {
+    Bio::VertRes::Config::Recipes::EukaryotesMappingUsingStampy->new( \%mapping_parameters )->create();
+}
+elsif ( defined($mapper) && $mapper eq 'tophat' ) {
+    Bio::VertRes::Config::Recipes::EukaryotesMappingUsingTophat->new( \%mapping_parameters )->create();
+}
+else {
+    Bio::VertRes::Config::Recipes::EukaryotesMappingUsingSmalt->new( \%mapping_parameters )->create();
+}
+print "Once the data is available you can run these commands:\n\n";
+
+print "Symlink to the BAM files\n";
+print "  mapfind -t $type -i $id -symlink\n\n";
+
+print "Find out which mapper and reference was used\n";
+print "  mapfind -t $type -i $id -d\n\n";
+
+print "More details\n";
+print "  mapfind -h\n\n";
+

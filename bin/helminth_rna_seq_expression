@@ -1,0 +1,131 @@
+#!/usr/bin/env perl
+
+package Bio::VertRes::Config::Main::EukaryoteRnaSeqExpression;
+
+# ABSTRACT: Create config scripts to map and run the rna seq expression pipeline
+# PODNAME: helminth_rna_seq_expression
+
+=head1 SYNOPSIS
+
+Create config scripts to map and run the rna seq expression pipeline
+
+=cut
+
+BEGIN { unshift( @INC, '../lib' ) }
+BEGIN { unshift( @INC, './lib' ) }
+use Moose;
+use Getopt::Long;
+use Bio::VertRes::Config::CommandLine::LogParameters;
+use Bio::VertRes::Config::CommandLine::ConstructLimits;
+use Bio::VertRes::Config::Recipes::EukaryotesRnaSeqExpressionUsingTophat;
+use Bio::VertRes::Config::Recipes::EukaryotesRnaSeqExpressionUsingSmalt;
+use Bio::VertRes::Config::Recipes::EukaryotesRnaSeqExpressionUsingBwa;
+with 'Bio::VertRes::Config::CommandLine::ReferenceHandlingRole';
+
+my $log_params = Bio::VertRes::Config::CommandLine::LogParameters->new( args => \@ARGV, script_name => $0 );
+
+my ( $database, $config_base, $reference_lookup_file, $available_references, $reference, $type, $id, $species,$protocol,$regeneration_log_file,$mapper,
+    $help );
+
+GetOptions(
+    'd|database=s'              => \$database,
+    'c|config_base=s'           => \$config_base,
+    'l|reference_lookup_file=s' => \$reference_lookup_file,
+    'r|reference=s'             => \$reference,
+    'a|available_references=s'  => \$available_references,
+    't|type=s'                  => \$type,
+    'i|id=s'                    => \$id,
+    's|species=s'               => \$species,
+    'p|protocol=s'              => \$protocol,
+    'm|mapper=s'                => \$mapper,
+    'b|regeneration_log_file=s' => \$regeneration_log_file,
+    'h|help'                    => \$help,
+);
+
+$database              ||= 'pathogen_helminth_track';
+$config_base           ||= '/nfs/pathnfs01/conf';
+$reference_lookup_file ||= '/lustre/scratch108/pathogen/pathpipe/refs/refs.index';
+$protocol              ||= "StandardProtocol";
+$regeneration_log_file ||= join('/',($config_base,'command_line.log'));
+my $overwrite_existing_config_file = 0;
+
+$log_params->log_file($regeneration_log_file);
+$log_params->create();
+
+( ( ( defined($available_references) && $available_references ne "" ) || ( $reference && $type && $id ) ) && !$help )
+  or die <<USAGE;
+Usage: helminth_rna_seq_expression [options]
+Run the RNA seq expression pipeline
+
+# Search for an available reference
+helminth_rna_seq_expression -a "Schisto"
+
+# Run over a study
+helminth_rna_seq_expression -t study -i 1234 -r "Schistosoma_mansoni_v5"
+
+# Run over a single lane
+helminth_rna_seq_expression -t lane -i 1234_5#6 -r "Schistosoma_mansoni_v5"
+
+# Run over a file of lanes
+helminth_rna_seq_expression -t file -i file_of_lanes -r "Schistosoma_mansoni_v5"
+
+# Use the Strand Specific Protocol, also known as the Croucher protocol. The default is FRT.
+helminth_rna_seq_expression -t study -i 1234 -r "Schistosoma_mansoni_v5" -p "StrandSpecificProtocol"
+
+# Run over a single species in a study
+helminth_rna_seq_expression -t study -i 1234 -r "Schistosoma_mansoni_v5" -s "Schistosoma mansoni"
+
+# This help message
+helminth_rna_seq_expression -h
+
+USAGE
+
+handle_reference_inputs_or_exit($reference_lookup_file, $available_references, $reference);
+
+
+my $limits = Bio::VertRes::Config::CommandLine::ConstructLimits->new(
+    input_type => $type,
+    input_id   => $id,
+    species    => $species
+)->limits_hash;
+
+my %parameters = (
+    database                       => $database,
+    config_base                    => $config_base,
+    limits                         => $limits,
+    reference_lookup_file          => $reference_lookup_file,
+    reference                      => $reference,
+    overwrite_existing_config_file => $overwrite_existing_config_file,
+    protocol                       => $protocol
+);
+
+
+if ( defined($mapper) && $mapper eq 'bwa' ) {
+    Bio::VertRes::Config::Recipes::EukaryotesRnaSeqExpressionUsingBwa->new( \%parameters )->create();
+}
+elsif ( defined($mapper) && $mapper eq 'smalt' ) {
+    Bio::VertRes::Config::Recipes::EukaryotesRnaSeqExpressionUsingSmalt->new( \%parameters )->create();
+}
+else {
+    Bio::VertRes::Config::Recipes::EukaryotesRnaSeqExpressionUsingTophat->new( \%parameters )->create();
+}
+
+print "Once the data is available you can run these commands:\n\n";
+
+print "Create symlinks to all your data\n";
+print "  rnaseqfind -t $type -i $id -symlink\n\n";
+
+print "Symlink to the spreadsheets of statistics per gene\n";
+print "  rnaseqfind -t $type -i $id -symlink -f spreadsheet\n\n";
+
+print "Symlink to the BAM files (corrected for the protocol)\n";
+print "  rnaseqfind -t $type -i $id -symlink -f bam\n\n";
+
+print "Symlink to the annotation for the intergenic regions\n";
+print "  rnaseqfind -t $type -i $id -symlink -f intergenic\n\n";
+
+print "Symlink to the coverage plots\n";
+print "  rnaseqfind -t $type -i $id -symlink -f coverage\n\n";
+
+print "More details\n";
+print "  rnaseqfind -h\n";
