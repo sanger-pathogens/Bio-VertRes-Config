@@ -13,6 +13,7 @@ Create config scripts and overall strucutre for the global configs
 
 BEGIN { unshift( @INC, '../lib' ) }
 BEGIN { unshift( @INC, './lib' ) }
+BEGIN { unshift( @INC, '/software/pathogen/internal/prod/lib/' ) }
 use Moose;
 use Getopt::Long;
 use Bio::VertRes::Config::CommandLine::LogParameters;
