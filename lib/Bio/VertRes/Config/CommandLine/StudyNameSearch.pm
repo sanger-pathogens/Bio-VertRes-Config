@@ -44,7 +44,7 @@ sub get_study_database_name_or_default_if_not_found {
         return $self->default_database_name;
     }
 
-    for my $database_name ( sort keys( $self->non_standard_databases ) ) {
+    for my $database_name ( sort keys( %{$self->non_standard_databases} ) ) {
         if (
             Bio::VertRes::Config::RegisterStudy->new(
                 database    => $database_name,
