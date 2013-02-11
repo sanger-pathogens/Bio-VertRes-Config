@@ -20,23 +20,23 @@ with 'Bio::VertRes::Config::Pipelines::Roles::RootDatabaseLookup';
 
 has 'database'            => ( is => 'ro', isa => 'Str', required => 1 );
 has 'study_name'          => ( is => 'ro', isa => 'Str', required => 1 );
-has 'config_base' => ( is => 'ro', isa => 'Str', default => '/nfs/pathnfs01/conf' );
+has 'config_base'         => ( is => 'ro', isa => 'Str', default => '/nfs/pathnfs01/conf' );
 
-has '_study_file_name'    => ( is => 'ro', isa => 'Str', lazy    => 1, builder => '_build__study_file_name' );
+has 'study_file_name'    => ( is => 'ro', isa => 'Str', lazy    => 1, builder => '_build_study_file_name' );
 
-sub _build__study_file_name
+sub _build_study_file_name
 {
   my ($self) = @_;
   my $filename = join( '.', ( $self->root_database_name, 'ilm','studies' ) );
   return join('/',($self->config_base,$self->root_database_name, $filename));
 }
 
-sub _is_study_in_file_already
+sub is_study_in_file_already
 {
   my ($self) = @_;
-  if(-e $self->_study_file_name)
+  if(-e $self->study_file_name)
   {
-    open(my $study_file_name_fh, $self->_study_file_name) or Bio::VertRes::Config::Exceptions::FileDoesntExist->throw(error => 'Couldnt open file '.$self->_study_file_name);
+    open(my $study_file_name_fh, $self->study_file_name) or Bio::VertRes::Config::Exceptions::FileDoesntExist->throw(error => 'Couldnt open file '.$self->study_file_name);
     while(<$study_file_name_fh>)
     {
       my $line = $_;
@@ -54,16 +54,16 @@ sub _is_study_in_file_already
 
 sub register_study_name {
     my ($self) = @_;
-    return $self if($self->_is_study_in_file_already == 1); 
+    return $self if($self->is_study_in_file_already == 1); 
     
-    if(!(-e $self->_study_file_name))
+    if(!(-e $self->study_file_name))
     {
-      my($overall_config_filename, $directories, $suffix) = fileparse($self->_study_file_name);
+      my($overall_config_filename, $directories, $suffix) = fileparse($self->study_file_name);
       make_path($directories);
     }
     
     # Study is not in the file so append it to the end, or create a file if it doesnt exist
-    open(my $study_file_name_write_fh, '+>>', $self->_study_file_name) or Bio::VertRes::Config::Exceptions::FileDoesntExist->throw(error => 'Couldnt open file for append '.$self->_study_file_name);
+    open(my $study_file_name_write_fh, '+>>', $self->study_file_name) or Bio::VertRes::Config::Exceptions::FileDoesntExist->throw(error => 'Couldnt open file for append '.$self->study_file_name);
     print {$study_file_name_write_fh} $self->study_name."\n";
     close($study_file_name_write_fh);
 

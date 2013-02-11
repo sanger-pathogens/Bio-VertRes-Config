@@ -37,12 +37,9 @@ ok(
 );
 
 ok((-e $destination_directory . '/x/y/z/logfile'), 'log file exists');
-
-my $text = read_file( $destination_directory . '/x/y/z/logfile' );
-chomp($text);
-is($text, "zzz a b c
-zzz e f g", 'content of log file as expected ');
-
+open(my $fh, $destination_directory . '/x/y/z/logfile');
+ok((<$fh> =~ /^[\d]+ .+ zzz a b c$/), 'correct format of log file' );
+ok((<$fh> =~ /^[\d]+ .+ zzz e f g$/), 'correct format of log file line 2' );
 
 done_testing();
 

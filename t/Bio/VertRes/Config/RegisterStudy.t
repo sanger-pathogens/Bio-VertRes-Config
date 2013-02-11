@@ -25,7 +25,7 @@ ok(
     ),
     'initialise study file which doesnt have any preexisting studies'
 );
-is($obj->_study_file_name, $destination_directory.'/my_database/my_database.ilm.studies', 'Study name file constucted correctly');
+is($obj->study_file_name, $destination_directory.'/my_database/my_database.ilm.studies', 'Study name file constucted correctly');
 ok(($obj->register_study_name), 'register the study name');
 ok((-e $destination_directory.'/my_database/my_database.ilm.studies'), 'study names file exists');
 my $text = read_file( $destination_directory.'/my_database/my_database.ilm.studies' );

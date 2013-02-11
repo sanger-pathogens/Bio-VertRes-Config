@@ -13,9 +13,5 @@ use Exception::Class (
     Bio::VertRes::Config::Exceptions::FileCantBeModified => { description => 'Couldnt open the file for modification' },
     Bio::VertRes::Config::Exceptions::InvalidType => { description => 'Invalid type passed in, can only be one of study/file/lane/library/sample' },
 );  
-use Moose;
 
-__PACKAGE__->meta->make_immutable;
-
-no Moose;
 1;

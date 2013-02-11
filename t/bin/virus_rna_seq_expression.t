@@ -10,10 +10,10 @@ BEGIN { unshift( @INC, './lib' ) }
 BEGIN { unshift( @INC, './t/lib' ) }
 with 'TestHelper';
 
-my $script_name = 'virus_rna_seq_expression';
+my $script_name = 'Bio::VertRes::Config::CommandLine::VirusRnaSeqExpression';
 
 my %scripts_and_expected_files = (
-    '-t study -i "ZZZ" -r "ABC"' => [
+    '-t study -i ZZZ -r ABC' => [
         'command_line.log',                       'viruses/assembly/assembly_global.conf',
         'viruses/import/import_global.conf',      'viruses/mapping/mapping_ZZZ_ABC_smalt.conf',
         'viruses/qc/qc_ZZZ.conf',                'viruses/rna_seq/rna_seq_ZZZ_ABC.conf',
@@ -22,7 +22,7 @@ my %scripts_and_expected_files = (
         'viruses/viruses_mapping_pipeline.conf',  'viruses/viruses_qc_pipeline.conf',
         'viruses/viruses_rna_seq_pipeline.conf',  'viruses/viruses_stored_pipeline.conf'
     ],
-    '-t lane -i 1234_5#6 -r "ABC"' => [
+    '-t lane -i 1234_5#6 -r ABC' => [
         'command_line.log',                     'viruses/assembly/assembly_global.conf',
         'viruses/import/import_global.conf',    'viruses/mapping/mapping_1234_5_6_ABC_smalt.conf',
         'viruses/qc/qc_1234_5_6.conf',         'viruses/rna_seq/rna_seq_1234_5_6_ABC.conf',
@@ -31,7 +31,7 @@ my %scripts_and_expected_files = (
         'viruses/viruses_qc_pipeline.conf',     'viruses/viruses_rna_seq_pipeline.conf',
         'viruses/viruses_stored_pipeline.conf'
     ],
-    '-t library -i "libname" -r "ABC"' => [
+    '-t library -i libname -r ABC' => [
         'command_line.log',                     'viruses/assembly/assembly_global.conf',
         'viruses/import/import_global.conf',    'viruses/mapping/mapping_libname_ABC_smalt.conf',
         'viruses/qc/qc_libname.conf',          'viruses/rna_seq/rna_seq_libname_ABC.conf',
@@ -40,7 +40,7 @@ my %scripts_and_expected_files = (
         'viruses/viruses_qc_pipeline.conf',     'viruses/viruses_rna_seq_pipeline.conf',
         'viruses/viruses_stored_pipeline.conf'
     ],
-    '-t sample -i "sample" -r "ABC"' => [
+    '-t sample -i sample -r ABC' => [
         'command_line.log',                     'viruses/assembly/assembly_global.conf',
         'viruses/import/import_global.conf',    'viruses/mapping/mapping_sample_ABC_smalt.conf',
         'viruses/qc/qc_sample.conf',           'viruses/rna_seq/rna_seq_sample_ABC.conf',
@@ -49,7 +49,7 @@ my %scripts_and_expected_files = (
         'viruses/viruses_qc_pipeline.conf',     'viruses/viruses_rna_seq_pipeline.conf',
         'viruses/viruses_stored_pipeline.conf'
     ],
-    '-t file -i "t/data/lanes_file" -r "ABC"' => [
+    '-t file -i t/data/lanes_file -r ABC' => [
         'command_line.log',
         'viruses/assembly/assembly_global.conf',
         'viruses/import/import_global.conf',
@@ -64,7 +64,7 @@ my %scripts_and_expected_files = (
         'viruses/viruses_rna_seq_pipeline.conf',
         'viruses/viruses_stored_pipeline.conf'
     ],
-    '-t study -i "ZZZ" -r "ABC" -p "StandardProtocol"' => [
+    '-t study -i ZZZ -r ABC -p "StandardProtocol"' => [
         'command_line.log',                       'viruses/assembly/assembly_global.conf',
         'viruses/import/import_global.conf',      'viruses/mapping/mapping_ZZZ_ABC_smalt.conf',
         'viruses/qc/qc_ZZZ.conf',                'viruses/rna_seq/rna_seq_ZZZ_ABC.conf',
@@ -73,7 +73,7 @@ my %scripts_and_expected_files = (
         'viruses/viruses_mapping_pipeline.conf',  'viruses/viruses_qc_pipeline.conf',
         'viruses/viruses_rna_seq_pipeline.conf',  'viruses/viruses_stored_pipeline.conf'
     ],
-    '-t study -i "ZZZ" -r "ABC" -s "Staphylococcus aureus"' => [
+    '-t study -i ZZZ -r ABC -s Staphylococcus_aureus' => [
         'command_line.log',
         'viruses/assembly/assembly_global.conf',
         'viruses/import/import_global.conf',
@@ -89,7 +89,7 @@ my %scripts_and_expected_files = (
         'viruses/viruses_rna_seq_pipeline.conf',
         'viruses/viruses_stored_pipeline.conf'
     ],
-    '-t study -i "ZZZ" -r "ABC" -m bwa' => [
+    '-t study -i ZZZ -r ABC -m bwa' => [
         'command_line.log',                       'viruses/assembly/assembly_global.conf',
         'viruses/import/import_global.conf',      'viruses/mapping/mapping_ZZZ_ABC_bwa.conf',
         'viruses/qc/qc_ZZZ.conf',                'viruses/rna_seq/rna_seq_ZZZ_ABC.conf',
@@ -98,7 +98,7 @@ my %scripts_and_expected_files = (
         'viruses/viruses_mapping_pipeline.conf',  'viruses/viruses_qc_pipeline.conf',
         'viruses/viruses_rna_seq_pipeline.conf',  'viruses/viruses_stored_pipeline.conf'
     ],
-    '-t study -i "ZZZ" -r "ABC" -m tophat' => [
+    '-t study -i ZZZ -r ABC -m tophat' => [
         'command_line.log',                       'viruses/assembly/assembly_global.conf',
         'viruses/import/import_global.conf',      'viruses/mapping/mapping_ZZZ_ABC_tophat.conf',
         'viruses/qc/qc_ZZZ.conf',                'viruses/rna_seq/rna_seq_ZZZ_ABC.conf',
@@ -107,9 +107,9 @@ my %scripts_and_expected_files = (
         'viruses/viruses_mapping_pipeline.conf',  'viruses/viruses_qc_pipeline.conf',
         'viruses/viruses_rna_seq_pipeline.conf',  'viruses/viruses_stored_pipeline.conf'
     ],
-    '-a "ABC" ' => ['command_line.log'],
+    '-a ABC ' => ['command_line.log'],
 );
-execute_script_and_check_output( $script_name, \%scripts_and_expected_files );
+mock_execute_script_and_check_output( $script_name, \%scripts_and_expected_files );
 
 done_testing();
 

@@ -164,7 +164,8 @@ sub to_hash {
     return \%output_hash;
 }
 
-__PACKAGE__->meta->make_immutable;
 no Moose;
+__PACKAGE__->meta->make_immutable;
+
 1;
 

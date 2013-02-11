@@ -56,3 +56,7 @@ my %parameters = (
 );
 
 Bio::VertRes::Config::Recipes::Global->new( \%parameters )->create();
+
+__PACKAGE__->meta->make_immutable;
+no Moose;
+1;
