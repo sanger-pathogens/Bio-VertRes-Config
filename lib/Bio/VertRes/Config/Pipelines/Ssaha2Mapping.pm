@@ -23,7 +23,7 @@ Base class for the Ssaha2 mapper
 use Moose;
 extends 'Bio::VertRes::Config::Pipelines::Mapping';
 
-has 'slx_mapper'     => ( is => 'ro', isa => 'Str', default => 'ssaha2' );
+has 'slx_mapper'     => ( is => 'ro', isa => 'Str', default => 'ssaha' );
 has 'slx_mapper_exe' => ( is => 'ro', isa => 'Str', default => '/software/pathogen/external/apps/usr/local/ssaha2/ssaha2' );
 
 override 'to_hash' => sub {

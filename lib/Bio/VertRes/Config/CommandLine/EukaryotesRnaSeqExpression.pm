@@ -12,6 +12,8 @@ use Moose;
 use Bio::VertRes::Config::Recipes::EukaryotesRnaSeqExpressionUsingBwa;
 use Bio::VertRes::Config::Recipes::EukaryotesRnaSeqExpressionUsingSmalt;
 use Bio::VertRes::Config::Recipes::EukaryotesRnaSeqExpressionUsingTophat;
+use Bio::VertRes::Config::Recipes::EukaryotesRnaSeqExpressionUsingStampy;
+use Bio::VertRes::Config::Recipes::EukaryotesRnaSeqExpressionUsingBowtie2;
 with 'Bio::VertRes::Config::CommandLine::ReferenceHandlingRole';
 extends 'Bio::VertRes::Config::CommandLine::Common';
 
@@ -36,6 +38,12 @@ sub run {
     }
     elsif ( defined($self->mapper) && $self->mapper eq 'smalt' ) {
         Bio::VertRes::Config::Recipes::EukaryotesRnaSeqExpressionUsingSmalt->new( $self->mapping_parameters )->create();
+    }
+    elsif ( defined($self->mapper) && $self->mapper eq 'stampy' ) {
+        Bio::VertRes::Config::Recipes::EukaryotesRnaSeqExpressionUsingStampy->new( $self->mapping_parameters )->create();
+    }
+    elsif ( defined($self->mapper) && $self->mapper eq 'bowtie2' ) {
+        Bio::VertRes::Config::Recipes::EukaryotesRnaSeqExpressionUsingBowtie2->new( $self->mapping_parameters )->create();
     }
     else {
         Bio::VertRes::Config::Recipes::EukaryotesRnaSeqExpressionUsingTophat->new($self->mapping_parameters )->create();
@@ -78,6 +86,9 @@ eukaryote_rna_seq_expression -t study -i 1234 -r "Leishmania_donovani_21Apr2011"
 
 # Run over a single species in a study
 eukaryote_rna_seq_expression -t study -i 1234 -r "Leishmania_donovani_21Apr2011" -s "Leishmania donovani"
+
+# Use a different mapper. Available are bwa/stampy/smalt/ssaha2/bowtie2/tophat. The default is tophat and ssaha2 is only for 454 data.
+eukaryote_rna_seq_expression -t study -i 1234 -r "Leishmania_donovani_21Apr2011" -m bwa
 
 # This help message
 eukaryote_rna_seq_expression -h

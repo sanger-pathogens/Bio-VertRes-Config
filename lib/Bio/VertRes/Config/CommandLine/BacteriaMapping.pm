@@ -14,6 +14,7 @@ use Bio::VertRes::Config::Recipes::BacteriaMappingUsingSmalt;
 use Bio::VertRes::Config::Recipes::BacteriaMappingUsingSsaha2;
 use Bio::VertRes::Config::Recipes::BacteriaMappingUsingStampy;
 use Bio::VertRes::Config::Recipes::BacteriaMappingUsingTophat;
+use Bio::VertRes::Config::Recipes::BacteriaMappingUsingBowtie2;
 with 'Bio::VertRes::Config::CommandLine::ReferenceHandlingRole';
 extends 'Bio::VertRes::Config::CommandLine::Common';
 
@@ -36,6 +37,9 @@ sub run {
     }
     elsif ( defined($self->mapper) && $self->mapper eq 'tophat' ) {
         Bio::VertRes::Config::Recipes::BacteriaMappingUsingTophat->new( $self->mapping_parameters )->create();
+    }
+    elsif ( defined($self->mapper) && $self->mapper eq 'bowtie2' ) {
+        Bio::VertRes::Config::Recipes::BacteriaMappingUsingBowtie2->new( $self->mapping_parameters )->create();
     }
     else {
         Bio::VertRes::Config::Recipes::BacteriaMappingUsingSmalt->new( $self->mapping_parameters)->create();
@@ -77,7 +81,7 @@ bacteria_mapping -t file -i file_of_lanes -r "Staphylococcus_aureus_subsp_aureus
 # Map a single species in a study
 bacteria_mapping -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMRSA15_v1" -s "Staphylococcus aureus"
 
-# Map a study with BWA instead of the default (SMALT)
+# Use a different mapper. Available are bwa/stampy/smalt/ssaha2/bowtie2/tophat. The default is smalt and ssaha2 is only for 454 data.
 bacteria_mapping -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMRSA15_v1" -m bwa
 
 # This help message

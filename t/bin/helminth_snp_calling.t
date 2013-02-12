@@ -102,7 +102,16 @@ my %scripts_and_expected_files = (
     ],
     '-t study -i ZZZ -r ABC -m ssaha2' => [
         'command_line.log',                         'helminths/assembly/assembly_global.conf',
-        'helminths/import/import_global.conf',      'helminths/mapping/mapping_ZZZ_ABC_ssaha2.conf',
+        'helminths/import/import_global.conf',      'helminths/mapping/mapping_ZZZ_ABC_ssaha.conf',
+        'helminths/helminths.ilm.studies',          'helminths/helminths_assembly_pipeline.conf',
+        'helminths/helminths_import_pipeline.conf', 'helminths/helminths_mapping_pipeline.conf',
+        'helminths/helminths_qc_pipeline.conf',     'helminths/helminths_snps_pipeline.conf',
+        'helminths/helminths_stored_pipeline.conf', 'helminths/qc/qc_ZZZ.conf',
+        'helminths/snps/snps_ZZZ_ABC.conf',         'helminths/stored/stored_global.conf'
+    ],
+    '-t study -i ZZZ -r ABC -m bowtie2' => [
+        'command_line.log',                         'helminths/assembly/assembly_global.conf',
+        'helminths/import/import_global.conf',      'helminths/mapping/mapping_ZZZ_ABC_bowtie2.conf',
         'helminths/helminths.ilm.studies',          'helminths/helminths_assembly_pipeline.conf',
         'helminths/helminths_import_pipeline.conf', 'helminths/helminths_mapping_pipeline.conf',
         'helminths/helminths_qc_pipeline.conf',     'helminths/helminths_snps_pipeline.conf',

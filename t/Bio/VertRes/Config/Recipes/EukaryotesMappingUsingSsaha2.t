@@ -42,10 +42,10 @@ ok((-e "$destination_directory/my_database/assembly/assembly_global.conf"), 'ass
 ok((-e "$destination_directory/my_database/stored/stored_global.conf"), 'stored config file exists');
 ok((-e "$destination_directory/my_database/import/import_global.conf"), 'import config file exists');
 ok((-e "$destination_directory/my_database/qc/qc_ABC_study_EFG.conf"), 'QC config file exists' );
-ok((-e "$destination_directory/my_database/mapping/mapping_ABC_study_EFG_ABC_ssaha2.conf"), 'mapping config file exists' );
+ok((-e "$destination_directory/my_database/mapping/mapping_ABC_study_EFG_ABC_ssaha.conf"), 'mapping config file exists' );
 
 
-my $text = read_file( "$destination_directory/my_database/mapping/mapping_ABC_study_EFG_ABC_ssaha2.conf" );
+my $text = read_file( "$destination_directory/my_database/mapping/mapping_ABC_study_EFG_ABC_ssaha.conf" );
 my $input_config_file = eval($text);
 $input_config_file->{prefix} = '_checked_elsewhere_';
 is_deeply($input_config_file,{
@@ -74,10 +74,10 @@ is_deeply($input_config_file,{
               'reference' => '/path/to/ABC.fa',
               'do_cleanup' => 1,
               'ignore_mapped_status' => 1,
-              'slx_mapper' => 'ssaha2',
+              'slx_mapper' => 'ssaha',
               'slx_mapper_exe' => '/software/pathogen/external/apps/usr/local/ssaha2/ssaha2',
               '454_mapper_exe' => '/software/pathogen/external/apps/usr/local/ssaha2/ssaha2',
-              '454_mapper' => 'ssaha2'
+              '454_mapper' => 'ssaha'
             },
   'limits' => {
                 'project' => [
@@ -89,7 +89,7 @@ is_deeply($input_config_file,{
                                  'stored' => 1,
                                  'import' => 1
                                },
-  'log' => '/nfs/pathnfs01/log/my_database/mapping_ABC_study_EFG_ABC_ssaha2.log',
+  'log' => '/nfs/pathnfs01/log/my_database/mapping_ABC_study_EFG_ABC_ssaha.log',
   'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
   'prefix' => '_checked_elsewhere_',
   'module' => 'VertRes::Pipelines::Mapping'

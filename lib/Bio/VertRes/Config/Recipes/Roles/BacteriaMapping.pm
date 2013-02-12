@@ -20,6 +20,7 @@ use Bio::VertRes::Config::Pipelines::Ssaha2Mapping;
 use Bio::VertRes::Config::Pipelines::StampyMapping;
 use Bio::VertRes::Config::Pipelines::TophatMapping;
 use Bio::VertRes::Config::Pipelines::SmaltMapping;
+use Bio::VertRes::Config::Pipelines::Bowtie2Mapping;
 
 sub add_bacteria_bwa_mapping_config
 {
@@ -102,6 +103,24 @@ sub add_bacteria_stampy_mapping_config
   push(
       @{$pipeline_configs_array},
           Bio::VertRes::Config::Pipelines::StampyMapping->new(
+              database                       => $self->database,
+              config_base                    => $self->config_base,
+              overwrite_existing_config_file => $self->overwrite_existing_config_file,
+              limits                         => $self->limits,
+              reference                      => $self->reference,
+              reference_lookup_file          => $self->reference_lookup_file,
+
+          )
+      );
+  return ;
+}
+
+sub add_bacteria_bowtie2_mapping_config
+{
+  my ($self, $pipeline_configs_array) = @_;
+  push(
+      @{$pipeline_configs_array},
+          Bio::VertRes::Config::Pipelines::Bowtie2Mapping->new(
               database                       => $self->database,
               config_base                    => $self->config_base,
               overwrite_existing_config_file => $self->overwrite_existing_config_file,

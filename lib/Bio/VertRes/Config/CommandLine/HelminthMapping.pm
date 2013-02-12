@@ -14,6 +14,7 @@ use Bio::VertRes::Config::Recipes::EukaryotesMappingUsingSmalt;
 use Bio::VertRes::Config::Recipes::EukaryotesMappingUsingSsaha2;
 use Bio::VertRes::Config::Recipes::EukaryotesMappingUsingStampy;
 use Bio::VertRes::Config::Recipes::EukaryotesMappingUsingTophat;
+use Bio::VertRes::Config::Recipes::EukaryotesMappingUsingBowtie2;
 with 'Bio::VertRes::Config::CommandLine::ReferenceHandlingRole';
 extends 'Bio::VertRes::Config::CommandLine::Common';
 
@@ -38,6 +39,9 @@ sub run {
     }
     elsif ( defined($self->mapper) && $self->mapper eq 'tophat' ) {
         Bio::VertRes::Config::Recipes::EukaryotesMappingUsingTophat->new( $self->mapping_parameters )->create();
+    }
+    elsif ( defined($self->mapper) && $self->mapper eq 'bowtie2' ) {
+        Bio::VertRes::Config::Recipes::EukaryotesMappingUsingBowtie2->new( $self->mapping_parameters )->create();
     }
     else {
         Bio::VertRes::Config::Recipes::EukaryotesMappingUsingSmalt->new( $self->mapping_parameters)->create();
@@ -79,7 +83,7 @@ helminth_mapping -t file -i file_of_lanes -r "Leishmania_donovani_21Apr2011"
 # Map a single species in a study
 helminth_mapping -t study -i 1234 -r "Leishmania_donovani_21Apr2011" -s "Leishmania donovani"
 
-# Map a study with BWA instead of the default (SMALT)
+# Use a different mapper. Available are bwa/stampy/smalt/ssaha2/bowtie2/tophat. The default is smalt and ssaha2 is only for 454 data.
 helminth_mapping -t study -i 1234 -r "Leishmania_donovani_21Apr2011" -m bwa
 
 # This help message

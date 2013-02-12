@@ -132,7 +132,7 @@ sub create_config_file
 
    # dont print out an extra wrapper variable
    $Data::Dumper::Terse = 1;
-   write_file( $self->config, Dumper( $self->to_hash));
+   write_file( $self->config,{perms => 0666}, Dumper( $self->to_hash));
 }
 
 sub to_hash {

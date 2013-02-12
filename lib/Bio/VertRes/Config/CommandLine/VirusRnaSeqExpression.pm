@@ -12,6 +12,8 @@ use Moose;
 use Bio::VertRes::Config::Recipes::VirusRnaSeqExpressionUsingBwa;
 use Bio::VertRes::Config::Recipes::VirusRnaSeqExpressionUsingSmalt;
 use Bio::VertRes::Config::Recipes::VirusRnaSeqExpressionUsingTophat;
+use Bio::VertRes::Config::Recipes::VirusRnaSeqExpressionUsingBowtie2;
+use Bio::VertRes::Config::Recipes::VirusRnaSeqExpressionUsingStampy;
 with 'Bio::VertRes::Config::CommandLine::ReferenceHandlingRole';
 extends 'Bio::VertRes::Config::CommandLine::Common';
 
@@ -36,6 +38,12 @@ sub run {
     }
     elsif ( defined($self->mapper) && $self->mapper eq 'tophat' ) {
         Bio::VertRes::Config::Recipes::VirusRnaSeqExpressionUsingTophat->new( $self->mapping_parameters )->create();
+    }
+    elsif ( defined($self->mapper) && $self->mapper eq 'bowtie2' ) {
+        Bio::VertRes::Config::Recipes::VirusRnaSeqExpressionUsingBowtie2->new( $self->mapping_parameters )->create();
+    }
+    elsif ( defined($self->mapper) && $self->mapper eq 'stampy' ) {
+        Bio::VertRes::Config::Recipes::VirusRnaSeqExpressionUsingStampy->new( $self->mapping_parameters )->create();
     }
     else {
         Bio::VertRes::Config::Recipes::VirusRnaSeqExpressionUsingSmalt->new($self->mapping_parameters )->create();
@@ -79,7 +87,7 @@ virus_rna_seq_expression -t study -i 1234 -r "Influenzavirus_A_H1N1" -p "Standar
 # Run over a single species in a study
 virus_rna_seq_expression -t study -i 1234 -r "Influenzavirus_A_H1N1" -s "Influenzavirus A"
 
-# Map with BWA instead of the SMALT (default). Tophat is also available.
+# Use a different mapper. Available are bwa/stampy/smalt/ssaha2/bowtie2/tophat. The default is smalt and ssaha2 is only for 454 data.
 virus_rna_seq_expression -t study -i 1234 -r "Influenzavirus_A_H1N1" -m bwa
 
 # This help message

@@ -102,7 +102,16 @@ my %scripts_and_expected_files = (
     ],
     '-t study -i ZZZ -r ABC -m ssaha2' => [
         'command_line.log',                             'prokaryotes/assembly/assembly_global.conf',
-        'prokaryotes/import/import_global.conf',        'prokaryotes/mapping/mapping_ZZZ_ABC_ssaha2.conf',
+        'prokaryotes/import/import_global.conf',        'prokaryotes/mapping/mapping_ZZZ_ABC_ssaha.conf',
+        'prokaryotes/prokaryotes.ilm.studies',          'prokaryotes/prokaryotes_assembly_pipeline.conf',
+        'prokaryotes/prokaryotes_import_pipeline.conf', 'prokaryotes/prokaryotes_mapping_pipeline.conf',
+        'prokaryotes/prokaryotes_qc_pipeline.conf',     'prokaryotes/prokaryotes_snps_pipeline.conf',
+        'prokaryotes/prokaryotes_stored_pipeline.conf', 'prokaryotes/qc/qc_ZZZ.conf',
+        'prokaryotes/snps/snps_ZZZ_ABC.conf',           'prokaryotes/stored/stored_global.conf'
+    ],
+    '-t study -i ZZZ -r ABC -m bowtie2' => [
+        'command_line.log',                             'prokaryotes/assembly/assembly_global.conf',
+        'prokaryotes/import/import_global.conf',        'prokaryotes/mapping/mapping_ZZZ_ABC_bowtie2.conf',
         'prokaryotes/prokaryotes.ilm.studies',          'prokaryotes/prokaryotes_assembly_pipeline.conf',
         'prokaryotes/prokaryotes_import_pipeline.conf', 'prokaryotes/prokaryotes_mapping_pipeline.conf',
         'prokaryotes/prokaryotes_qc_pipeline.conf',     'prokaryotes/prokaryotes_snps_pipeline.conf',

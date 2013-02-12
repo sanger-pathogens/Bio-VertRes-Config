@@ -108,6 +108,24 @@ my %scripts_and_expected_files = (
          'eukaryotes/mapping/mapping_ZZZ_ABC_smalt.conf', 'eukaryotes/qc/qc_ZZZ.conf',
          'eukaryotes/rna_seq/rna_seq_ZZZ_ABC.conf',        'eukaryotes/stored/stored_global.conf'
      ],
+     '-t study -i ZZZ -r ABC -m stampy' =>  [
+         'command_line.log',                               'eukaryotes/assembly/assembly_global.conf',
+         'eukaryotes/eukaryotes.ilm.studies',              'eukaryotes/eukaryotes_assembly_pipeline.conf',
+         'eukaryotes/eukaryotes_import_pipeline.conf',     'eukaryotes/eukaryotes_mapping_pipeline.conf',
+         'eukaryotes/eukaryotes_qc_pipeline.conf',         'eukaryotes/eukaryotes_rna_seq_pipeline.conf',
+         'eukaryotes/eukaryotes_stored_pipeline.conf',     'eukaryotes/import/import_global.conf',
+         'eukaryotes/mapping/mapping_ZZZ_ABC_stampy.conf', 'eukaryotes/qc/qc_ZZZ.conf',
+         'eukaryotes/rna_seq/rna_seq_ZZZ_ABC.conf',        'eukaryotes/stored/stored_global.conf'
+     ],
+     '-t study -i ZZZ -r ABC -m bowtie2' =>  [
+         'command_line.log',                               'eukaryotes/assembly/assembly_global.conf',
+         'eukaryotes/eukaryotes.ilm.studies',              'eukaryotes/eukaryotes_assembly_pipeline.conf',
+         'eukaryotes/eukaryotes_import_pipeline.conf',     'eukaryotes/eukaryotes_mapping_pipeline.conf',
+         'eukaryotes/eukaryotes_qc_pipeline.conf',         'eukaryotes/eukaryotes_rna_seq_pipeline.conf',
+         'eukaryotes/eukaryotes_stored_pipeline.conf',     'eukaryotes/import/import_global.conf',
+         'eukaryotes/mapping/mapping_ZZZ_ABC_bowtie2.conf', 'eukaryotes/qc/qc_ZZZ.conf',
+         'eukaryotes/rna_seq/rna_seq_ZZZ_ABC.conf',        'eukaryotes/stored/stored_global.conf'
+     ],
     '-a ABC ' => ['command_line.log'],
 
 );

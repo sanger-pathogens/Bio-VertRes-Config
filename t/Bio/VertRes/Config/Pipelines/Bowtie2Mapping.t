@@ -2,28 +2,33 @@
 use strict;
 use warnings;
 use Data::Dumper;
+use File::Temp;
 
 BEGIN { unshift( @INC, './lib' ) }
 
 BEGIN {
     use Test::Most;
-    use_ok('Bio::VertRes::Config::Pipelines::Ssaha2Mapping');
+    use_ok('Bio::VertRes::Config::Pipelines::Bowtie2Mapping');
 }
+my $destination_directory_obj = File::Temp->newdir( CLEANUP => 1 );
+my $destination_directory = $destination_directory_obj->dirname();
 
 my $obj;
 ok(
     (
-        $obj = Bio::VertRes::Config::Pipelines::Ssaha2Mapping->new(
+        $obj = Bio::VertRes::Config::Pipelines::Bowtie2Mapping->new(
             database              => 'my_database',
             reference_lookup_file => 't/data/refs.index',
             reference             => 'ABC',
             limits                => { project => ['ABC study( EFG )'] },
-            config_base         => '/tmp'
+            config_base           => $destination_directory
         )
     ),
-    'initialise ssaha2 mapping config'
+    'initialise bowtie2 mapping config'
 );
 is($obj->toplevel_action, '__VRTrack_Mapping__');
+
+
 my $returned_config_hash = $obj->to_hash;
 my $prefix               = $returned_config_hash->{prefix};
 $returned_config_hash->{prefix} = '_checked_elsewhere_';
@@ -65,19 +70,25 @@ is_deeply(
                           'add_index' => 1,
                           'reference' => '/path/to/ABC.fa',
                           'do_cleanup' => 1,
-                          'slx_mapper_exe' => '/software/pathogen/external/apps/usr/local/ssaha2/ssaha2',
-                          'slx_mapper' => 'ssaha',
-                          '454_mapper' => 'ssaha',
-                          '454_mapper_exe' => '/software/pathogen/external/apps/usr/local/ssaha2/ssaha2',
+                          'slx_mapper_exe' => '/software/pathogen/external/apps/usr/local/bowtie2-2.0.6/bowtie2',
+                          'slx_mapper' => 'bowtie2',
                           'ignore_mapped_status' => 1
                         },
-              'log' => '/nfs/pathnfs01/log/my_database/mapping_ABC_study_EFG_ABC_ssaha.log',
+              'log' => '/nfs/pathnfs01/log/my_database/mapping_ABC_study_EFG_ABC_bowtie2.log',
               'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
               'prefix' => '_checked_elsewhere_',
               'module' => 'VertRes::Pipelines::Mapping'
             },
-    'Expected ssaha2 base config file'
+    'Expected bowtie2 base config file'
 );
+
+is(
+    $obj->config,
+    $destination_directory . '/my_database/mapping/mapping_ABC_study_EFG_ABC_bowtie2.conf',
+    'config file in expected format'
+);
+ok( $obj->create_config_file, 'Can run the create config file method' );
+ok( ( -e $obj->config ), 'Config file exists' );
 
 
 done_testing();

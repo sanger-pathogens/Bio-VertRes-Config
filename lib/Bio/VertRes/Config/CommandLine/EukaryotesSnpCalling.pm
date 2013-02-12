@@ -13,6 +13,7 @@ use Bio::VertRes::Config::Recipes::EukaryotesSnpCallingUsingBwa;
 use Bio::VertRes::Config::Recipes::EukaryotesSnpCallingUsingSmalt;
 use Bio::VertRes::Config::Recipes::EukaryotesSnpCallingUsingSsaha2;
 use Bio::VertRes::Config::Recipes::EukaryotesSnpCallingUsingStampy;
+use Bio::VertRes::Config::Recipes::EukaryotesSnpCallingUsingBowtie2;
 with 'Bio::VertRes::Config::CommandLine::ReferenceHandlingRole';
 extends 'Bio::VertRes::Config::CommandLine::Common';
 
@@ -34,6 +35,9 @@ sub run {
     }
     elsif ( defined($self->mapper) && $self->mapper eq 'stampy' ) {
         Bio::VertRes::Config::Recipes::EukaryotesSnpCallingUsingStampy->new( $self->mapping_parameters )->create();
+    }
+    elsif ( defined($self->mapper) && $self->mapper eq 'bowtie2' ) {
+        Bio::VertRes::Config::Recipes::EukaryotesSnpCallingUsingBowtie2->new( $self->mapping_parameters )->create();
     }
     else {
         Bio::VertRes::Config::Recipes::EukaryotesSnpCallingUsingSmalt->new( $self->mapping_parameters)->create();
@@ -75,7 +79,7 @@ eukaryote_snp_calling -t file -i file_of_lanes -r "Leishmania_donovani_21Apr2011
 # Map and SNP call a single species in a study
 eukaryote_snp_calling -t study -i 1234 -r "Leishmania_donovani_21Apr2011" -s "Leishmania donovani"
 
-# Map and SNP call a study with BWA instead of the default (SMALT)
+# Use a different mapper. Available are bwa/stampy/smalt/ssaha2/bowtie2. The default is smalt and ssaha2 is only for 454 data.
 eukaryote_snp_calling -t study -i 1234 -r "Leishmania_donovani_21Apr2011" -m bwa
 
 # This help message

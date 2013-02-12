@@ -12,6 +12,8 @@ use Moose;
 use Bio::VertRes::Config::Recipes::BacteriaRnaSeqExpressionUsingBwa;
 use Bio::VertRes::Config::Recipes::BacteriaRnaSeqExpressionUsingSmalt;
 use Bio::VertRes::Config::Recipes::BacteriaRnaSeqExpressionUsingTophat;
+use Bio::VertRes::Config::Recipes::BacteriaRnaSeqExpressionUsingStampy;
+use Bio::VertRes::Config::Recipes::BacteriaRnaSeqExpressionUsingBowtie2;
 with 'Bio::VertRes::Config::CommandLine::ReferenceHandlingRole';
 extends 'Bio::VertRes::Config::CommandLine::Common';
 
@@ -33,6 +35,12 @@ sub run {
     }
     elsif ( defined($self->mapper) && $self->mapper eq 'tophat' ) {
         Bio::VertRes::Config::Recipes::BacteriaRnaSeqExpressionUsingTophat->new( $self->mapping_parameters )->create();
+    }
+    elsif ( defined($self->mapper) && $self->mapper eq 'stampy' ) {
+        Bio::VertRes::Config::Recipes::BacteriaRnaSeqExpressionUsingStampy->new( $self->mapping_parameters )->create();
+    }
+    elsif ( defined($self->mapper) && $self->mapper eq 'bowtie2' ) {
+        Bio::VertRes::Config::Recipes::BacteriaRnaSeqExpressionUsingBowtie2->new( $self->mapping_parameters )->create();
     }
     else {
         Bio::VertRes::Config::Recipes::BacteriaRnaSeqExpressionUsingSmalt->new($self->mapping_parameters )->create();
@@ -76,7 +84,7 @@ bacteria_rna_seq_expression -t study -i 1234 -r "Staphylococcus_aureus_subsp_aur
 # Run over a single species in a study
 bacteria_rna_seq_expression -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMRSA15_v1" -s "Staphylococcus aureus"
 
-# Map with BWA instead of the SMALT (default). Tophat is also available.
+# Use a different mapper. Available are bwa/stampy/smalt/ssaha2/bowtie2/tophat. The default is smalt and ssaha2 is only for 454 data.
 bacteria_rna_seq_expression -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMRSA15_v1" -m bwa
 
 # This help message

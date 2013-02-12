@@ -13,6 +13,7 @@ use Bio::VertRes::Config::Recipes::BacteriaSnpCallingUsingBwa;
 use Bio::VertRes::Config::Recipes::BacteriaSnpCallingUsingSmalt;
 use Bio::VertRes::Config::Recipes::BacteriaSnpCallingUsingSsaha2;
 use Bio::VertRes::Config::Recipes::BacteriaSnpCallingUsingStampy;
+use Bio::VertRes::Config::Recipes::BacteriaSnpCallingUsingBowtie2;
 with 'Bio::VertRes::Config::CommandLine::ReferenceHandlingRole';
 extends 'Bio::VertRes::Config::CommandLine::Common';
 
@@ -32,6 +33,9 @@ sub run {
     }
     elsif ( defined($self->mapper) && $self->mapper eq 'stampy' ) {
         Bio::VertRes::Config::Recipes::BacteriaSnpCallingUsingStampy->new( $self->mapping_parameters )->create();
+    }
+    elsif ( defined($self->mapper) && $self->mapper eq 'bowtie2' ) {
+        Bio::VertRes::Config::Recipes::BacteriaSnpCallingUsingBowtie2->new( $self->mapping_parameters )->create();
     }
     else {
         Bio::VertRes::Config::Recipes::BacteriaSnpCallingUsingSmalt->new( $self->mapping_parameters)->create();
@@ -73,7 +77,7 @@ bacteria_snp_calling -t file -i file_of_lanes -r "Staphylococcus_aureus_subsp_au
 # Map and SNP call a single species in a study
 bacteria_snp_calling -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMRSA15_v1" -s "Staphylococcus aureus"
 
-# Map and SNP call a study with BWA instead of the default (SMALT)
+# Use a different mapper. Available are bwa/stampy/smalt/ssaha2/bowtie2. The default is smalt and ssaha2 is only for 454 data.
 bacteria_snp_calling -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMRSA15_v1" -m bwa
 
 # This help message
