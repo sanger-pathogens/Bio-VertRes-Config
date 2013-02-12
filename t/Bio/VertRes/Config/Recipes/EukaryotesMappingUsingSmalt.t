@@ -74,6 +74,9 @@ is_deeply($input_config_file,{
               'reference' => '/path/to/ABC.fa',
               'do_cleanup' => 1,
               'ignore_mapped_status' => 1,
+              'mapper_index_suffix' => 'k13s2',
+              'additional_mapper_params' => '-r 0 -x -y 0.8',
+              'mapper_index_params' => '-k 13 -s 2',
               'slx_mapper' => 'smalt',
               'slx_mapper_exe' => '/software/pathogen/external/apps/usr/local/smalt-0.7.0.1/smalt_x86_64'
             },

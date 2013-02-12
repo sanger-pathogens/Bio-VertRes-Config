@@ -24,8 +24,8 @@ with 'Bio::VertRes::Config::Recipes::Roles::RegisterStudy';
 with 'Bio::VertRes::Config::Recipes::Roles::Reference';
 with 'Bio::VertRes::Config::Recipes::Roles::CreateGlobal';
 
-has 'additional_mapper_params' => ( is => 'ro', isa => 'Maybe[Str]' );
-has 'mapper_index_params'      => ( is => 'ro', isa => 'Maybe[Str]' );
+has 'additional_mapper_params' => ( is => 'ro', isa => 'Str', default => '-r 0 -x -y 0.8');
+has 'mapper_index_params'      => ( is => 'ro', isa => 'Str', default => '-k 13 -s 2' );
 
 override '_pipeline_configs' => sub {
     my ($self) = @_;

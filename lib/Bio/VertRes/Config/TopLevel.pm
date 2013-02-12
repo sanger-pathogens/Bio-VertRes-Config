@@ -80,11 +80,12 @@ before 'update_or_create' => sub {
 sub update_or_create {
     my ($self) = @_;
     
+    my $mode = 0666;
     # Make sure the directory structure exists before creating the file
     if(!(-e $self->overall_config))
     {
       my($overall_config_filename, $directories, $suffix) = fileparse($self->overall_config);
-      make_path($directories);
+      make_path($directories, mode => $mode);
     }
 
     open(my $overall_config_fh, '+>>', $self->overall_config) or Bio::VertRes::Config::Exceptions::FileCantBeModified->throw(error => 'Couldnt open file for writing '.$self->overall_config);    
@@ -94,6 +95,8 @@ sub update_or_create {
       print {$overall_config_fh} $self->_filenames_to_action->{$filename}.' '.$filename."\n";
     }
     close($overall_config_fh);
+    chmod $mode, $self->overall_config;
+
 }
 
 __PACKAGE__->meta->make_immutable;

@@ -126,6 +126,14 @@ my %scripts_and_expected_files = (
         'helminths/helminths_qc_pipeline.conf',     'helminths/helminths_stored_pipeline.conf',
         'helminths/qc/qc_ZZZ.conf',                'helminths/stored/stored_global.conf'
     ],
+    '-t study -i ZZZ -r ABC -m smalt --smalt_index_k 15 --smalt_index_s 4 --smalt_mapper_r 1 --smalt_mapper_y 0.9 --smalt_mapper_x' => [
+        'command_line.log',                         'helminths/assembly/assembly_global.conf',
+        'helminths/import/import_global.conf',      'helminths/mapping/mapping_ZZZ_ABC_smalt.conf',
+        'helminths/helminths.ilm.studies',          'helminths/helminths_assembly_pipeline.conf',
+        'helminths/helminths_import_pipeline.conf', 'helminths/helminths_mapping_pipeline.conf',
+        'helminths/helminths_qc_pipeline.conf',     'helminths/helminths_stored_pipeline.conf',
+        'helminths/qc/qc_ZZZ.conf',                'helminths/stored/stored_global.conf'
+    ],
 
 );
 

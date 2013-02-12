@@ -61,9 +61,10 @@ sub _build__output_string {
 sub create {
     my ($self) = @_;
 
+    my $mode = 0666;
     if ( !( -e $self->log_file ) ) {
         my ( $config_filename, $directories, $suffix ) = fileparse( $self->log_file );
-        make_path($directories);
+        make_path($directories, mode => $mode);
     }
 
     open( my $fh, '+>>', $self->log_file )
@@ -71,6 +72,7 @@ sub create {
         error => 'Couldnt open file for writing ' . $self->log_file );
     print {$fh} $self->_output_string;
     close($fh);
+    chmod $mode, $self->log_file;
 
     return 1;
 }

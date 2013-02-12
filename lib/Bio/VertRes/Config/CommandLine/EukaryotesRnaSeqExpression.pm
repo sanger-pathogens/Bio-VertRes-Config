@@ -90,6 +90,11 @@ eukaryote_rna_seq_expression -t study -i 1234 -r "Leishmania_donovani_21Apr2011"
 # Use a different mapper. Available are bwa/stampy/smalt/ssaha2/bowtie2/tophat. The default is tophat and ssaha2 is only for 454 data.
 eukaryote_rna_seq_expression -t study -i 1234 -r "Leishmania_donovani_21Apr2011" -m bwa
 
+# Vary the parameters for smalt
+# Index defaults to '-k 13 -s 2'
+# Mapping defaults to '-r 0 -x -y 0.8'
+eukaryote_rna_seq_expression -t study -i 1234 -r "Leishmania_donovani_21Apr2011" --smalt_index_k 13 --smalt_index_s 2 --smalt_mapper_r 0 --smalt_mapper_y 0.8 --smalt_mapper_x
+
 # This help message
 eukaryote_rna_seq_expression -h
 

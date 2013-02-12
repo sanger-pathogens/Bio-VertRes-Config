@@ -124,7 +124,7 @@ sub create_config_file
    if(!(-e $self->config))
    {
      my($config_filename, $directories, $suffix) = fileparse($self->config);
-     make_path($directories);
+     make_path($directories, mode => 0666);
    }
 
    # If the file exists and you dont want to overwrite existing files, skip it
@@ -132,7 +132,9 @@ sub create_config_file
 
    # dont print out an extra wrapper variable
    $Data::Dumper::Terse = 1;
-   write_file( $self->config,{perms => 0666}, Dumper( $self->to_hash));
+   write_file( $self->config, Dumper( $self->to_hash));
+   my $mode = 0666;   
+   chmod $mode, $self->config; 
 }
 
 sub to_hash {

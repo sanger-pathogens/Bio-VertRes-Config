@@ -126,6 +126,16 @@ my %scripts_and_expected_files = (
          'eukaryotes/mapping/mapping_ZZZ_ABC_bowtie2.conf', 'eukaryotes/qc/qc_ZZZ.conf',
          'eukaryotes/rna_seq/rna_seq_ZZZ_ABC.conf',        'eukaryotes/stored/stored_global.conf'
      ],
+     '-t study -i ZZZ -r ABC -m smalt --smalt_index_k 15 --smalt_index_s 4 --smalt_mapper_r 1 --smalt_mapper_y 0.9 --smalt_mapper_x' =>  [
+         'command_line.log',                               'eukaryotes/assembly/assembly_global.conf',
+         'eukaryotes/eukaryotes.ilm.studies',              'eukaryotes/eukaryotes_assembly_pipeline.conf',
+         'eukaryotes/eukaryotes_import_pipeline.conf',     'eukaryotes/eukaryotes_mapping_pipeline.conf',
+         'eukaryotes/eukaryotes_qc_pipeline.conf',         'eukaryotes/eukaryotes_rna_seq_pipeline.conf',
+         'eukaryotes/eukaryotes_stored_pipeline.conf',     'eukaryotes/import/import_global.conf',
+         'eukaryotes/mapping/mapping_ZZZ_ABC_smalt.conf', 'eukaryotes/qc/qc_ZZZ.conf',
+         'eukaryotes/rna_seq/rna_seq_ZZZ_ABC.conf',        'eukaryotes/stored/stored_global.conf'
+     ],
+     
     '-a ABC ' => ['command_line.log'],
 
 );

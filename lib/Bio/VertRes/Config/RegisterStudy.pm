@@ -54,18 +54,20 @@ sub is_study_in_file_already
 
 sub register_study_name {
     my ($self) = @_;
-    return $self if($self->is_study_in_file_already == 1); 
+    return $self if($self->is_study_in_file_already == 1);
+    my $mode = 0666;
     
     if(!(-e $self->study_file_name))
     {
       my($overall_config_filename, $directories, $suffix) = fileparse($self->study_file_name);
-      make_path($directories);
+      make_path($directories, mode => $mode);
     }
     
     # Study is not in the file so append it to the end, or create a file if it doesnt exist
     open(my $study_file_name_write_fh, '+>>', $self->study_file_name) or Bio::VertRes::Config::Exceptions::FileDoesntExist->throw(error => 'Couldnt open file for append '.$self->study_file_name);
     print {$study_file_name_write_fh} $self->study_name."\n";
     close($study_file_name_write_fh);
+    chmod $mode, $self->study_file_name;
 
     return $self;
 }
