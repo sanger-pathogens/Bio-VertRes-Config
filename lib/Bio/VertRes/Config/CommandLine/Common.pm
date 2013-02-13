@@ -64,7 +64,7 @@ sub BUILD {
         's|species=s'                      => \$species,
         'm|mapper=s'                       => \$mapper,
         'b|regeneration_log_file=s'        => \$regeneration_log_file,
-        'o|overwrite_existing_config_file' => \$overwrite_existing_config_file,
+        'overwrite_existing_config_file'   => \$overwrite_existing_config_file,
         'p|protocol=s'                     => \$protocol,
         'smalt_index_k=i'                  => \$smalt_index_k,
         'smalt_index_s=i'                  => \$smalt_index_s,
