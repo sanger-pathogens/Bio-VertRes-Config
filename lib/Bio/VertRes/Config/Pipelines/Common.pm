@@ -45,6 +45,10 @@ has 'port'                 => ( is => 'ro', isa => 'Int',        lazy     => 1, 
 has 'user'                 => ( is => 'ro', isa => 'Str',        lazy     => 1, builder => '_build_user' );
 has 'password'             => ( is => 'ro', isa => 'Maybe[Str]', lazy     => 1, builder => '_build_password' );
 
+has '_database_connection_details_file' => ( is => 'ro', isa => 'Str',     default => '/software/pathogen/config/database_connection_details' );
+has '_database_connection_details'      => ( is => 'ro', isa => 'Maybe[HashRef]', lazy => 1, builder => '_build__database_connection_details'  );
+
+
 sub _build_root {
     my ($self) = @_;
     join( '/', ( $self->root_base, $self->root_database_name, $self->root_pipeline_suffix ) );
@@ -64,22 +68,50 @@ sub _build_log {
 
 sub _build_host {
     my ($self) = @_;
-    $ENV{VRTRACK_HOST} || 'localhost';
+    if(defined($self->_database_connection_details))
+    {
+      return $self->_database_connection_details->{host};
+    }
+    return $ENV{VRTRACK_HOST} || 'localhost';
 }
 
 sub _build_port {
     my ($self) = @_;
-    $ENV{VRTRACK_PORT} || 3306;
+    if(defined($self->_database_connection_details))
+    {
+      return $self->_database_connection_details->{port};
+    }
+    return $ENV{VRTRACK_PORT} || 3306;
 }
 
 sub _build_user {
     my ($self) = @_;
-    $ENV{VRTRACK_RW_USER} || 'root';
+    if(defined($self->_database_connection_details))
+    {
+      return $self->_database_connection_details->{user};
+    }
+    return $ENV{VRTRACK_RW_USER} || 'root';
 }
 
 sub _build_password {
     my ($self) = @_;
-    $ENV{VRTRACK_PASSWORD};
+    if(defined($self->_database_connection_details))
+    {
+      return $self->_database_connection_details->{password};
+    }
+    return $ENV{VRTRACK_PASSWORD};
+}
+
+sub _build__database_connection_details
+{
+  my ($self) = @_;
+  my $connection_details;
+  if(-f $self->_database_connection_details_file )
+  {
+    my $text = read_file( $self->_database_connection_details_file  );
+    $connection_details = eval($text);
+  }
+  return $connection_details;
 }
 
 sub _limits_values_part_of_filename

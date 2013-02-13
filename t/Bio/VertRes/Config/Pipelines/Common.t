@@ -134,4 +134,47 @@ is_deeply(
     'output hash has translated db name in root path'
 );
 
+
+ok(
+    (
+        my $obj_database_connection_file = Bio::VertRes::Config::Pipelines::Common->new(
+            database            => 'pathogen_prok_track',
+            pipeline_short_name => 'new_pipeline',
+            module              => 'Bio::Example',
+            toplevel_action     => '__VRTrack_Action__',
+            _database_connection_details_file => 't/data/database_connection_details',
+            config_base         => $destination_directory
+        )
+    ),
+    'initialise common config with a specified database connection details file'
+);
+
+is_deeply(
+    $obj_database_connection_file->to_hash,
+    {
+        'db' => {
+            'database' => 'pathogen_prok_track',
+            'password' => 'some_password',
+            'user'     => 'some_user',
+            'port'     => 1234,
+            'host'     => 'some_hostname'
+        },
+        'data' => {
+            'db' => {
+                'database' => 'pathogen_prok_track',
+                'password' => 'some_password',
+                'user'     => 'some_user',
+                'port'     => 1234,
+                'host'     => 'some_hostname'
+            },
+            'dont_wait' => 0
+        },
+        'log'    => '/nfs/pathnfs01/log/prokaryotes/new_pipeline_logfile.log',
+        'root'   => '/lustre/scratch108/pathogen/pathpipe/prokaryotes/seq-pipelines',
+        'prefix' => '_',
+        'module' => 'Bio::Example'
+    },
+    'output hash with a specified database connection details file'
+);
+
 done_testing();
