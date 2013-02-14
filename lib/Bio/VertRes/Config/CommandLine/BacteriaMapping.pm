@@ -6,6 +6,10 @@ package Bio::VertRes::Config::CommandLine::BacteriaMapping;
 
 Create config scripts to map and snp call bacteria.
 
+=method run
+
+run the code
+
 =cut
 
 use Moose;

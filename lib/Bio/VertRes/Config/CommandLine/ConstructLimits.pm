@@ -32,7 +32,15 @@ sub limits_hash
     my $dbh = DBI->connect("DBI:mysql:host=mcs12:port=3379;database=sequencescape_warehouse", "warehouse_ro",undef, {'RaiseError' => 1, 'PrintError' => 0});
     my $sql = "select name from current_studies where internal_id = '".$self->input_id."' ";
     my @study_names = $dbh->selectrow_array($sql );
+    
+    #
+    #for my $study_name( @study_names)
+    #{
+    #      $study_name =~ s/^\\([^-\w$()*+.\/?@\[\\\]^{|}])$/$1/;
+    #}
+    
     $limits{project} = \@study_names;
+
   }
   elsif($self->input_type eq 'study')
   {

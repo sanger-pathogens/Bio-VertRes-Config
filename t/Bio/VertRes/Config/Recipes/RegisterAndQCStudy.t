@@ -36,6 +36,7 @@ is($text, "ABC study( EFG )", 'Study is in file');
 ok( -e $destination_directory . '/my_database/qc/qc_ABC_study_EFG.conf', 'QC toplevel file' );
 $text = read_file( $destination_directory . '/my_database/qc/qc_ABC_study_EFG.conf' );
 my $input_config_file = eval($text);
+
 is_deeply($input_config_file,{
   'max_failures' => 3,
   'db' => {

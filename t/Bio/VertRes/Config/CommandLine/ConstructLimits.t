@@ -21,7 +21,7 @@ is_deeply(
     'Study with name and no species'
 );
 
-# This runs over a live database so probably best to remove it
+## This runs over a live database so probably best to remove it
 #is_deeply(
 #    Bio::VertRes::Config::CommandLine::ConstructLimits->new(
 #        input_type => 'study',

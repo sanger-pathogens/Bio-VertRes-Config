@@ -82,7 +82,7 @@ is_deeply($input_config_file,{
             },
   'limits' => {
                 'project' => [
-                               'ABC study( EFG )'
+                               'ABC\ study\(\ EFG\ \)'
                              ]
               },
   'vrtrack_processed_flags' => {
@@ -93,6 +93,7 @@ is_deeply($input_config_file,{
   'log' => '/nfs/pathnfs01/log/my_database/mapping_ABC_study_EFG_ABC_ssaha.log',
   'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
   'prefix' => '_checked_elsewhere_',
+  'dont_use_get_lanes' => 1,
   'module' => 'VertRes::Pipelines::Mapping'
 },'Mapping Config file as expected');
 

@@ -37,7 +37,7 @@ is_deeply(
     {
       'limits' => {
                               'project' => [
-                                             'ABC study( EFG )'
+                                             'ABC\ study\(\ EFG\ \)'
                                            ]
                             },
               'vrtrack_processed_flags' => {
@@ -76,6 +76,7 @@ is_deeply(
               'log' => '/nfs/pathnfs01/log/my_database/mapping_ABC_study_EFG_ABC_smalt.log',
               'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
               'prefix' => '_checked_elsewhere_',
+              'dont_use_get_lanes' => 1,
               'module' => 'VertRes::Pipelines::Mapping'
             },
     'Expected smalt base config file'

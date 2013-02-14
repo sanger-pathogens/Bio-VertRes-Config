@@ -55,12 +55,12 @@ sub is_study_in_file_already
 sub register_study_name {
     my ($self) = @_;
     return $self if($self->is_study_in_file_already == 1);
-    my $mode = 0666;
+    my $mode = 0777;
     
     if(!(-e $self->study_file_name))
     {
       my($overall_config_filename, $directories, $suffix) = fileparse($self->study_file_name);
-      make_path($directories, mode => $mode);
+      make_path($directories, {mode => $mode});
     }
     
     # Study is not in the file so append it to the end, or create a file if it doesnt exist

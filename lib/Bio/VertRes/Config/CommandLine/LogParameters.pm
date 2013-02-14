@@ -61,10 +61,10 @@ sub _build__output_string {
 sub create {
     my ($self) = @_;
 
-    my $mode = 0666;
+    my $mode = 0777;
     if ( !( -e $self->log_file ) ) {
         my ( $config_filename, $directories, $suffix ) = fileparse( $self->log_file );
-        make_path($directories, mode => $mode);
+        make_path($directories, {mode => $mode});
     }
 
     open( my $fh, '+>>', $self->log_file )

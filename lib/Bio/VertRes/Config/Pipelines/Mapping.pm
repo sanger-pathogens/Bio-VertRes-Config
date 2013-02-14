@@ -48,6 +48,7 @@ has '_exit_on_errors'       => ( is => 'ro', isa => 'Int', default => 0 );
 has '_get_genome_coverage'  => ( is => 'ro', isa => 'Int', default => 1 );
 has '_add_index'            => ( is => 'ro', isa => 'Int', default => 1 );
 has '_ignore_mapped_status' => ( is => 'ro', isa => 'Int', default => 1 );
+has '_dont_use_get_lanes'   => ( is => 'ro', isa => 'Bool', default => 1 );
 
 sub _build__reference_fasta {
     my ($self) = @_;
@@ -83,7 +84,7 @@ override 'to_hash' => sub {
     my $output_hash = super();
 
     $output_hash->{vrtrack_processed_flags} = { import => 1, qc => 1, stored => 1 };
-    $output_hash->{limits}                     = $self->limits;
+    $output_hash->{limits}                     = $self->_escaped_limits;
     $output_hash->{data}{mark_duplicates}      = $self->_mark_duplicates;
     $output_hash->{data}{reference}            = $self->_reference_fasta;
     $output_hash->{data}{assembly_name}        = $self->reference;
@@ -95,6 +96,7 @@ override 'to_hash' => sub {
     $output_hash->{data}{ignore_mapped_status} = $self->_ignore_mapped_status;
     $output_hash->{data}{slx_mapper}           = $self->slx_mapper;
     $output_hash->{data}{slx_mapper_exe}       = $self->slx_mapper_exe;
+    $output_hash->{dont_use_get_lanes}         = $self->_dont_use_get_lanes;
 
     return $output_hash;
 };

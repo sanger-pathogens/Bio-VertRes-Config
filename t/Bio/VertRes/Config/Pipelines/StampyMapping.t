@@ -33,7 +33,7 @@ is_deeply(
     {
       'limits' => {
                               'project' => [
-                                             'ABC study( EFG )'
+                                             'ABC\ study\(\ EFG\ \)'
                                            ]
                             },
               'vrtrack_processed_flags' => {
@@ -67,11 +67,13 @@ is_deeply(
                           'do_cleanup' => 1,
                           'slx_mapper_exe' => 'python2.7 /software/pathogen/external/apps/usr/local/stampy-1.0.21/stampy.py',
                           'slx_mapper' => 'stampy',
+                          
                           'ignore_mapped_status' => 1
                         },
               'log' => '/nfs/pathnfs01/log/my_database/mapping_ABC_study_EFG_ABC_stampy.log',
               'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
               'prefix' => '_checked_elsewhere_',
+              'dont_use_get_lanes' => 1,
               'module' => 'VertRes::Pipelines::Mapping'
             },
     'Expected stampy base config file'
