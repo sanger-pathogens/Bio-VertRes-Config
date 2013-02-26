@@ -29,7 +29,7 @@ sub limits_hash
   if($self->input_type eq 'study' && $self->input_id =~ /^[\d]+$/)
   {
     # Todo: move ssid lookup to somewhere more sensible
-    my $dbh = DBI->connect("DBI:mysql:host=mcs12:port=3379;database=sequencescape_warehouse", "warehouse_ro",undef, {'RaiseError' => 1, 'PrintError' => 0});
+    my $dbh = DBI->connect("DBI:mysql:host=mcs7:port=3379;database=sequencescape_warehouse", "warehouse_ro",undef, {'RaiseError' => 1, 'PrintError' => 0});
     my $sql = "select name from current_studies where internal_id = '".$self->input_id."' ";
     my @study_names = $dbh->selectrow_array($sql );
     
