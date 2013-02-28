@@ -25,7 +25,7 @@ use Moose;
 extends 'Bio::VertRes::Config::Pipelines::Mapping';
 
 has 'slx_mapper'     => ( is => 'ro', isa => 'Str', default => 'smalt' );
-has 'slx_mapper_exe' => ( is => 'ro', isa => 'Str', default => '/software/pathogen/external/apps/usr/local/smalt-0.7.0.1/smalt_x86_64' );
+has 'slx_mapper_exe' => ( is => 'ro', isa => 'Str', default => '/software/pathogen/external/apps/usr/local/smalt-0.7.2/smalt_x86_64' );
 
 has 'additional_mapper_params' => ( is => 'ro', isa => 'Maybe[Str]' );
 has 'mapper_index_params'      => ( is => 'ro', isa => 'Maybe[Str]' );
