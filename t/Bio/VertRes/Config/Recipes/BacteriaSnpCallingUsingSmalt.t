@@ -78,7 +78,7 @@ is_deeply($input_config_file,{
               'do_cleanup' => 1,
               'ignore_mapped_status' => 1,
               'slx_mapper' => 'smalt',
-              'slx_mapper_exe' => '/software/pathogen/external/apps/usr/local/smalt-0.7.0.1/smalt_x86_64',
+              'slx_mapper_exe' => '/software/pathogen/external/apps/usr/local/smalt-0.7.2/smalt_x86_64',
               'mapper_index_suffix' => 's4k13',
               'additional_mapper_params' => '-y 0.5  -r 1  -x',
               'mapper_index_params'     => '-s 4  -k 13'
@@ -200,7 +200,7 @@ is_deeply($input_config_file,{
               'do_cleanup' => 1,
               'ignore_mapped_status' => 1,
               'slx_mapper' => 'smalt',
-              'slx_mapper_exe' => '/software/pathogen/external/apps/usr/local/smalt-0.7.0.1/smalt_x86_64',
+              'slx_mapper_exe' => '/software/pathogen/external/apps/usr/local/smalt-0.7.2/smalt_x86_64',
             },
   'limits' => {
                 'project' => [
