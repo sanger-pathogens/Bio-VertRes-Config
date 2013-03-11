@@ -60,7 +60,7 @@ is_deeply(
                           'bsub_opts' => '-q normal -M3500000 -R \'select[type==X86_64 && mem>3500] rusage[mem=3500,thouio=1,tmp=16000]\'',
                           'tmp_dir' => '/lustre/scratch108/pathogen/tmp',
                           'fai_ref' => '/path/to/ABC.fa.fai',
-                          'fai_chr_regex' => '.*',
+                          'fai_chr_regex' => '[\w\.\#]+',
                           'bsub_opts_mpileup' => '-q normal -R \'select[type==X86_64] rusage[thouio=1]\'',
                           'max_jobs' => 10,
                           'bam_suffix' => 'markdup.bam',

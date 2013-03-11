@@ -57,7 +57,7 @@ has '_split_size_mpileup'       => ( is => 'ro', isa => 'Int', default => 300000
 has '_tmp_dir'                  => ( is => 'ro', isa => 'Str', default => '/lustre/scratch108/pathogen/tmp' );
 has '_mpileup_cmd'              => ( is => 'ro', isa => 'Str', default => 'samtools mpileup -d 1000 -DSug ' );
 has '_max_jobs'                 => ( is => 'ro', isa => 'Int', default => 10 );
-has '_fai_chr_regex'            => ( is => 'ro', isa => 'Str', default => '.*' );
+has '_fai_chr_regex'            => ( is => 'ro', isa => 'Str', default => '[\w\.\#]+' );
 has '_fa_ref'                   => ( is => 'ro', isa => 'Str', lazy    => 1, builder => '_build__fa_ref' );
 has '_fai_ref'                  => ( is => 'ro', isa => 'Str', lazy    => 1, builder => '_build__fai_ref' );
 has '_ignore_snp_called_status' => ( is => 'ro', isa => 'Int', default => 1 );

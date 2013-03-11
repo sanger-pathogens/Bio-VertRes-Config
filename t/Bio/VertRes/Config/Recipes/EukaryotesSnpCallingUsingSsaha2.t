@@ -126,7 +126,7 @@ is_deeply($input_config_file,{
               'ignore_snp_called_status' => 1,
               'tmp_dir' => '/lustre/scratch108/pathogen/tmp',
               'bsub_opts_mpileup' => '-q normal -R \'select[type==X86_64] rusage[thouio=1]\'',
-              'fai_chr_regex' => '.*',
+              'fai_chr_regex' => '[\w\.\#]+',
               'fai_ref' => '/path/to/ABC.fa.fai',
               'max_jobs' => 10,
               'bam_suffix' => 'markdup.bam',
