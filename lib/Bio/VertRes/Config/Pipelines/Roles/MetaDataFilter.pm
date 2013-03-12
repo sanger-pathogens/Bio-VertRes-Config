@@ -28,15 +28,20 @@ sub _build__escaped_limits
     my @escaped_array_values;
     for my $array_value ( @{$self->limits->{$limit_type}})
     {
-      push(@escaped_array_values, (quotemeta $array_value));
+      # Dont backslash out the values in lane
+      if($limit_type eq 'lane')
+      {
+        push(@escaped_array_values,  $array_value);
+      }
+      else
+      {
+        push(@escaped_array_values, (quotemeta $array_value));
+      }
     }
     $escaped_limits{$limit_type} = \@escaped_array_values;
   }
   return \%escaped_limits;
 }
-
-
-
 
 no Moose;
 1;
