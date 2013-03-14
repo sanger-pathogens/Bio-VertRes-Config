@@ -25,7 +25,7 @@ sub handle_reference_inputs_or_exit
           "\n",
           @{ $reference_lookup->search_for_references($available_references)}
       );
-      die(0);
+      exit;
   }
   elsif( ! $reference_lookup->is_reference_name_valid($reference))
   {
