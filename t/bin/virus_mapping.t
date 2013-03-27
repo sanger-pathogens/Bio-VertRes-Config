@@ -21,7 +21,9 @@ my %scripts_and_expected_files = (
         'viruses/viruses.ilm.studies',          'viruses/viruses_assembly_pipeline.conf',
         'viruses/viruses_import_pipeline.conf', 'viruses/viruses_mapping_pipeline.conf',
         'viruses/viruses_qc_pipeline.conf',     'viruses/viruses_stored_pipeline.conf',
-        'viruses/qc/qc_ZZZ.conf',              'viruses/stored/stored_global.conf'
+        'viruses/qc/qc_ZZZ.conf',              'viruses/stored/stored_global.conf',
+        'viruses/annotate_assembly/annotate_assembly_global.conf',
+        'viruses/viruses_annotate_assembly_pipeline.conf',
     ],
     '-t lane -i 1234_5#6 -r ABC' => [
         'command_line.log',                       'viruses/assembly/assembly_global.conf',
@@ -29,7 +31,9 @@ my %scripts_and_expected_files = (
         'viruses/viruses_assembly_pipeline.conf', 'viruses/viruses_import_pipeline.conf',
         'viruses/viruses_mapping_pipeline.conf',  'viruses/viruses_qc_pipeline.conf',
         'viruses/viruses_stored_pipeline.conf',   'viruses/qc/qc_1234_5_6.conf',
-        'viruses/stored/stored_global.conf'
+        'viruses/stored/stored_global.conf',
+        'viruses/annotate_assembly/annotate_assembly_global.conf',
+        'viruses/viruses_annotate_assembly_pipeline.conf',
     ],
     '-t library -i libname -r ABC' => [
         'command_line.log',                       'viruses/assembly/assembly_global.conf',
@@ -37,7 +41,9 @@ my %scripts_and_expected_files = (
         'viruses/viruses_assembly_pipeline.conf', 'viruses/viruses_import_pipeline.conf',
         'viruses/viruses_mapping_pipeline.conf',  'viruses/viruses_qc_pipeline.conf',
         'viruses/viruses_stored_pipeline.conf',   'viruses/qc/qc_libname.conf',
-        'viruses/stored/stored_global.conf'
+        'viruses/stored/stored_global.conf',
+        'viruses/annotate_assembly/annotate_assembly_global.conf',
+        'viruses/viruses_annotate_assembly_pipeline.conf',
     ],
     '-t sample -i sample -r ABC' => [
         'command_line.log',                       'viruses/assembly/assembly_global.conf',
@@ -45,7 +51,9 @@ my %scripts_and_expected_files = (
         'viruses/viruses_assembly_pipeline.conf', 'viruses/viruses_import_pipeline.conf',
         'viruses/viruses_mapping_pipeline.conf',  'viruses/viruses_qc_pipeline.conf',
         'viruses/viruses_stored_pipeline.conf',   'viruses/qc/qc_sample.conf',
-        'viruses/stored/stored_global.conf'
+        'viruses/stored/stored_global.conf',
+        'viruses/annotate_assembly/annotate_assembly_global.conf',
+        'viruses/viruses_annotate_assembly_pipeline.conf',
     ],
     '-t file -i t/data/lanes_file -r ABC' => [
         'command_line.log',
@@ -60,7 +68,9 @@ my %scripts_and_expected_files = (
         'viruses/viruses_stored_pipeline.conf',
         'viruses/qc/qc_1111_2222_3333_lane_name_another_lane_name_a_very_big_lane_name.conf',
 
-        'viruses/stored/stored_global.conf'
+        'viruses/stored/stored_global.conf',
+        'viruses/annotate_assembly/annotate_assembly_global.conf',
+        'viruses/viruses_annotate_assembly_pipeline.conf',
     ],
     '-t study -i ZZZ -r ABC -p "StandardProtocol"' => [
         'command_line.log',                     'viruses/assembly/assembly_global.conf',
@@ -68,7 +78,9 @@ my %scripts_and_expected_files = (
         'viruses/viruses.ilm.studies',          'viruses/viruses_assembly_pipeline.conf',
         'viruses/viruses_import_pipeline.conf', 'viruses/viruses_mapping_pipeline.conf',
         'viruses/viruses_qc_pipeline.conf',     'viruses/viruses_stored_pipeline.conf',
-        'viruses/qc/qc_ZZZ.conf',              'viruses/stored/stored_global.conf'
+        'viruses/qc/qc_ZZZ.conf',              'viruses/stored/stored_global.conf',
+        'viruses/annotate_assembly/annotate_assembly_global.conf',
+        'viruses/viruses_annotate_assembly_pipeline.conf',
     ],
     '-t study -i ZZZ -r ABC -s Staphylococcus_aureus' => [
         'command_line.log',
@@ -84,7 +96,9 @@ my %scripts_and_expected_files = (
         'viruses/viruses_stored_pipeline.conf',
         'viruses/qc/qc_ZZZ_Staphylococcus_aureus.conf',
 
-        'viruses/stored/stored_global.conf'
+        'viruses/stored/stored_global.conf',
+        'viruses/annotate_assembly/annotate_assembly_global.conf',
+        'viruses/viruses_annotate_assembly_pipeline.conf',
     ],
     '-t study -i ZZZ -r ABC -m bwa' => [
         'command_line.log',                     'viruses/assembly/assembly_global.conf',
@@ -92,7 +106,9 @@ my %scripts_and_expected_files = (
         'viruses/viruses.ilm.studies',          'viruses/viruses_assembly_pipeline.conf',
         'viruses/viruses_import_pipeline.conf', 'viruses/viruses_mapping_pipeline.conf',
         'viruses/viruses_qc_pipeline.conf',     'viruses/viruses_stored_pipeline.conf',
-        'viruses/qc/qc_ZZZ.conf',              'viruses/stored/stored_global.conf'
+        'viruses/qc/qc_ZZZ.conf',              'viruses/stored/stored_global.conf',
+        'viruses/annotate_assembly/annotate_assembly_global.conf',
+        'viruses/viruses_annotate_assembly_pipeline.conf',
     ],
     '-t study -i ZZZ -r ABC -m stampy' => [
         'command_line.log',                     'viruses/assembly/assembly_global.conf',
@@ -100,7 +116,9 @@ my %scripts_and_expected_files = (
         'viruses/viruses.ilm.studies',          'viruses/viruses_assembly_pipeline.conf',
         'viruses/viruses_import_pipeline.conf', 'viruses/viruses_mapping_pipeline.conf',
         'viruses/viruses_qc_pipeline.conf',     'viruses/viruses_stored_pipeline.conf',
-        'viruses/qc/qc_ZZZ.conf',              'viruses/stored/stored_global.conf'
+        'viruses/qc/qc_ZZZ.conf',              'viruses/stored/stored_global.conf',
+        'viruses/annotate_assembly/annotate_assembly_global.conf',
+        'viruses/viruses_annotate_assembly_pipeline.conf',
     ],
     '-t study -i ZZZ -r ABC -m ssaha2' => [
         'command_line.log',                     'viruses/assembly/assembly_global.conf',
@@ -108,7 +126,9 @@ my %scripts_and_expected_files = (
         'viruses/viruses.ilm.studies',          'viruses/viruses_assembly_pipeline.conf',
         'viruses/viruses_import_pipeline.conf', 'viruses/viruses_mapping_pipeline.conf',
         'viruses/viruses_qc_pipeline.conf',     'viruses/viruses_stored_pipeline.conf',
-        'viruses/qc/qc_ZZZ.conf',              'viruses/stored/stored_global.conf'
+        'viruses/qc/qc_ZZZ.conf',              'viruses/stored/stored_global.conf',
+        'viruses/annotate_assembly/annotate_assembly_global.conf',
+        'viruses/viruses_annotate_assembly_pipeline.conf',
     ],
     '-t study -i ZZZ -r ABC -m tophat' => [
         'command_line.log',                     'viruses/assembly/assembly_global.conf',
@@ -116,7 +136,9 @@ my %scripts_and_expected_files = (
         'viruses/viruses.ilm.studies',          'viruses/viruses_assembly_pipeline.conf',
         'viruses/viruses_import_pipeline.conf', 'viruses/viruses_mapping_pipeline.conf',
         'viruses/viruses_qc_pipeline.conf',     'viruses/viruses_stored_pipeline.conf',
-        'viruses/qc/qc_ZZZ.conf',              'viruses/stored/stored_global.conf'
+        'viruses/qc/qc_ZZZ.conf',              'viruses/stored/stored_global.conf',
+        'viruses/annotate_assembly/annotate_assembly_global.conf',
+        'viruses/viruses_annotate_assembly_pipeline.conf',
     ],
     '-t study -i ZZZ -r ABC -m bowtie2' => [
         'command_line.log',                     'viruses/assembly/assembly_global.conf',
@@ -124,7 +146,9 @@ my %scripts_and_expected_files = (
         'viruses/viruses.ilm.studies',          'viruses/viruses_assembly_pipeline.conf',
         'viruses/viruses_import_pipeline.conf', 'viruses/viruses_mapping_pipeline.conf',
         'viruses/viruses_qc_pipeline.conf',     'viruses/viruses_stored_pipeline.conf',
-        'viruses/qc/qc_ZZZ.conf',              'viruses/stored/stored_global.conf'
+        'viruses/qc/qc_ZZZ.conf',              'viruses/stored/stored_global.conf',
+        'viruses/annotate_assembly/annotate_assembly_global.conf',
+        'viruses/viruses_annotate_assembly_pipeline.conf',
     ],
 
 );

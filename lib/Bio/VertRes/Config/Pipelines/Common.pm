@@ -135,8 +135,8 @@ sub _filter_characters_truncate_and_add_suffix {
     $output_filename =~ s/_$//g;
     $output_filename =~ s/_+/_/g;
 
-    if ( length($output_filename) > 80 ) {
-        $output_filename = substr( $output_filename, 0, 76 ) . '_' . int( rand(999) );
+    if ( length($output_filename) > 150 ) {
+        $output_filename = substr( $output_filename, 0, 146 ) . '_' . int( rand(999) );
     }
     return join( '.', ( $output_filename, $suffix ) );
 }

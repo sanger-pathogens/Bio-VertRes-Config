@@ -16,19 +16,12 @@ use Moose;
 use Bio::VertRes::Config::Pipelines::Assembly;
 use Bio::VertRes::Config::Pipelines::Import;
 use Bio::VertRes::Config::Pipelines::Store;
+use Bio::VertRes::Config::Pipelines::AnnotateAssembly;
 extends 'Bio::VertRes::Config::Recipes::Common';
 
 override '_pipeline_configs' => sub {
     my ($self) = @_;
     my @pipeline_configs;
-    push(
-        @pipeline_configs,
-        Bio::VertRes::Config::Pipelines::Assembly->new(
-            database                       => $self->database,
-            config_base                    => $self->config_base,
-            overwrite_existing_config_file => $self->overwrite_existing_config_file
-        )
-    );
     push(
         @pipeline_configs,
         Bio::VertRes::Config::Pipelines::Import->new(
@@ -40,6 +33,22 @@ override '_pipeline_configs' => sub {
     push(
         @pipeline_configs,
         Bio::VertRes::Config::Pipelines::Store->new(
+            database                       => $self->database,
+            config_base                    => $self->config_base,
+            overwrite_existing_config_file => $self->overwrite_existing_config_file
+        )
+    );
+    push(
+        @pipeline_configs,
+        Bio::VertRes::Config::Pipelines::Assembly->new(
+            database                       => $self->database,
+            config_base                    => $self->config_base,
+            overwrite_existing_config_file => $self->overwrite_existing_config_file
+        )
+    );
+    push(
+        @pipeline_configs,
+        Bio::VertRes::Config::Pipelines::AnnotateAssembly->new(
             database                       => $self->database,
             config_base                    => $self->config_base,
             overwrite_existing_config_file => $self->overwrite_existing_config_file
