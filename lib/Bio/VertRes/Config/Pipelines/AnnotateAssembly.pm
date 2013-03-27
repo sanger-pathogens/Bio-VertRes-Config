@@ -26,7 +26,7 @@ has '_max_lanes_to_search' => ( is => 'ro', isa => 'Int', default => 1000 );
 has '_limit'               => ( is => 'ro', isa => 'Int', default => 100 );
 has '_tmp_directory'       => ( is => 'ro', isa => 'Str', default => '/lustre/scratch108/pathogen/pathpipe/tmp' );
 has '_assembler'           => ( is => 'ro', isa => 'Str', default => 'velvet' );
-has '_annotation_tool'     => ( is => 'ro', isa => 'Str', default => 'prokka' );
+has '_annotation_tool'     => ( is => 'ro', isa => 'Str', default => 'Prokka' );
 has '_dbdir'               => ( is => 'ro', isa => 'Str', default => '/lustre/scratch108/pathogen/pathpipe/prokka' );
 
 override 'to_hash' => sub {

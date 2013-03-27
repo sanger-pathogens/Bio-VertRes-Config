@@ -45,7 +45,7 @@ is_deeply(
                                     'host' => 'localhost'
                                   },
                           'dbdir' => '/lustre/scratch108/pathogen/pathpipe/prokka',
-                          'annotation_tool' => 'prokka',
+                          'annotation_tool' => 'Prokka',
                           'dont_wait' => 0,
                           'assembler' => 'velvet'
                         },
