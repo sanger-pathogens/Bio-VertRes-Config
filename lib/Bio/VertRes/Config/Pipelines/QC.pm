@@ -39,7 +39,7 @@ has '_fa_ref'               => ( is => 'ro', isa => 'Str', lazy    => 1, builder
 has '_fai_ref'              => ( is => 'ro', isa => 'Str', lazy    => 1, builder => '_build__fai_ref' );
 has '_stats_ref'            => ( is => 'ro', isa => 'Str', lazy    => 1, builder => '_build__stats_ref' );
 has '_mapper'               => ( is => 'ro', isa => 'Str', default => 'bwa' );
-has '_bwa_exec'             => ( is => 'ro', isa => 'Str', default => '/software/pathogen/external/apps/usr/bin/bwa' );
+has '_bwa_exec'             => ( is => 'ro', isa => 'Str', default => '/software/pathogen/external/apps/usr/local/bwa-0.6.1/bwa' );
 has '_samtools'             => ( is => 'ro', isa => 'Str', default => '/software/pathogen/external/apps/usr/bin/samtools' );
 has '_glf'                  => ( is => 'ro', isa => 'Str', default => '/software/vertres/bin-external/glf' );
 has '_mapviewdepth'         => ( is => 'ro', isa => 'Str', default => '/software/pathogen/external/apps/usr/bin/bindepth' );

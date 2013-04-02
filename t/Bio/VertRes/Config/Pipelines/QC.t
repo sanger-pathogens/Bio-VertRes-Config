@@ -64,7 +64,7 @@ is_deeply(
             'mapviewdepth'      => '/software/pathogen/external/apps/usr/bin/bindepth',
             'stats_ref'         => '/path/to/ABC.fa.refstats',
             'exit_on_errors'    => 0,
-            'bwa_exec'          => '/software/pathogen/external/apps/usr/bin/bwa',
+            'bwa_exec'          => '/software/pathogen/external/apps/usr/local/bwa-0.6.1/bwa',
             'samtools'          => '/software/pathogen/external/apps/usr/bin/samtools',
             'adapters'          => '/lustre/scratch108/pathogen/pathpipe/usr/share/solexa-adapters.fasta',
             'fa_ref'            => '/path/to/ABC.fa',
