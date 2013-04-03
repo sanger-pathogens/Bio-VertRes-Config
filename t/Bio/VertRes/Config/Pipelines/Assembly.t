@@ -51,6 +51,7 @@ is_deeply(
             'seq_pipeline_root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
             'tmp_directory'     => '/lustre/scratch108/pathogen/pathpipe/tmp',
             'max_threads'       => 1,
+            'pipeline_version'  => 2,
             'optimiser_exec'    => '/software/pathogen/external/apps/usr/bin/VelvetOptimiser.pl'
         },
         'max_lanes_to_search'     => 200,

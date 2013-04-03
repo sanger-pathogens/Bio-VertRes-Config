@@ -30,6 +30,7 @@ has '_assembler'           => ( is => 'ro', isa => 'Str', default => 'velvet' );
 has '_assembler_exec'      => ( is => 'ro', isa => 'Str', default => '/software/pathogen/external/apps/usr/bin/velvet' );
 has '_optimiser_exec'      => ( is => 'ro', isa => 'Str', default => '/software/pathogen/external/apps/usr/bin/VelvetOptimiser.pl' );
 has '_max_threads'         => ( is => 'ro', isa => 'Int', default => 1 );
+has '_pipeline_version'    => ( is => 'ro', isa => 'Int', default => 2 );
 
 override 'to_hash' => sub {
     my ($self) = @_;
@@ -48,6 +49,7 @@ override 'to_hash' => sub {
     $output_hash->{data}{assembler_exec}    = $self->_assembler_exec;
     $output_hash->{data}{optimiser_exec}    = $self->_optimiser_exec;
     $output_hash->{data}{max_threads}       = $self->_max_threads;
+    $output_hash->{data}{pipeline_version}  = $self->_pipeline_version;
 
     return $output_hash;
 };

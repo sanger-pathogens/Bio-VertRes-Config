@@ -47,7 +47,8 @@ is_deeply(
                           'dbdir' => '/lustre/scratch108/pathogen/pathpipe/prokka',
                           'annotation_tool' => 'Prokka',
                           'dont_wait' => 0,
-                          'assembler' => 'velvet'
+                          'assembler' => 'velvet',
+                          'pipeline_version' => 1
                         },
               'max_lanes_to_search' => 1000,
               'vrtrack_processed_flags' => {

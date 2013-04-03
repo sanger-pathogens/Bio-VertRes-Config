@@ -28,6 +28,7 @@ has '_tmp_directory'       => ( is => 'ro', isa => 'Str', default => '/lustre/sc
 has '_assembler'           => ( is => 'ro', isa => 'Str', default => 'velvet' );
 has '_annotation_tool'     => ( is => 'ro', isa => 'Str', default => 'Prokka' );
 has '_dbdir'               => ( is => 'ro', isa => 'Str', default => '/lustre/scratch108/pathogen/pathpipe/prokka' );
+has '_pipeline_version'    => ( is => 'ro', isa => 'Int', default => 1 );
 
 override 'to_hash' => sub {
     my ($self) = @_;
@@ -41,6 +42,7 @@ override 'to_hash' => sub {
     $output_hash->{data}{assembler}         = $self->_assembler;
     $output_hash->{data}{annotation_tool}   = $self->_annotation_tool;
     $output_hash->{data}{dbdir}             = $self->_dbdir;
+    $output_hash->{data}{pipeline_version}  = $self->_pipeline_version;
 
     return $output_hash;
 };
