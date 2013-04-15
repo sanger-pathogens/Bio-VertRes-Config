@@ -31,6 +31,9 @@ has '_assembler_exec'      => ( is => 'ro', isa => 'Str', default => '/software/
 has '_optimiser_exec'      => ( is => 'ro', isa => 'Str', default => '/software/pathogen/external/apps/usr/bin/VelvetOptimiser.pl' );
 has '_max_threads'         => ( is => 'ro', isa => 'Int', default => 1 );
 has '_pipeline_version'    => ( is => 'ro', isa => 'Int', default => 2 );
+has '_error_correct'       => ( is => 'ro', isa => 'Bool', default => 0 );
+has '_sga_exec'            => ( is => 'ro', isa => 'Str', default => '/software/pathogen/external/apps/usr/bin/sga' );
+
 
 override 'to_hash' => sub {
     my ($self) = @_;
@@ -50,6 +53,8 @@ override 'to_hash' => sub {
     $output_hash->{data}{optimiser_exec}    = $self->_optimiser_exec;
     $output_hash->{data}{max_threads}       = $self->_max_threads;
     $output_hash->{data}{pipeline_version}  = $self->_pipeline_version;
+    $output_hash->{data}{error_correct}     = $self->_error_correct;
+    $output_hash->{data}{sga_exec}          = $self->_sga_exec;
 
     return $output_hash;
 };

@@ -52,6 +52,8 @@ is_deeply(
             'tmp_directory'     => '/lustre/scratch108/pathogen/pathpipe/tmp',
             'max_threads'       => 1,
             'pipeline_version'  => 2,
+            'error_correct'     => 0,
+            'sga_exec'          => '/software/pathogen/external/apps/usr/bin/sga',
             'optimiser_exec'    => '/software/pathogen/external/apps/usr/bin/VelvetOptimiser.pl'
         },
         'max_lanes_to_search'     => 200,
