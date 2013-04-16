@@ -58,7 +58,7 @@ is_deeply($input_config_file,{
             'host' => 'localhost'
           },
   'data' => {
-              'mark_duplicates' => 1,
+              'mark_duplicates' => 0,
               'do_recalibration' => 0,
               'db' => {
                         'database' => 'my_database',
