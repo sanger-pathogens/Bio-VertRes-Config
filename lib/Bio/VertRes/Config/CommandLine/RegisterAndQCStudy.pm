@@ -20,7 +20,7 @@ sub run {
     ( ( ( defined($self->available_references) && $self->available_references ne "" ) || ( $self->reference && $self->type && $self->id ) )
           && !$self->help ) or die $self->usage_text;
 
-    handle_reference_inputs_or_exit( $self->reference_lookup_file, $self->available_references, $self->reference );
+    return if(handle_reference_inputs_or_exit( $self->reference_lookup_file, $self->available_references, $self->reference ) == 1);
 
     Bio::VertRes::Config::Recipes::RegisterAndQCStudy->new( $self->mapping_parameters )->create();
 

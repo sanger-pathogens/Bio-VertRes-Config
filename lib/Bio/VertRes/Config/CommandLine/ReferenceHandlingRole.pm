@@ -25,15 +25,15 @@ sub handle_reference_inputs_or_exit
           "\n",
           @{ $reference_lookup->search_for_references($available_references)}
       );
-      die(1);
+      return 1;
   }
   elsif( ! $reference_lookup->is_reference_name_valid($reference))
   {
     print $reference_lookup->invalid_reference_message($reference);
-    die(1);
+    return 1;
   }
   
-  return undef;
+  return 0;
 }
 
 1;

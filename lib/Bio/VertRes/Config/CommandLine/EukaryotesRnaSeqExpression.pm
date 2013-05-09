@@ -31,7 +31,7 @@ sub run {
           && !$self->help
     ) or die $self->usage_text;
 
-    handle_reference_inputs_or_exit( $self->reference_lookup_file, $self->available_references, $self->reference );
+    return if(handle_reference_inputs_or_exit( $self->reference_lookup_file, $self->available_references, $self->reference ) == 1);
 
     if ( defined($self->mapper) && $self->mapper eq 'bwa' ) {
         Bio::VertRes::Config::Recipes::EukaryotesRnaSeqExpressionUsingBwa->new( $self->mapping_parameters )->create();
