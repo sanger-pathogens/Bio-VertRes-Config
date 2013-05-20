@@ -46,9 +46,20 @@ sub limits_hash
   {
     $limits{project} = [$self->input_id];
   }
-  elsif($self->input_type eq 'lane' || $self->input_type eq 'library' || $self->input_type eq 'sample')
+  elsif($self->input_type eq 'library' || $self->input_type eq 'sample')
   {
     $limits{$self->input_type} = [$self->input_id];
+  } 
+  elsif($self->input_type eq 'lane')
+  {
+    if($self->input_id =~ /^\d+_\d$/)
+    {
+      $limits{$self->input_type} = [$self->input_id.'(#.+)?'];
+    }
+    else
+    {
+      $limits{$self->input_type} = [$self->input_id];
+    }
   }
   elsif($self->input_type eq 'file')
   {

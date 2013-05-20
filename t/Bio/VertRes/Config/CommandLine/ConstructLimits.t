@@ -59,8 +59,19 @@ is_deeply(
         species    => undef
       )->limits_hash,
     { lane => ['1234_5#6'] },
-    'Lane with name and no species'
+    'Lane with name (tag) and no species'
 );
+
+is_deeply(
+    Bio::VertRes::Config::CommandLine::ConstructLimits->new(
+        input_type => 'lane',
+        input_id   => '1234_5',
+        species    => undef
+      )->limits_hash,
+    { lane => ['1234_5(#.+)?'] },
+    'Lane with name (no tag) and no species'
+);
+
 
 is_deeply(
     Bio::VertRes::Config::CommandLine::ConstructLimits->new(
