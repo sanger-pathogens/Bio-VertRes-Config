@@ -69,7 +69,7 @@ is_deeply(
                           'add_index' => 1,
                           'reference' => '/path/to/ABC.fa',
                           'do_cleanup' => 1,
-                          'slx_mapper_exe' => '/software/pathogen/external/apps/usr/local/smalt-0.7.2/smalt_x86_64',
+                          'slx_mapper_exe' => '/software/pathogen/external/apps/usr/local/smalt-0.7.4/smalt_x86_64',
                           'slx_mapper' => 'smalt',
                           'ignore_mapped_status' => 1
                         },
