@@ -1,12 +1,12 @@
-package Bio::VertRes::Config::Recipes::RegisterAndQCStudy;
+package Bio::VertRes::Config::Recipes::EukaryotesRegisterAndQCStudy;
 # ABSTRACT: Register and QC a study
 
 =head1 SYNOPSIS
 
 Register and QC a study
-   use Bio::VertRes::Config::Recipes::RegisterAndQCStudy;
+   use Bio::VertRes::Config::Recipes::EukaryotesRegisterAndQCStudy;
    
-   my $obj = Bio::VertRes::Config::Recipes::RegisterAndQCStudy->new( 
+   my $obj = Bio::VertRes::Config::Recipes::EukaryotesRegisterAndQCStudy->new( 
      database => 'abc', 
      limits => {project => ['Study ABC']}, 
      reference => 'ABC', 

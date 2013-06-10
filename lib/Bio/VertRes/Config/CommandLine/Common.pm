@@ -38,6 +38,9 @@ has 'smalt_mapper_r' => ( is => 'rw', isa => 'Maybe[Int]' );
 has 'smalt_mapper_x' => ( is => 'rw', isa => 'Maybe[Bool]' );
 has 'smalt_mapper_y' => ( is => 'rw', isa => 'Maybe[Num]' );
 
+# set assembler
+has 'assembler' => ( is => 'rw', isa => 'Maybe[Str]' );
+
 sub BUILD {
     my ($self) = @_;
     my $log_params =
@@ -49,7 +52,8 @@ sub BUILD {
         $id,                    $species,                        $mapper,
         $regeneration_log_file, $overwrite_existing_config_file, $protocol,
         $smalt_index_k,         $smalt_index_s,                  $smalt_mapper_r,
-        $smalt_mapper_y,        $smalt_mapper_x,                 $help
+        $smalt_mapper_y,        $smalt_mapper_x,                 $assembler,
+        $help
     );
 
     GetOptionsFromArray(
@@ -71,7 +75,8 @@ sub BUILD {
         'smalt_mapper_r=i'                 => \$smalt_mapper_r,
         'smalt_mapper_y=f'                 => \$smalt_mapper_y,
         'smalt_mapper_x'                   => \$smalt_mapper_x,
-        'h|help'                           => \$help,
+        'assembler=s'                      => \$assembler,
+        'h|help'                           => \$help
     );
 
     $self->database($database)                           if ( defined($database) );
@@ -90,6 +95,7 @@ sub BUILD {
     $self->smalt_mapper_r($smalt_mapper_r)               if ( defined($smalt_mapper_r) );
     $self->smalt_mapper_y($smalt_mapper_y)               if ( defined($smalt_mapper_y) );
     $self->smalt_mapper_x($smalt_mapper_x)               if ( defined($smalt_mapper_x) );
+    $self->assembler($assembler)                         if ( defined($assembler) );
 
     $regeneration_log_file ||= join( '/', ( $self->config_base, 'command_line.log' ) );
     $self->regeneration_log_file($regeneration_log_file) if ( defined($regeneration_log_file) );

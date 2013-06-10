@@ -8,14 +8,14 @@ BEGIN { unshift( @INC, './lib' ) }
 
 BEGIN {
     use Test::Most;
-    use_ok('Bio::VertRes::Config::Pipelines::Assembly');
+    use_ok('Bio::VertRes::Config::Pipelines::SpadesAssembly');
 }
 my $destination_directory_obj = File::Temp->newdir( CLEANUP => 1 );
 my $destination_directory = $destination_directory_obj->dirname();
 
 ok(
     (
-        my $obj = Bio::VertRes::Config::Pipelines::Assembly->new(
+        my $obj = Bio::VertRes::Config::Pipelines::SpadesAssembly->new(
             database    => 'my_database',
             limits      => {project => ['Abc def (ghi123)']},
             config_base => $destination_directory
@@ -49,16 +49,16 @@ is_deeply(
                 'port'     => 3306,
                 'host'     => 'localhost'
             },
-            'assembler_exec'    => '/software/pathogen/external/apps/usr/bin/velvet',
+            'assembler_exec'    => '/software/pathogen/external/apps/usr/bin/spades.py',
             'dont_wait'         => 0,
-            'assembler'         => 'velvet',
+            'assembler'         => 'spades',
             'seq_pipeline_root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
             'tmp_directory'     => '/lustre/scratch108/pathogen/pathpipe/tmp',
             'max_threads'       => 1,
             'pipeline_version'  => 2,
             'error_correct'     => 0,
             'sga_exec'          => '/software/pathogen/external/apps/usr/bin/sga',
-            'optimiser_exec'    => '/software/pathogen/external/apps/usr/bin/VelvetOptimiser.pl',
+            'optimiser_exec'    => '/software/pathogen/external/apps/usr/bin/spades.py',
             'primers_file'      => '/nfs/pathnfs01/conf/primers/virus_primers',
             'remove_primers'    => 0,
             'normalise'         => 0
@@ -70,7 +70,7 @@ is_deeply(
             'stored'             => 1
         },
         'root'   => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
-        'log'    => '/nfs/pathnfs01/log/my_database/assembly_Abc_def_ghi123_velvet.log',
+        'log'    => '/nfs/pathnfs01/log/my_database/assembly_Abc_def_ghi123_spades.log',
         'limit'  => 100,
         'module' => 'VertRes::Pipelines::Assembly',
         'prefix' => '_assembly_'
@@ -80,55 +80,12 @@ is_deeply(
 
 is(
     $obj->config,
-    $destination_directory . '/my_database/assembly/assembly_Abc_def_ghi123_velvet.conf',
+    $destination_directory . '/my_database/assembly/assembly_Abc_def_ghi123_spades.conf',
     'config file in expected format'
 );
 ok( $obj->create_config_file, 'Can run the create config file method' );
 ok( ( -e $obj->config ), 'Config file exists' );
 
-# Test limits
-ok(
-    (
-        $obj = Bio::VertRes::Config::Pipelines::Assembly->new(
-            database              => 'my_database',
-            limits                => {
-                project     => [ 'study 1',  'study 2' ],
-                sample      => [ 'sample 1', 'sample 2' ],
-                species     => ['species 1'],
-                other_stuff => ['some other stuff']
-            },
-            config_base         => '/path/to/config_base'
-        )
-    ),
-    'initialise annotation config with multiple limits'
-);
 
-is_deeply(
-    $obj->_escaped_limits,
-    {
-        'project'     => [ 'study\ 1',  'study\ 2' ],
-        'sample'      => [ 'sample\ 1', 'sample\ 2' ],
-        'species'     => [ 'species\ 1' ],
-        'other_stuff' => [ 'some\ other\ stuff' ]
-    },
-    'Check escaped limits are as expected'
-);
-is_deeply(
-    $obj->limits,
-    {
-        'project'     => [ 'study 1',  'study 2' ],
-        'sample'      => [ 'sample 1', 'sample 2' ],
-        'species'     => ['species 1'],
-        'other_stuff' => ['some other stuff']
-    },
-    'Check the input limits are unchanged'
-);
-
-# check config file name
-is(
-    $obj->config,
-    '/path/to/config_base/my_database/assembly/assembly_study_1_study_2_sample_1_sample_2_species_1_velvet.conf',
-    'config file name in expected format'
-);
 
 done_testing();

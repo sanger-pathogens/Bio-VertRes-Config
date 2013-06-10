@@ -8,15 +8,15 @@ BEGIN { unshift( @INC, './lib' ) }
 
 BEGIN {
     use Test::Most;
-    use_ok('Bio::VertRes::Config::Recipes::RegisterAndQCStudy');
+    use_ok('Bio::VertRes::Config::Recipes::EukaryotesRegisterAndQCStudy');
 }
 
-my $destination_directory_obj = File::Temp->newdir( CLEANUP => 0 );
+my $destination_directory_obj = File::Temp->newdir( CLEANUP => 1 );
 my $destination_directory = $destination_directory_obj->dirname();
 
 ok(
     (
-        my $obj = Bio::VertRes::Config::Recipes::RegisterAndQCStudy->new(
+            my $obj = Bio::VertRes::Config::Recipes::EukaryotesRegisterAndQCStudy->new(
             database    => 'my_database',
             config_base => $destination_directory,
             limits      => { project => ['ABC study( EFG )'] },
@@ -85,10 +85,9 @@ is_deeply($input_config_file,{
 },'Config file as expected');
 
 
-
 ok(
     (
-        $obj = Bio::VertRes::Config::Recipes::RegisterAndQCStudy->new(
+        $obj = Bio::VertRes::Config::Recipes::EukaryotesRegisterAndQCStudy->new(
             database    => 'my_database',
             config_base => $destination_directory,
             limits      => { project => ['ABC study( EFG )'], species => ['Cat', 'Dog'] },
@@ -155,14 +154,13 @@ is_deeply($input_config_file,{
 },'Config file as expected with species limit');
 
 
-# Populate a few studies
-Bio::VertRes::Config::RegisterStudy->new(database => 'pathogen_rnd_track', study_name => 'EEE study',config_base => $destination_directory)->register_study_name();
+# Populate a new study
 Bio::VertRes::Config::RegisterStudy->new(database => 'pathogen_euk_track', study_name => 'DDD',config_base => $destination_directory)->register_study_name();
 
 ok(
     (
-        $obj = Bio::VertRes::Config::Recipes::RegisterAndQCStudy->new(
-            database    => 'pathogen_rnd_track',
+        $obj = Bio::VertRes::Config::Recipes::EukaryotesRegisterAndQCStudy->new(
+            database    => 'my_other_database',
             config_base => $destination_directory,
             limits      => { project => ['DDD'] },
             reference_lookup_file => 't/data/refs.index',

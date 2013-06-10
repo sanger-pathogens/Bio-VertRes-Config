@@ -7,7 +7,6 @@ use File::Slurp;
 BEGIN { unshift( @INC, './lib' ) }
 
 use Bio::VertRes::Config::Pipelines::BwaMapping;
-use Bio::VertRes::Config::Pipelines::Assembly;
 use Bio::VertRes::Config::Pipelines::Import;
 use Bio::VertRes::Config::Pipelines::Store;
 use Bio::VertRes::Config::Pipelines::SnpCalling;
@@ -25,7 +24,6 @@ my $destination_directory = $destination_directory_obj->dirname();
 
 # Create a few config objects for testing
 my @pipeline_configs;
-push(@pipeline_configs, Bio::VertRes::Config::Pipelines::Assembly->new(database => 'my_database', config_base => $destination_directory));
 push(@pipeline_configs, Bio::VertRes::Config::Pipelines::Import->new(database => 'my_database', config_base => $destination_directory));
 push(@pipeline_configs, Bio::VertRes::Config::Pipelines::Store->new(database => 'my_database', config_base => $destination_directory));
 push(@pipeline_configs, Bio::VertRes::Config::Pipelines::BwaMapping->new(
@@ -58,18 +56,12 @@ ok((my $obj = Bio::VertRes::Config::MultipleTopLevelFiles->new(
 
 ok(($obj->update_or_create()), 'Create all the toplevel files');
 
-ok(-e $destination_directory.'/my_database/my_database_assembly_pipeline.conf', 'assembly toplevel file');
 ok(-e $destination_directory.'/my_database/my_database_mapping_pipeline.conf', 'mapping toplevel file');
 ok(-e $destination_directory.'/my_database/my_database_stored_pipeline.conf', 'stored toplevel file');
 ok(-e $destination_directory.'/my_database/my_database_import_pipeline.conf', 'import toplevel file');
 ok(-e $destination_directory.'/my_database/my_database_snps_pipeline.conf', 'snps toplevel file');
 
-my $text = read_file( $destination_directory.'/my_database/my_database_assembly_pipeline.conf' );
-chomp($text);
-is($text, "__VRTrack_Assembly__ $destination_directory/my_database/assembly/assembly_global.conf", 'content of assembly toplevel file as expected');
-
-
-$text = read_file( $destination_directory.'/my_database/my_database_mapping_pipeline.conf' );
+my $text = read_file( $destination_directory.'/my_database/my_database_mapping_pipeline.conf' );
 chomp($text);
 my @mapping_rows = sort(split("\n",$text));
 is_deeply(\@mapping_rows , ["__VRTrack_Mapping__ $destination_directory/my_database/mapping/mapping_ABC_study_EFG_ABC_bwa.conf",

@@ -38,22 +38,24 @@ override '_pipeline_configs' => sub {
             overwrite_existing_config_file => $self->overwrite_existing_config_file
         )
     );
-    push(
-        @pipeline_configs,
-        Bio::VertRes::Config::Pipelines::Assembly->new(
-            database                       => $self->database,
-            config_base                    => $self->config_base,
-            overwrite_existing_config_file => $self->overwrite_existing_config_file
-        )
-    );
-    push(
-        @pipeline_configs,
-        Bio::VertRes::Config::Pipelines::AnnotateAssembly->new(
-            database                       => $self->database,
-            config_base                    => $self->config_base,
-            overwrite_existing_config_file => $self->overwrite_existing_config_file
-        )
-    );
+#     push(
+#         @pipeline_configs,
+#         Bio::VertRes::Config::Pipelines::Assembly->new(
+#             database                       => $self->database,
+#             config_base                    => $self->config_base,
+#             overwrite_existing_config_file => $self->overwrite_existing_config_file,
+#             limits                         => {}
+#         )
+#     );
+#     push(
+#         @pipeline_configs,
+#         Bio::VertRes::Config::Pipelines::AnnotateAssembly->new(
+#             database                       => $self->database,
+#             config_base                    => $self->config_base,
+#             overwrite_existing_config_file => $self->overwrite_existing_config_file,
+#             limits                         => {}
+#         )
+#     );
     return \@pipeline_configs;
 };
 

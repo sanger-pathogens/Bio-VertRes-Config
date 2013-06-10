@@ -8,14 +8,14 @@ BEGIN { unshift( @INC, './lib' ) }
 
 BEGIN {
     use Test::Most;
-    use_ok('Bio::VertRes::Config::Pipelines::Assembly');
+    use_ok('Bio::VertRes::Config::Pipelines::VelvetAssembly');
 }
 my $destination_directory_obj = File::Temp->newdir( CLEANUP => 1 );
 my $destination_directory = $destination_directory_obj->dirname();
 
 ok(
     (
-        my $obj = Bio::VertRes::Config::Pipelines::Assembly->new(
+        my $obj = Bio::VertRes::Config::Pipelines::VelvetAssembly->new(
             database    => 'my_database',
             limits      => {project => ['Abc def (ghi123)']},
             config_base => $destination_directory
@@ -89,7 +89,7 @@ ok( ( -e $obj->config ), 'Config file exists' );
 # Test limits
 ok(
     (
-        $obj = Bio::VertRes::Config::Pipelines::Assembly->new(
+        $obj = Bio::VertRes::Config::Pipelines::VelvetAssembly->new(
             database              => 'my_database',
             limits                => {
                 project     => [ 'study 1',  'study 2' ],
