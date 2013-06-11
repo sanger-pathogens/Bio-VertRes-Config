@@ -1,0 +1,19 @@
+#!/usr/bin/env perl
+
+package Bio::VertRes::Config::Main::BacteriaAssemblyAndAnnotation;
+
+# ABSTRACT: Create config scripts for assembly and annotation prokaryote data
+# PODNAME: bacteria_assembly_and_annotation
+
+=head1 SYNOPSIS
+
+Create config scripts for assembly and annotation
+
+=cut
+
+BEGIN { unshift( @INC, '../lib' ) }
+BEGIN { unshift( @INC, './lib' ) }
+BEGIN { unshift( @INC, '/software/pathogen/internal/prod/lib/' ) }
+use Bio::VertRes::Config::CommandLine::BacteriaAssemblyAndAnnotation;
+
+Bio::VertRes::Config::CommandLine::BacteriaAssemblyAndAnnotation->new(args => \@ARGV, script_name => $0)->run;

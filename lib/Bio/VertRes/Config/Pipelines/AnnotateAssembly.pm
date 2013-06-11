@@ -61,6 +61,8 @@ sub _construct_filename
   return $self->_filter_characters_truncate_and_add_suffix($output_filename,$suffix);
 }
 
+
+
 override 'log_file_name' => sub {
     my ($self) = @_;
     return $self->_construct_filename('log');

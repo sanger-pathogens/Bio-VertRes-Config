@@ -24,8 +24,6 @@ use Bio::VertRes::Config::Pipelines::SpadesAssembly;
 use Bio::VertRes::Config::Pipelines::AnnotateAssembly;
 use Bio::VertRes::Config::RegisterStudy;
 
-has '_project_limits' => ( is => 'ro', isa => 'HashRef', lazy_build => 1 ); 
-
 # Register all the studies passed in the project limits array
 after 'create' => sub { 
   my ($self) = @_;
@@ -61,14 +59,6 @@ sub add_virus_qc_config
   return ;
 }
 
-sub _build__project_limits
-{
-    my ($self) = @_;
-    my %project_limits;
-    $project_limits{project} = $self->limits->{project} if defined($self->limits->{project});
-    return \%project_limits;
-}
-
 sub add_virus_velvet_assembly_config
 {
   my ($self, $pipeline_configs_array) = @_;
@@ -78,13 +68,13 @@ sub add_virus_velvet_assembly_config
           database                       => $self->database,
           config_base                    => $self->config_base,
           overwrite_existing_config_file => $self->overwrite_existing_config_file,
-          limits                         => $self->_project_limits,
+          limits                         => $self->limits,
           _error_correct                 => $self->_error_correct,
           _remove_primers                => $self->_remove_primers,
           _pipeline_version              => $self->_pipeline_version, 
           _normalise                     => $self->_normalise 
       )
-  ) if defined($self->limits->{project});
+  );
   return ;
 }
 
@@ -97,13 +87,13 @@ sub add_virus_spades_assembly_config
           database                       => $self->database,
           config_base                    => $self->config_base,
           overwrite_existing_config_file => $self->overwrite_existing_config_file,
-          limits                         => $self->_project_limits,
+          limits                         => $self->limits,
           _error_correct                 => $self->_error_correct,
           _remove_primers                => $self->_remove_primers,
           _pipeline_version              => $self->_pipeline_version, 
           _normalise                     => $self->_normalise 
       )
-  ) if defined($self->limits->{project});
+  );
   return ;
 }
 
@@ -116,9 +106,9 @@ sub add_virus_annotate_config
           database                       => $self->database,
           config_base                    => $self->config_base,
           overwrite_existing_config_file => $self->overwrite_existing_config_file,
-          limits                         => $self->_project_limits
+          limits                         => $self->limits
       )
-  ) if defined($self->limits->{project});
+  );
   return ;
 }
 
