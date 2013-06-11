@@ -34,15 +34,15 @@ override '_pipeline_configs' => sub {
     my ($self) = @_;
     my @pipeline_configs;
     $self->add_virus_qc_config(\@pipeline_configs);
-    if($self->assembler eq 'velvet')
-    {
-        $self->add_virus_velvet_assembly_config(\@pipeline_configs);
-    }
-    else
-    {
-        $self->add_virus_spades_assembly_config(\@pipeline_configs);
-    }
-    $self->add_virus_annotate_config(\@pipeline_configs);
+    #if($self->assembler eq 'velvet')
+    #{
+    #    $self->add_virus_velvet_assembly_config(\@pipeline_configs);
+    #}
+    #else
+    #{
+    #    $self->add_virus_spades_assembly_config(\@pipeline_configs);
+    #}
+    #$self->add_virus_annotate_config(\@pipeline_configs);
 
     return \@pipeline_configs;
 };

@@ -17,6 +17,8 @@ has 'database'  => ( is => 'rw', isa => 'Str', default => 'pathogen_prok_track' 
 sub run {
     my ($self) = @_;
 
+    ($self->type && $self->id  && !$self->help ) or die $self->usage_text;
+
     my %mapping_parameters = %{$self->mapping_parameters};
     $mapping_parameters{'assembler'} = $self->assembler if defined ($self->assembler);
     Bio::VertRes::Config::Recipes::BacteriaAssemblyAndAnnotation->new( \%mapping_parameters )->create();
