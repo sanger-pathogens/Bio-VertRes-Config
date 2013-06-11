@@ -65,7 +65,7 @@ is_deeply(
                           'add_index' => 1,
                           'reference' => '/path/to/ABC.fa',
                           'do_cleanup' => 1,
-                          'slx_mapper_exe' => 'python2.7 /software/pathogen/external/apps/usr/local/stampy-1.0.21/stampy.py',
+                          'slx_mapper_exe' => 'python2.7 /software/pathogen/external/apps/usr/local/stampy-1.0.22/stampy.py',
                           'slx_mapper' => 'stampy',
                           
                           'ignore_mapped_status' => 1

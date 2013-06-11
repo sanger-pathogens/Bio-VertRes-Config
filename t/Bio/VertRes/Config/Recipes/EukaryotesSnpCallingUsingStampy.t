@@ -30,7 +30,6 @@ ok( ( $obj->create ), 'Create all the config files and toplevel files' );
 
 # Are all the nessisary top level files there?
 ok( -e $destination_directory . '/my_database/my_database.ilm.studies' , 'study names file exists');
-ok( -e $destination_directory . '/my_database/my_database_assembly_pipeline.conf', 'assembly toplevel file');
 ok( -e $destination_directory . '/my_database/my_database_stored_pipeline.conf', 'stored toplevel file');
 ok( -e $destination_directory . '/my_database/my_database_import_pipeline.conf', 'import toplevel file');
 ok( -e $destination_directory . '/my_database/my_database_qc_pipeline.conf', 'qc toplevel file');
@@ -38,7 +37,6 @@ ok( -e $destination_directory . '/my_database/my_database_mapping_pipeline.conf'
 ok( -e $destination_directory . '/my_database/my_database_snps_pipeline.conf', 'snps toplevel file');
 
 # Individual config files
-ok((-e "$destination_directory/my_database/assembly/assembly_global.conf"), 'assembly config file exists');
 ok((-e "$destination_directory/my_database/stored/stored_global.conf"), 'stored config file exists');
 ok((-e "$destination_directory/my_database/import/import_global.conf"), 'import config file exists');
 ok((-e "$destination_directory/my_database/qc/qc_ABC_study_EFG.conf"), 'QC config file exists' );
@@ -76,7 +74,7 @@ is_deeply($input_config_file,{
               'do_cleanup' => 1,
               'ignore_mapped_status' => 1,
               'slx_mapper' => 'stampy',
-              'slx_mapper_exe' => 'python2.7 /software/pathogen/external/apps/usr/local/stampy-1.0.21/stampy.py'
+              'slx_mapper_exe' => 'python2.7 /software/pathogen/external/apps/usr/local/stampy-1.0.22/stampy.py'
             },
   'limits' => {
                 'project' => [

@@ -30,7 +30,6 @@ ok( ( $obj->create ), 'Create all the config files and toplevel files' );
 
 # Are all the nessisary top level files there?
 ok( -e $destination_directory . '/my_database/my_database.ilm.studies' , 'study names file exists');
-ok( -e $destination_directory . '/my_database/my_database_assembly_pipeline.conf', 'assembly toplevel file');
 ok( -e $destination_directory . '/my_database/my_database_stored_pipeline.conf', 'stored toplevel file');
 ok( -e $destination_directory . '/my_database/my_database_import_pipeline.conf', 'import toplevel file');
 ok( -e $destination_directory . '/my_database/my_database_qc_pipeline.conf', 'qc toplevel file');
@@ -38,7 +37,6 @@ ok( -e $destination_directory . '/my_database/my_database_mapping_pipeline.conf'
 ok( -e $destination_directory . '/my_database/my_database_rna_seq_pipeline.conf', 'rnaseq toplevel file');
 
 # Individual config files
-ok((-e "$destination_directory/my_database/assembly/assembly_global.conf"), 'assembly config file exists');
 ok((-e "$destination_directory/my_database/stored/stored_global.conf"), 'stored config file exists');
 ok((-e "$destination_directory/my_database/import/import_global.conf"), 'import config file exists');
 ok((-e "$destination_directory/my_database/qc/qc_ABC_study_EFG.conf"), 'QC config file exists' );

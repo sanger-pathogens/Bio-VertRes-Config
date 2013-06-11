@@ -1,13 +1,15 @@
 package Bio::VertRes::Config::Pipelines::Assembly;
 
-# ABSTRACT: A class for generating the Assembly pipeline config file which archives data to nfs units
+# ABSTRACT: A base class for generating the Assembly pipeline config file which archives data to nfs units
 
 =head1 SYNOPSIS
 
-A class for generating the Assembly pipeline config file
+A base class for generating the Assembly pipeline config file
    use Bio::VertRes::Config::Pipelines::Assembly;
    
-   my $pipeline = Bio::VertRes::Config::Pipelines::Assembly->new(database => 'abc');
+   my $pipeline = Bio::VertRes::Config::Pipelines::Assembly->new(database    => 'abc'
+                                                                 config_base => '/path/to/config/base',
+                                                                 limits      => { project => ['project name']);
    $pipeline->to_hash();
 
 =cut
@@ -15,6 +17,7 @@ A class for generating the Assembly pipeline config file
 use Moose;
 use Bio::VertRes::Config::Pipelines::Common;
 extends 'Bio::VertRes::Config::Pipelines::Common';
+with 'Bio::VertRes::Config::Pipelines::Roles::MetaDataFilter';
 
 has 'pipeline_short_name'  => ( is => 'ro', isa => 'Str', default => 'assembly' );
 has 'module'               => ( is => 'ro', isa => 'Str', default => 'VertRes::Pipelines::Assembly' );
@@ -33,6 +36,10 @@ has '_max_threads'         => ( is => 'ro', isa => 'Int', default => 1 );
 has '_pipeline_version'    => ( is => 'ro', isa => 'Int', default => 2 );
 has '_error_correct'       => ( is => 'ro', isa => 'Bool', default => 0 );
 has '_sga_exec'            => ( is => 'ro', isa => 'Str', default => '/software/pathogen/external/apps/usr/bin/sga' );
+has '_normalise'           => ( is => 'ro', isa => 'Bool', default => 0 );
+
+has '_primers_file'        => ( is => 'ro', isa => 'Str',  default => '/nfs/pathnfs01/conf/primers/virus_primers' );
+has '_remove_primers'      => ( is => 'ro', isa => 'Bool', default => 0 );
 
 
 override 'to_hash' => sub {
@@ -42,6 +49,7 @@ override 'to_hash' => sub {
     $output_hash->{max_lanes_to_search}     = $self->_max_lanes_to_search;
     $output_hash->{max_failures}            = $self->_max_failures;
     $output_hash->{vrtrack_processed_flags} = { stored => 1, assembled => 0, rna_seq_expression => 0 };
+    $output_hash->{limits}                  = $self->_escaped_limits;
 
     $output_hash->{data}{tmp_directory} = $self->_tmp_directory;
 
@@ -55,9 +63,32 @@ override 'to_hash' => sub {
     $output_hash->{data}{pipeline_version}  = $self->_pipeline_version;
     $output_hash->{data}{error_correct}     = $self->_error_correct;
     $output_hash->{data}{sga_exec}          = $self->_sga_exec;
+    $output_hash->{data}{normalise}         = $self->_normalise;
+
+    # Remove primers
+    $output_hash->{data}{primers_file}   = $self->_primers_file;
+    $output_hash->{data}{remove_primers} = $self->_remove_primers;
 
     return $output_hash;
 };
+
+sub _construct_filename
+{
+  my ($self, $suffix) = @_;
+  my $output_filename = join('_',($self->_limits_values_part_of_filename(),$self->_assembler));
+  return $self->_filter_characters_truncate_and_add_suffix($output_filename,$suffix);
+}
+
+override 'log_file_name' => sub {
+    my ($self) = @_;
+    return $self->_construct_filename('log');
+};
+
+override 'config_file_name' => sub {
+    my ($self) = @_;
+    return $self->_construct_filename('conf');
+};
+
 
 __PACKAGE__->meta->make_immutable;
 no Moose;

@@ -1,0 +1,19 @@
+#!/usr/bin/env perl
+
+package Bio::VertRes::Config::Main::EukaryotesRegisterAndQCStudy;
+
+# ABSTRACT: Create config scripts for registering and QC of a eukaryotes study
+# PODNAME: register_and_qc_study
+
+=head1 SYNOPSIS
+
+Create config scripts for registering and QC of a eukaryotes study
+
+=cut
+
+BEGIN { unshift( @INC, '../lib' ) }
+BEGIN { unshift( @INC, './lib' ) }
+BEGIN { unshift( @INC, '/software/pathogen/internal/prod/lib/' ) }
+use Bio::VertRes::Config::CommandLine::EukaryotesRegisterAndQCStudy;
+
+Bio::VertRes::Config::CommandLine::EukaryotesRegisterAndQCStudy->new(args => \@ARGV, script_name => $0)->run;

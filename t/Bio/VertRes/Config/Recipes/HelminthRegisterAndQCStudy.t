@@ -8,15 +8,15 @@ BEGIN { unshift( @INC, './lib' ) }
 
 BEGIN {
     use Test::Most;
-    use_ok('Bio::VertRes::Config::Recipes::RegisterAndQCStudy');
+    use_ok('Bio::VertRes::Config::Recipes::HelminthRegisterAndQCStudy');
 }
 
-my $destination_directory_obj = File::Temp->newdir( CLEANUP => 0 );
+my $destination_directory_obj = File::Temp->newdir( CLEANUP => 1 );
 my $destination_directory = $destination_directory_obj->dirname();
 
 ok(
     (
-        my $obj = Bio::VertRes::Config::Recipes::RegisterAndQCStudy->new(
+            my $obj = Bio::VertRes::Config::Recipes::HelminthRegisterAndQCStudy->new(
             database    => 'my_database',
             config_base => $destination_directory,
             limits      => { project => ['ABC study( EFG )'] },
@@ -56,7 +56,7 @@ is_deeply($input_config_file,{
                       },
               'chr_regex' => '.*',
               'mapper' => 'bwa',
-              'glf' => '/software/vertres/bin-external/glf',
+              'glf' => '/software/pathogen/external/apps/usr/bin/glf',
               'do_samtools_rmdup' => 1,
               'fai_ref' => '/path/to/ABC.fa.fai',
               'gtype_confidence' => '1.2',
@@ -85,10 +85,9 @@ is_deeply($input_config_file,{
 },'Config file as expected');
 
 
-
 ok(
     (
-        $obj = Bio::VertRes::Config::Recipes::RegisterAndQCStudy->new(
+        $obj = Bio::VertRes::Config::Recipes::HelminthRegisterAndQCStudy->new(
             database    => 'my_database',
             config_base => $destination_directory,
             limits      => { project => ['ABC study( EFG )'], species => ['Cat', 'Dog'] },
@@ -122,7 +121,7 @@ is_deeply($input_config_file,{
                       },
               'chr_regex' => '.*',
               'mapper' => 'bwa',
-              'glf' => '/software/vertres/bin-external/glf',
+              'glf' => '/software/pathogen/external/apps/usr/bin/glf',
               'do_samtools_rmdup' => 1,
               'fai_ref' => '/path/to/ABC.fa.fai',
               'gtype_confidence' => '1.2',
@@ -154,15 +153,13 @@ is_deeply($input_config_file,{
   'module' => 'VertRes::Pipelines::TrackQC_Fastq'
 },'Config file as expected with species limit');
 
-
-# Populate a few studies
-Bio::VertRes::Config::RegisterStudy->new(database => 'pathogen_rnd_track', study_name => 'EEE study',config_base => $destination_directory)->register_study_name();
-Bio::VertRes::Config::RegisterStudy->new(database => 'pathogen_euk_track', study_name => 'DDD',config_base => $destination_directory)->register_study_name();
+# Populate a study
+Bio::VertRes::Config::RegisterStudy->new(database => 'pathogen_helminth_track', study_name => 'DDD',config_base => $destination_directory)->register_study_name();
 
 ok(
     (
-        $obj = Bio::VertRes::Config::Recipes::RegisterAndQCStudy->new(
-            database    => 'pathogen_rnd_track',
+        $obj = Bio::VertRes::Config::Recipes::HelminthRegisterAndQCStudy->new(
+            database    => 'my_other_database',
             config_base => $destination_directory,
             limits      => { project => ['DDD'] },
             reference_lookup_file => 't/data/refs.index',
@@ -173,13 +170,13 @@ ok(
 );
 ok( ( $obj->create ), 'the database name should have been updated to prevent the same study being registered in 2 different places' );
 
-ok( -e $destination_directory . '/eukaryotes/qc/qc_DDD.conf', 'QC toplevel file with modified database' );
-$text = read_file( $destination_directory . '/eukaryotes/qc/qc_DDD.conf' );
+ok( -e $destination_directory . '/helminths/qc/qc_DDD.conf', 'QC toplevel file with modified database' );
+$text = read_file( $destination_directory . '/helminths/qc/qc_DDD.conf' );
 $input_config_file = eval($text);
 is_deeply($input_config_file,{
   'max_failures' => 3,
   'db' => {
-            'database' => 'pathogen_euk_track',
+            'database' => 'pathogen_helminth_track',
             'password' => undef,
             'user' => 'root',
             'port' => 3306,
@@ -187,7 +184,7 @@ is_deeply($input_config_file,{
           },
   'data' => {
               'db' => {
-                        'database' => 'pathogen_euk_track',
+                        'database' => 'pathogen_helminth_track',
                         'password' => undef,
                         'user' => 'root',
                         'port' => 3306,
@@ -195,7 +192,7 @@ is_deeply($input_config_file,{
                       },
               'chr_regex' => '.*',
               'mapper' => 'bwa',
-              'glf' => '/software/vertres/bin-external/glf',
+              'glf' => '/software/pathogen/external/apps/usr/bin/glf',
               'do_samtools_rmdup' => 1,
               'fai_ref' => '/path/to/ABC.fa.fai',
               'gtype_confidence' => '1.2',
@@ -218,11 +215,10 @@ is_deeply($input_config_file,{
                              ],
 
               },
-  'log' => '/nfs/pathnfs01/log/eukaryotes/qc_DDD.log',
-  'root' => '/lustre/scratch108/pathogen/pathpipe/eukaryotes/seq-pipelines',
+  'log' => '/nfs/pathnfs01/log/helminths/qc_DDD.log',
+  'root' => '/lustre/scratch108/pathogen/pathpipe/helminths/seq-pipelines',
   'prefix' => '_',
   'module' => 'VertRes::Pipelines::TrackQC_Fastq'
 },'Config file has modified database names');
-
 
 done_testing();

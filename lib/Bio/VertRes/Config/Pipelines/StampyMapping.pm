@@ -24,7 +24,7 @@ use Moose;
 extends 'Bio::VertRes::Config::Pipelines::Mapping';
 
 has 'slx_mapper'     => ( is => 'ro', isa => 'Str', default => 'stampy' );
-has 'slx_mapper_exe' => ( is => 'ro', isa => 'Str', default => 'python2.7 /software/pathogen/external/apps/usr/local/stampy-1.0.21/stampy.py' );
+has 'slx_mapper_exe' => ( is => 'ro', isa => 'Str', default => 'python2.7 /software/pathogen/external/apps/usr/local/stampy-1.0.22/stampy.py' );
 
 __PACKAGE__->meta->make_immutable;
 no Moose;

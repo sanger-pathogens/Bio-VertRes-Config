@@ -24,7 +24,7 @@ use Moose;
 extends 'Bio::VertRes::Config::Pipelines::Mapping';
 
 has 'slx_mapper'     => ( is => 'ro', isa => 'Str', default => 'bowtie2' );
-has 'slx_mapper_exe' => ( is => 'ro', isa => 'Str', default => '/software/pathogen/external/apps/usr/local/bowtie2-2.0.6/bowtie2' );
+has 'slx_mapper_exe' => ( is => 'ro', isa => 'Str', default => '/software/pathogen/external/apps/usr/local/bowtie2-2.1.0/bowtie2' );
 
 __PACKAGE__->meta->make_immutable;
 no Moose;

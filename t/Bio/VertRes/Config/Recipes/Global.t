@@ -19,17 +19,10 @@ my $destination_directory = $destination_directory_obj->dirname();
 ok((my $obj = Bio::VertRes::Config::Recipes::Global->new( database => 'my_database', config_base => $destination_directory )), 'initalise creating files');
 ok(($obj->create), 'Create all the config files and toplevel files');
 
-ok(-e $destination_directory.'/my_database/my_database_assembly_pipeline.conf', 'assembly toplevel file');
 ok(-e $destination_directory.'/my_database/my_database_stored_pipeline.conf', 'stored toplevel file');
 ok(-e $destination_directory.'/my_database/my_database_import_pipeline.conf', 'import toplevel file');
-ok(-e $destination_directory.'/my_database/my_database_annotate_assembly_pipeline.conf', 'annotate assembly toplevel file');
 
-my $text = read_file( $destination_directory.'/my_database/my_database_assembly_pipeline.conf' );
-chomp($text);
-is($text, "__VRTrack_Assembly__ $destination_directory/my_database/assembly/assembly_global.conf", 'content of assembly toplevel file as expected');
-ok((-e "$destination_directory/my_database/assembly/assembly_global.conf"), 'assembly config file exists');
-
-$text = read_file( $destination_directory.'/my_database/my_database_stored_pipeline.conf' );
+my $text = read_file( $destination_directory.'/my_database/my_database_stored_pipeline.conf' );
 chomp($text);
 is($text, "__VRTrack_Storing__ $destination_directory/my_database/stored/stored_global.conf", 'content of stored toplevel file as expected');
 ok((-e "$destination_directory/my_database/stored/stored_global.conf"), 'stored config file exists');
@@ -38,11 +31,6 @@ $text = read_file( $destination_directory.'/my_database/my_database_import_pipel
 chomp($text);
 is($text, "__VRTrack_Import__ $destination_directory/my_database/import/import_global.conf", 'content of import toplevel file as expected');
 ok((-e "$destination_directory/my_database/import/import_global.conf"), 'import config file exists');
-
-$text = read_file( $destination_directory.'/my_database/my_database_annotate_assembly_pipeline.conf' );
-chomp($text);
-is($text, "__VRTrack_AnnotateAssembly__ $destination_directory/my_database/annotate_assembly/annotate_assembly_global.conf", 'content of annotate assembly toplevel file as expected');
-ok((-e "$destination_directory/my_database/annotate_assembly/annotate_assembly_global.conf"), 'annotate config file exists');
 
 
 done_testing();

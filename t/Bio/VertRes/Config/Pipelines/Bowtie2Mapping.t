@@ -70,7 +70,7 @@ is_deeply(
                           'add_index' => 1,
                           'reference' => '/path/to/ABC.fa',
                           'do_cleanup' => 1,
-                          'slx_mapper_exe' => '/software/pathogen/external/apps/usr/local/bowtie2-2.0.6/bowtie2',
+                          'slx_mapper_exe' => '/software/pathogen/external/apps/usr/local/bowtie2-2.1.0/bowtie2',
                           'slx_mapper' => 'bowtie2',
                           'ignore_mapped_status' => 1
                         },

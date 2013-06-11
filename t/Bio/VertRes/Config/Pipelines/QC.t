@@ -52,7 +52,7 @@ is_deeply(
                 'port'     => 3306,
                 'host'     => 'localhost'
             },
-            'glf'               => '/software/vertres/bin-external/glf',
+            'glf'               => '/software/pathogen/external/apps/usr/bin/glf',
             'mapper'            => 'bwa',
             'do_samtools_rmdup' => 1,
             'fai_ref'           => '/path/to/ABC.fa.fai',

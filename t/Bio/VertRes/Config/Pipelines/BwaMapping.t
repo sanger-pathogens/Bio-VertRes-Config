@@ -70,7 +70,7 @@ is_deeply(
                           'add_index' => 1,
                           'reference' => '/path/to/ABC.fa',
                           'do_cleanup' => 1,
-                          'slx_mapper_exe' => '/software/pathogen/external/apps/usr/local/bwa-0.6.1/bwa',
+                          'slx_mapper_exe' => '/software/pathogen/external/apps/usr/local/bwa-0.7.5a/bwa',
                           'slx_mapper' => 'bwa',
                           'ignore_mapped_status' => 1
                         },
