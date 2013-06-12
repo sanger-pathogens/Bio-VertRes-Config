@@ -167,7 +167,8 @@ is_deeply($input_config_file,{
               'memory' => 3000,
               'tmp_directory' => '/lustre/scratch108/pathogen/pathpipe/tmp',
               'dbdir' => '/lustre/scratch108/pathogen/pathpipe/prokka',
-              'pipeline_version' => 1
+              'pipeline_version' => 1,
+              'kingdom' => 'Bacteria',
             },
   'max_lanes_to_search' => 1000,
   'limits' => {

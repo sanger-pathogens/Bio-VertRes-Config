@@ -53,7 +53,8 @@ is_deeply(
                           'annotation_tool' => 'Prokka',
                           'dont_wait' => 0,
                           'assembler' => 'velvet',
-                          'pipeline_version' => 1
+                          'pipeline_version' => 1,
+                          'kingdom'        => 'Bacteria'
                         },
               'max_lanes_to_search' => 1000,
               'vrtrack_processed_flags' => {

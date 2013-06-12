@@ -34,6 +34,7 @@ has '_annotation_tool'     => ( is => 'ro', isa => 'Str', default => 'Prokka' );
 has '_dbdir'               => ( is => 'ro', isa => 'Str', default => '/lustre/scratch108/pathogen/pathpipe/prokka' );
 has '_pipeline_version'    => ( is => 'ro', isa => 'Int', default => 1 );
 has '_memory_in_mb'        => ( is => 'ro', isa => 'Int', default => 3000 );
+has '_kingdom'             => ( is => 'ro', isa => 'Str', default => 'Bacteria' );
 
 override 'to_hash' => sub {
     my ($self) = @_;
@@ -50,6 +51,7 @@ override 'to_hash' => sub {
     $output_hash->{data}{dbdir}             = $self->_dbdir;
     $output_hash->{data}{pipeline_version}  = $self->_pipeline_version;
     $output_hash->{data}{memory}            = $self->_memory_in_mb;
+    $output_hash->{data}{kingdom}           = $self->_kingdom;
     
     return $output_hash;
 };
