@@ -24,6 +24,7 @@ has '_error_correct'       => ( is => 'ro', isa => 'Bool', default => 0 );
 has '_remove_primers'      => ( is => 'ro', isa => 'Bool', default => 0 );
 has '_pipeline_version'    => ( is => 'ro', isa => 'Int',  default => 2 );
 has '_normalise'           => ( is => 'ro', isa => 'Bool', default => 0 );
+has '_kingdom'             => ( is => 'ro', isa => 'Str',  default => "Bacteria" );
 
 
 override '_pipeline_configs' => sub {

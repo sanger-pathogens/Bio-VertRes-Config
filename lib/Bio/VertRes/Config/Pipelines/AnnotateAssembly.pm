@@ -59,7 +59,7 @@ override 'to_hash' => sub {
 sub _construct_filename
 {
   my ($self, $suffix) = @_;
-  my $output_filename = $self->_limits_values_part_of_filename();
+  my $output_filename = join('_',($self->_limits_values_part_of_filename(),$self->_assembler));
   return $self->_filter_characters_truncate_and_add_suffix($output_filename,$suffix);
 }
 

@@ -83,8 +83,8 @@ is_deeply($input_config_file,{
 },'Config file as expected');
 
 # Check annotation file
-ok( -e $destination_directory . '/my_database/annotate_assembly/annotate_assembly_ABC_study_EFG.conf', 'annotate assembly toplevel file' );
-$text = read_file( $destination_directory . '/my_database/annotate_assembly/annotate_assembly_ABC_study_EFG.conf' );
+ok( -e $destination_directory . '/my_database/annotate_assembly/annotate_assembly_ABC_study_EFG_spades.conf', 'annotate assembly toplevel file' );
+$text = read_file( $destination_directory . '/my_database/annotate_assembly/annotate_assembly_ABC_study_EFG_spades.conf' );
 $input_config_file = eval($text);
 
 is_deeply($input_config_file,{
@@ -106,7 +106,7 @@ is_deeply($input_config_file,{
                       },
               'annotation_tool' => 'Prokka',
               'dont_wait' => 0,
-              'assembler' => 'velvet',
+              'assembler' => 'spades',
               'memory' => 3000,
               'tmp_directory' => '/lustre/scratch108/pathogen/pathpipe/tmp',
               'dbdir' => '/lustre/scratch108/pathogen/pathpipe/prokka',
@@ -124,7 +124,7 @@ is_deeply($input_config_file,{
                                  'annotated' => 0
                                },
   'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
-  'log' => '/nfs/pathnfs01/log/my_database/annotate_assembly_ABC_study_EFG.log',
+  'log' => '/nfs/pathnfs01/log/my_database/annotate_assembly_ABC_study_EFG_spades.log',
   'limit' => 100,
   'module' => 'VertRes::Pipelines::AnnotateAssembly',
   'prefix' => '_annotate_'

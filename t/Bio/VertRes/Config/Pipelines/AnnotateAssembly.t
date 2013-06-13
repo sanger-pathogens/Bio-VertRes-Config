@@ -62,7 +62,7 @@ is_deeply(
                                              'annotated' => 0
                                            },
               'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
-              'log' => '/nfs/pathnfs01/log/my_database/annotate_assembly_Abc_def_ghi123.log',
+              'log' => '/nfs/pathnfs01/log/my_database/annotate_assembly_Abc_def_ghi123_velvet.log',
               'limit' => 100,
               'module' => 'VertRes::Pipelines::AnnotateAssembly',
               'prefix' => '_annotate_'
@@ -72,7 +72,7 @@ is_deeply(
 
 is(
     $obj->config,
-    $destination_directory . '/my_database/annotate_assembly/annotate_assembly_Abc_def_ghi123.conf',
+    $destination_directory . '/my_database/annotate_assembly/annotate_assembly_Abc_def_ghi123_velvet.conf',
     'config file in expected format'
 );
 ok( $obj->create_config_file, 'Can run the create config file method' );
@@ -119,7 +119,7 @@ is_deeply(
 # check config file name
 is(
     $obj->config,
-    '/path/to/config_base/my_database/annotate_assembly/annotate_assembly_study_1_study_2_sample_1_sample_2_species_1.conf',
+    '/path/to/config_base/my_database/annotate_assembly/annotate_assembly_study_1_study_2_sample_1_sample_2_species_1_velvet.conf',
     'config file name in expected format'
 );
 

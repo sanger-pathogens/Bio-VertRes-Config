@@ -107,7 +107,8 @@ sub add_virus_annotate_config
           config_base                    => $self->config_base,
           overwrite_existing_config_file => $self->overwrite_existing_config_file,
           limits                         => $self->limits,
-          _kingdom                       => $self->_kingdom
+          _kingdom                       => $self->_kingdom,
+          _assembler                     => $self->assembler,
       )
   );
   return ;

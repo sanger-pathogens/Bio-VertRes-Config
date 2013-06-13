@@ -15,18 +15,18 @@ my $script_name = 'Bio::VertRes::Config::CommandLine::BacteriaAssemblyAndAnnotat
 
 my %scripts_and_expected_files = (
     '-t study -i ZZZ' => [
-        'command_line.log',                               'prokaryotes/annotate_assembly/annotate_assembly_ZZZ.conf',
+        'command_line.log',                               'prokaryotes/annotate_assembly/annotate_assembly_ZZZ_velvet.conf',
         'prokaryotes/assembly/assembly_ZZZ_velvet.conf',  'prokaryotes/prokaryotes_annotate_assembly_pipeline.conf',
         'prokaryotes/prokaryotes_assembly_pipeline.conf', 'prokaryotes/prokaryotes.ilm.studies',
     ],
     '-t study -i ZZZ -assembler spades' => [
-        'command_line.log',                               'prokaryotes/annotate_assembly/annotate_assembly_ZZZ.conf',
+        'command_line.log',                               'prokaryotes/annotate_assembly/annotate_assembly_ZZZ_spades.conf',
         'prokaryotes/assembly/assembly_ZZZ_spades.conf',  'prokaryotes/prokaryotes_annotate_assembly_pipeline.conf',
         'prokaryotes/prokaryotes_assembly_pipeline.conf', 'prokaryotes/prokaryotes.ilm.studies',
     ],
     '-t lane -i 1234_5#6 ' => [
         'command_line.log',
-        'prokaryotes/annotate_assembly/annotate_assembly_1234_5_6.conf',
+        'prokaryotes/annotate_assembly/annotate_assembly_1234_5_6_velvet.conf',
         'prokaryotes/assembly/assembly_1234_5_6_velvet.conf',
         'prokaryotes/prokaryotes_annotate_assembly_pipeline.conf',
         'prokaryotes/prokaryotes_assembly_pipeline.conf',
@@ -34,7 +34,7 @@ my %scripts_and_expected_files = (
     ],
     '-t library -i libname ' => [
         'command_line.log',
-        'prokaryotes/annotate_assembly/annotate_assembly_libname.conf',
+        'prokaryotes/annotate_assembly/annotate_assembly_libname_velvet.conf',
         'prokaryotes/assembly/assembly_libname_velvet.conf',
         'prokaryotes/prokaryotes_annotate_assembly_pipeline.conf',
         'prokaryotes/prokaryotes_assembly_pipeline.conf',
@@ -42,7 +42,7 @@ my %scripts_and_expected_files = (
     ],
     '-t sample -i sample ' => [
         'command_line.log',
-        'prokaryotes/annotate_assembly/annotate_assembly_sample.conf',
+        'prokaryotes/annotate_assembly/annotate_assembly_sample_velvet.conf',
         'prokaryotes/assembly/assembly_sample_velvet.conf',
         'prokaryotes/prokaryotes_annotate_assembly_pipeline.conf',
         'prokaryotes/prokaryotes_assembly_pipeline.conf',
@@ -50,14 +50,14 @@ my %scripts_and_expected_files = (
     ],
     '-t file -i t/data/lanes_file ' => [
         'command_line.log',
-        'prokaryotes/annotate_assembly/annotate_assembly_1111_2222_3333_lane_name_another_lane_name_a_very_big_lane_name.conf',
+        'prokaryotes/annotate_assembly/annotate_assembly_1111_2222_3333_lane_name_another_lane_name_a_very_big_lane_name_velvet.conf',
         'prokaryotes/assembly/assembly_1111_2222_3333_lane_name_another_lane_name_a_very_big_lane_name_velvet.conf',
         'prokaryotes/prokaryotes_annotate_assembly_pipeline.conf',
         'prokaryotes/prokaryotes_assembly_pipeline.conf',
     ],
     '-t study -i ZZZ  -s Staphylococcus_aureus' => [
         'command_line.log',
-        'prokaryotes/annotate_assembly/annotate_assembly_ZZZ_Staphylococcus_aureus.conf',
+        'prokaryotes/annotate_assembly/annotate_assembly_ZZZ_Staphylococcus_aureus_velvet.conf',
         'prokaryotes/assembly/assembly_ZZZ_Staphylococcus_aureus_velvet.conf',
         'prokaryotes/prokaryotes_annotate_assembly_pipeline.conf',
         'prokaryotes/prokaryotes_assembly_pipeline.conf',
@@ -65,7 +65,7 @@ my %scripts_and_expected_files = (
     ],
     '-d some_other_db_name -t study -i ZZZ ' => [
         'command_line.log',
-        'some_other_db_name/annotate_assembly/annotate_assembly_ZZZ.conf',
+        'some_other_db_name/annotate_assembly/annotate_assembly_ZZZ_velvet.conf',
         'some_other_db_name/assembly/assembly_ZZZ_velvet.conf',
         'some_other_db_name/some_other_db_name_annotate_assembly_pipeline.conf',
         'some_other_db_name/some_other_db_name_assembly_pipeline.conf',

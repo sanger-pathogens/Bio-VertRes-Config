@@ -140,8 +140,8 @@ is_deeply($input_config_file,{
 },'Config file as expected');
 
 # Check annotation file
-ok( -e $destination_directory . '/my_database/annotate_assembly/annotate_assembly_ABC_study_EFG.conf', 'annotate assembly toplevel file' );
-$text = read_file( $destination_directory . '/my_database/annotate_assembly/annotate_assembly_ABC_study_EFG.conf' );
+ok( -e $destination_directory . '/my_database/annotate_assembly/annotate_assembly_ABC_study_EFG_velvet.conf', 'annotate assembly toplevel file' );
+$text = read_file( $destination_directory . '/my_database/annotate_assembly/annotate_assembly_ABC_study_EFG_velvet.conf' );
 $input_config_file = eval($text);
 
 is_deeply($input_config_file,{
@@ -181,7 +181,7 @@ is_deeply($input_config_file,{
                                  'annotated' => 0
                                },
   'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
-  'log' => '/nfs/pathnfs01/log/my_database/annotate_assembly_ABC_study_EFG.log',
+  'log' => '/nfs/pathnfs01/log/my_database/annotate_assembly_ABC_study_EFG_velvet.log',
   'limit' => 100,
   'module' => 'VertRes::Pipelines::AnnotateAssembly',
   'prefix' => '_annotate_'
