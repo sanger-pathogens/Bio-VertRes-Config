@@ -61,7 +61,7 @@ is_deeply($input_config_file,{
               'sga_exec' => '/software/pathogen/external/apps/usr/bin/sga',
               'tmp_directory' => '/lustre/scratch108/pathogen/pathpipe/tmp',
               'pipeline_version' => 3,
-              'max_threads' => 1,
+              'max_threads' => 2,
               'optimiser_exec' => '/software/pathogen/external/apps/usr/bin/spades.py'
             },
   'max_lanes_to_search' => 200,
