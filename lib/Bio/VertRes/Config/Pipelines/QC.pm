@@ -49,6 +49,9 @@ has '_skip_genotype'        => ( is => 'ro', isa => 'Int', default => 1 );
 has '_gtype_confidence'     => ( is => 'ro', isa => 'Num', default => 1.2 );
 has '_chr_regex'            => ( is => 'ro', isa => 'Str', default => '.*' );
 has '_do_samtools_rmdup'    => ( is => 'ro', isa => 'Int', default => 1 );
+has '_gcdepth_R'            => ( is => 'ro', isa => 'Str', default => '/software/pathogen/external/apps/usr/local/gcdepth/gcdepth.R' );
+
+
 
 
 sub _build__bwa_ref {
@@ -95,6 +98,7 @@ override 'to_hash' => sub {
     $output_hash->{data}{gtype_confidence}  = $self->_gtype_confidence;
     $output_hash->{data}{chr_regex}         = $self->_chr_regex;
     $output_hash->{data}{do_samtools_rmdup} = $self->_do_samtools_rmdup;
+    $output_hash->{data}{gcdepth_R}         = $self->_gcdepth_R;
 
     return $output_hash;
 };

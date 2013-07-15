@@ -68,6 +68,7 @@ is_deeply(
             'samtools'          => '/software/pathogen/external/apps/usr/bin/samtools',
             'adapters'          => '/lustre/scratch108/pathogen/pathpipe/usr/share/solexa-adapters.fasta',
             'fa_ref'            => '/path/to/ABC.fa',
+            'gcdepth_R'         => '/software/pathogen/external/apps/usr/local/gcdepth/gcdepth.R',
             'snps'              => '/lustre/scratch108/pathogen/pathpipe/usr/share/mousehapmap.snps.bin'
         },
         'log'    => '/nfs/pathnfs01/log/my_database/qc_ABC_study_EFG.log',
