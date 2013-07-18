@@ -6,7 +6,7 @@ package Bio::VertRes::Config::Pipelines::Assembly;
 
 A base class for generating the Assembly pipeline config file
    use Bio::VertRes::Config::Pipelines::Assembly;
-   
+
    my $pipeline = Bio::VertRes::Config::Pipelines::Assembly->new(database    => 'abc'
                                                                  config_base => '/path/to/config/base',
                                                                  limits      => { project => ['project name']);
@@ -33,11 +33,11 @@ has '_assembler'           => ( is => 'ro', isa => 'Str', default => 'velvet' );
 has '_assembler_exec'      => ( is => 'ro', isa => 'Str', default => '/software/pathogen/external/apps/usr/bin/velvet' );
 has '_optimiser_exec'      => ( is => 'ro', isa => 'Str', default => '/software/pathogen/external/apps/usr/bin/VelvetOptimiser.pl' );
 has '_max_threads'         => ( is => 'ro', isa => 'Int', default => 1 );
-has '_pipeline_version'    => ( is => 'ro', isa => 'Int', default => 2 );
+has '_pipeline_version'    => ( is => 'ro', isa => 'Num', default => 2.1 );
 has '_error_correct'       => ( is => 'ro', isa => 'Bool', default => 0 );
 has '_sga_exec'            => ( is => 'ro', isa => 'Str', default => '/software/pathogen/external/apps/usr/bin/sga' );
 has '_normalise'           => ( is => 'ro', isa => 'Bool', default => 0 );
-
+has '_post_contig_filtering' => ( is => 'ro', isa => 'Int', default => 300 );
 has '_primers_file'        => ( is => 'ro', isa => 'Str',  default => '/nfs/pathnfs01/conf/primers/virus_primers' );
 has '_remove_primers'      => ( is => 'ro', isa => 'Bool', default => 0 );
 
@@ -64,6 +64,7 @@ override 'to_hash' => sub {
     $output_hash->{data}{error_correct}     = $self->_error_correct;
     $output_hash->{data}{sga_exec}          = $self->_sga_exec;
     $output_hash->{data}{normalise}         = $self->_normalise;
+    $output_hash->{data}{post_contig_filtering} = $self->_post_contig_filtering;
 
     # Remove primers
     $output_hash->{data}{primers_file}   = $self->_primers_file;

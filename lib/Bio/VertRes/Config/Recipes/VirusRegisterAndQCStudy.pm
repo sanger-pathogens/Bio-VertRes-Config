@@ -5,14 +5,14 @@ package Bio::VertRes::Config::Recipes::VirusRegisterAndQCStudy;
 
 Register and QC a study
    use Bio::VertRes::Config::Recipes::VirusRegisterAndQCStudy;
-   
-   my $obj = Bio::VertRes::Config::Recipes::VirusRegisterAndQCStudy->new( 
-     database => 'abc', 
-     limits => {project => ['Study ABC']}, 
-     reference => 'ABC', 
+
+   my $obj = Bio::VertRes::Config::Recipes::VirusRegisterAndQCStudy->new(
+     database => 'abc',
+     limits => {project => ['Study ABC']},
+     reference => 'ABC',
      reference_lookup_file => '/path/to/refs.index');
    $obj->create;
-   
+
 =cut
 
 use Moose;
@@ -26,7 +26,7 @@ with 'Bio::VertRes::Config::Recipes::Roles::CreateGlobal';
 has 'assembler'            => ( is => 'ro', isa => 'Str',  default => 'spades' );
 has '_error_correct'       => ( is => 'ro', isa => 'Bool', default => 1 );
 has '_remove_primers'      => ( is => 'ro', isa => 'Bool', default => 1 );
-has '_pipeline_version'    => ( is => 'ro', isa => 'Int',  default => 3 );
+has '_pipeline_version'    => ( is => 'ro', isa => 'Num',  default => 3.1 );
 has '_normalise'           => ( is => 'ro', isa => 'Bool', default => 1 );
 
 

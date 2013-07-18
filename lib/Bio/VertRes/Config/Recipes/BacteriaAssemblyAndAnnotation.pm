@@ -5,13 +5,13 @@ package Bio::VertRes::Config::Recipes::BacteriaAssemblyAndAnnotation;
 
 Register and QC a study
    use Bio::VertRes::Config::Recipes::BacteriaAssemblyAndAnnotation;
-   
-   my $obj = Bio::VertRes::Config::Recipes::BacteriaAssemblyAndAnnotation->new( 
-     database => 'abc', 
+
+   my $obj = Bio::VertRes::Config::Recipes::BacteriaAssemblyAndAnnotation->new(
+     database => 'abc',
      limits => {project => ['Study ABC']}
      );
    $obj->create;
-   
+
 =cut
 
 use Moose;
@@ -22,7 +22,7 @@ with 'Bio::VertRes::Config::Recipes::Roles::BacteriaRegisterStudy';
 has 'assembler'            => ( is => 'ro', isa => 'Str',  default => 'velvet' );
 has '_error_correct'       => ( is => 'ro', isa => 'Bool', default => 0 );
 has '_remove_primers'      => ( is => 'ro', isa => 'Bool', default => 0 );
-has '_pipeline_version'    => ( is => 'ro', isa => 'Int',  default => 2 );
+has '_pipeline_version'    => ( is => 'ro', isa => 'Num',  default => 2.1 );
 has '_normalise'           => ( is => 'ro', isa => 'Bool', default => 0 );
 has '_kingdom'             => ( is => 'ro', isa => 'Str',  default => "Bacteria" );
 
