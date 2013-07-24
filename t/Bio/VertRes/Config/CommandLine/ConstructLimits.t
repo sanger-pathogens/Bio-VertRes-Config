@@ -136,6 +136,14 @@ is_deeply(
     'Lane with non standard name and species'
 );
 
+is_deeply(
+    Bio::VertRes::Config::CommandLine::ConstructLimits->new(
+        input_type => 'file',
+        input_id   => 't/data/constructlimits_lanes',
+      )->limits_hash,
+    { lane => ['123_4#5', '678_9(#.+)?'] },
+    'Lanes from file'
+);
 
 throws_ok(
     sub {

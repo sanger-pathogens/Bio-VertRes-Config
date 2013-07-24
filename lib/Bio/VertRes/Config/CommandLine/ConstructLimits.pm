@@ -89,6 +89,7 @@ sub _extract_lanes_from_file
   {
     next if($lane =~ /^#/);
     next if($lane =~ /^\s*$/);
+    $lane = $lane.'(#.+)?' if $lane =~ /^\d+_\d$/;
     push(@filtered_lanes, $lane);
   }
   
