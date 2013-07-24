@@ -122,7 +122,7 @@ my %scripts_and_expected_files = (
         'eukaryotes/eukaryotes_qc_pipeline.conf',     'eukaryotes/eukaryotes_stored_pipeline.conf',
         'eukaryotes/qc/qc_ZZZ.conf',                 'eukaryotes/stored/stored_global.conf',
     ],
-    '-t study -i ZZZ -r ABC -m smalt --smalt_index_k 15 --smalt_index_s 4 --smalt_mapper_r 1 --smalt_mapper_y 0.9 --smalt_mapper_x' => [
+    '-t study -i ZZZ -r ABC -m smalt --smalt_index_k 15 --smalt_index_s 4 --smalt_mapper_r 1 --smalt_mapper_y 0.9 --smalt_mapper_x --smalt_mapper_l pe' => [
         'command_line.log',
         'eukaryotes/import/import_global.conf',       'eukaryotes/mapping/mapping_ZZZ_ABC_smalt.conf',
         'eukaryotes/eukaryotes.ilm.studies',

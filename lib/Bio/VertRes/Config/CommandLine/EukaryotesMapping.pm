@@ -91,6 +91,9 @@ eukaryote_mapping -t study -i 1234 -r "Leishmania_donovani_21Apr2011" -m bwa
 # Mapping defaults to '-r 0 -x -y 0.8'
 eukaryote_mapping -t study -i 1234 -r "Leishmania_donovani_21Apr2011" --smalt_index_k 13 --smalt_index_s 2 --smalt_mapper_r 0 --smalt_mapper_y 0.8 --smalt_mapper_x
 
+# Set orientation of mate pairs for smalt ('pe', 'mp' or 'pp')
+eukaryote_mapping -t study -i 1234 -r "Leishmania_donovani_21Apr2011" --smalt_mapper_l pp
+
 # This help message
 eukaryote_mapping -h
 

@@ -89,7 +89,10 @@ virus_mapping -t study -i 1234 -r "Influenzavirus_A_H1N1" -m bwa
 # Vary the parameters for smalt
 # Index defaults to '-k 13 -s 4'
 # Mapping defaults to '-r 0 -x -y 0.8'
-helminth_mapping -t study -i 1234 -r "Influenzavirus_A_H1N1" --smalt_index_k 13 --smalt_index_s 4 --smalt_mapper_r 0 --smalt_mapper_y 0.8 --smalt_mapper_x
+virus_mapping -t study -i 1234 -r "Influenzavirus_A_H1N1" --smalt_index_k 13 --smalt_index_s 4 --smalt_mapper_r 0 --smalt_mapper_y 0.8 --smalt_mapper_x
+
+# Set orientation of mate pairs for smalt ('pe', 'mp' or 'pp')
+virus_mapping -t study -i 1234 -r "Influenzavirus_A_H1N1" --smalt_mapper_l pp
 
 # This help message
 virus_mapping -h

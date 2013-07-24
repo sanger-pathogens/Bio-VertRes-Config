@@ -98,7 +98,7 @@ ok(
             reference_lookup_file    => 't/data/refs.index',
             reference                => 'ABC',
             limits                   => { project => ['ABC study( EFG )'] },
-            additional_mapper_params => '-y 0.5  -r 1  -x',
+            additional_mapper_params => '-y 0.5  -r 1  -x -l pe',
             mapper_index_params      => '-s 4  -k 13',
             config_base         => '/tmp'
         )
@@ -107,7 +107,7 @@ ok(
 );
 
 $returned_config_hash = $obj->to_hash;
-is($returned_config_hash->{data}{additional_mapper_params}, '-y 0.5  -r 1  -x', 'additional parameters present');
+is($returned_config_hash->{data}{additional_mapper_params}, '-y 0.5  -r 1  -x -l pe', 'additional parameters present');
 is($returned_config_hash->{data}{mapper_index_params}, '-s 4  -k 13', 'additional mapper_index_params present');
 is($returned_config_hash->{data}{mapper_index_suffix}, 's4k13', 'suffix generated from mapper index params');
 
