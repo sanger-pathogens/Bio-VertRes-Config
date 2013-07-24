@@ -17,7 +17,7 @@ my %scripts_and_expected_files = (
     '-t study -i ZZZ -r ABC' => [
         'command_line.log',
         'prokaryotes/import/import_global.conf',
-        'prokaryotes/mapping/mapping_ZZZ_ABC_smalt.conf',
+        'prokaryotes/mapping/mapping_ZZZ_ABC_bwa.conf',
         'prokaryotes/prokaryotes.ilm.studies',
         'prokaryotes/prokaryotes_import_pipeline.conf',
         'prokaryotes/prokaryotes_mapping_pipeline.conf',
@@ -31,7 +31,7 @@ my %scripts_and_expected_files = (
     '-t lane -i 1234_5#6 -r ABC' => [
         'command_line.log',
         'prokaryotes/import/import_global.conf',
-        'prokaryotes/mapping/mapping_1234_5_6_ABC_smalt.conf',
+        'prokaryotes/mapping/mapping_1234_5_6_ABC_bwa.conf',
         'prokaryotes/prokaryotes_import_pipeline.conf',
         'prokaryotes/prokaryotes_mapping_pipeline.conf',
         'prokaryotes/prokaryotes_qc_pipeline.conf',
@@ -44,7 +44,7 @@ my %scripts_and_expected_files = (
     '-t library -i libname -r ABC' => [
         'command_line.log',
         'prokaryotes/import/import_global.conf',
-        'prokaryotes/mapping/mapping_libname_ABC_smalt.conf',
+        'prokaryotes/mapping/mapping_libname_ABC_bwa.conf',
         'prokaryotes/prokaryotes_import_pipeline.conf',
         'prokaryotes/prokaryotes_mapping_pipeline.conf',
         'prokaryotes/prokaryotes_qc_pipeline.conf',
@@ -57,7 +57,7 @@ my %scripts_and_expected_files = (
     '-t sample -i sample -r ABC' => [
         'command_line.log',
         'prokaryotes/import/import_global.conf',
-        'prokaryotes/mapping/mapping_sample_ABC_smalt.conf',
+        'prokaryotes/mapping/mapping_sample_ABC_bwa.conf',
         'prokaryotes/prokaryotes_import_pipeline.conf',
         'prokaryotes/prokaryotes_mapping_pipeline.conf',
         'prokaryotes/prokaryotes_qc_pipeline.conf',
@@ -70,7 +70,7 @@ my %scripts_and_expected_files = (
     '-t file -i t/data/lanes_file -r ABC' => [
         'command_line.log',
         'prokaryotes/import/import_global.conf',
-        'prokaryotes/mapping/mapping_1111_2222_3333_lane_name_another_lane_name_a_very_big_lane_name_ABC_smalt.conf',
+        'prokaryotes/mapping/mapping_1111_2222_3333_lane_name_another_lane_name_a_very_big_lane_name_ABC_bwa.conf',
         'prokaryotes/prokaryotes_import_pipeline.conf',
         'prokaryotes/prokaryotes_mapping_pipeline.conf',
         'prokaryotes/prokaryotes_qc_pipeline.conf',
@@ -83,7 +83,7 @@ my %scripts_and_expected_files = (
     '-t study -i ZZZ -r ABC -p "StandardProtocol"' => [
         'command_line.log',
         'prokaryotes/import/import_global.conf',
-        'prokaryotes/mapping/mapping_ZZZ_ABC_smalt.conf',
+        'prokaryotes/mapping/mapping_ZZZ_ABC_bwa.conf',
         'prokaryotes/prokaryotes.ilm.studies',
         'prokaryotes/prokaryotes_import_pipeline.conf',
         'prokaryotes/prokaryotes_mapping_pipeline.conf',
@@ -97,7 +97,7 @@ my %scripts_and_expected_files = (
     '-t study -i ZZZ -r ABC -s Staphylococcus_aureus' => [
         'command_line.log',
         'prokaryotes/import/import_global.conf',
-        'prokaryotes/mapping/mapping_ZZZ_Staphylococcus_aureus_ABC_smalt.conf',
+        'prokaryotes/mapping/mapping_ZZZ_Staphylococcus_aureus_ABC_bwa.conf',
         'prokaryotes/prokaryotes.ilm.studies',
         'prokaryotes/prokaryotes_import_pipeline.conf',
         'prokaryotes/prokaryotes_mapping_pipeline.conf',
@@ -108,10 +108,10 @@ my %scripts_and_expected_files = (
         'prokaryotes/rna_seq/rna_seq_ZZZ_Staphylococcus_aureus_ABC.conf',
         'prokaryotes/stored/stored_global.conf',
     ],
-    '-t study -i ZZZ -r ABC -m bwa' => [
+    '-t study -i ZZZ -r ABC -m smalt' => [
         'command_line.log',
         'prokaryotes/import/import_global.conf',
-        'prokaryotes/mapping/mapping_ZZZ_ABC_bwa.conf',
+        'prokaryotes/mapping/mapping_ZZZ_ABC_smalt.conf',
         'prokaryotes/prokaryotes.ilm.studies',
         'prokaryotes/prokaryotes_import_pipeline.conf',
         'prokaryotes/prokaryotes_mapping_pipeline.conf',

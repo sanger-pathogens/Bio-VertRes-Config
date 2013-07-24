@@ -30,8 +30,8 @@ sub run {
 
     return if(handle_reference_inputs_or_exit( $self->reference_lookup_file, $self->available_references, $self->reference ) == 1);
 
-    if ( defined($self->mapper) && $self->mapper eq 'bwa' ) {
-        Bio::VertRes::Config::Recipes::BacteriaRnaSeqExpressionUsingBwa->new( $self->mapping_parameters )->create();
+    if ( defined($self->mapper) && $self->mapper eq 'smalt' ) {
+        Bio::VertRes::Config::Recipes::BacteriaRnaSeqExpressionUsingSmalt->new( $self->mapping_parameters )->create();
     }
     elsif ( defined($self->mapper) && $self->mapper eq 'tophat' ) {
         Bio::VertRes::Config::Recipes::BacteriaRnaSeqExpressionUsingTophat->new( $self->mapping_parameters )->create();
@@ -43,7 +43,7 @@ sub run {
         Bio::VertRes::Config::Recipes::BacteriaRnaSeqExpressionUsingBowtie2->new( $self->mapping_parameters )->create();
     }
     else {
-        Bio::VertRes::Config::Recipes::BacteriaRnaSeqExpressionUsingSmalt->new($self->mapping_parameters )->create();
+        Bio::VertRes::Config::Recipes::BacteriaRnaSeqExpressionUsingBwa->new($self->mapping_parameters )->create();
     }
 
     $self->retrieving_results_text;
@@ -84,8 +84,8 @@ bacteria_rna_seq_expression -t study -i 1234 -r "Staphylococcus_aureus_subsp_aur
 # Run over a single species in a study
 bacteria_rna_seq_expression -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMRSA15_v1" -s "Staphylococcus aureus"
 
-# Use a different mapper. Available are bwa/stampy/smalt/ssaha2/bowtie2/tophat. The default is smalt and ssaha2 is only for 454 data.
-bacteria_rna_seq_expression -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMRSA15_v1" -m bwa
+# Use a different mapper. Available are bwa/stampy/smalt/ssaha2/bowtie2/tophat. The default is bwa and ssaha2 is only for 454 data.
+bacteria_rna_seq_expression -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMRSA15_v1" -m smalt
 
 # This help message
 bacteria_rna_seq_expression -h
