@@ -48,7 +48,7 @@ is_deeply(
             },
             'dont_wait' => 0
         },
-        'log'    => '/nfs/pathnfs01/log/my_database/new_pipeline_logfile.log',
+        'log'    => '/nfs/pathnfs05/log/my_database/new_pipeline_logfile.log',
         'root'   => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
         'prefix' => '_',
         'module' => 'Bio::Example'
@@ -86,7 +86,7 @@ is_deeply(
             },
             'dont_wait' => 0
         },
-        'log'    => '/nfs/pathnfs01/log/my_database/new_pipeline_logfile.log',
+        'log'    => '/nfs/pathnfs05/log/my_database/new_pipeline_logfile.log',
         'root'   => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
         'prefix' => '_',
         'module' => 'Bio::Example'
@@ -126,7 +126,7 @@ is_deeply(
             },
             'dont_wait' => 0
         },
-        'log'    => '/nfs/pathnfs01/log/prokaryotes/new_pipeline_logfile.log',
+        'log'    => '/nfs/pathnfs05/log/prokaryotes/new_pipeline_logfile.log',
         'root'   => '/lustre/scratch108/pathogen/pathpipe/prokaryotes/seq-pipelines',
         'prefix' => '_',
         'module' => 'Bio::Example'
@@ -169,7 +169,7 @@ is_deeply(
             },
             'dont_wait' => 0
         },
-        'log'    => '/nfs/pathnfs01/log/prokaryotes/new_pipeline_logfile.log',
+        'log'    => '/nfs/pathnfs05/log/prokaryotes/new_pipeline_logfile.log',
         'root'   => '/lustre/scratch108/pathogen/pathpipe/prokaryotes/seq-pipelines',
         'prefix' => '_',
         'module' => 'Bio::Example'

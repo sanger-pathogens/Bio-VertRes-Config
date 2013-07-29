@@ -86,7 +86,7 @@ is_deeply($input_config_file,{
                                  'stored' => 1,
                                  'import' => 1
                                },
-  'log' => '/nfs/pathnfs01/log/my_database/mapping_ABC_study_EFG_ABC_smalt.log',
+  'log' => '/nfs/pathnfs05/log/my_database/mapping_ABC_study_EFG_ABC_smalt.log',
   'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
   'prefix' => '_checked_elsewhere_',
   'dont_use_get_lanes' => 1,
@@ -131,7 +131,7 @@ is_deeply($input_config_file,{
                                  'import' => 1,
                                  'mapped' => 1
                                },
-  'log' => '/nfs/pathnfs01/log/my_database/rna_seq_ABC_study_EFG_ABC.log',
+  'log' => '/nfs/pathnfs05/log/my_database/rna_seq_ABC_study_EFG_ABC.log',
   'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
   'prefix' => '_checked_elsewhere_',
   'module' => 'VertRes::Pipelines::RNASeqExpression'

@@ -70,7 +70,7 @@ is_deeply(
                           'assembly_name' => 'ABC',
                           'ignore_bam_improvement_status' => 1
                         },
-              'log' => '/nfs/pathnfs01/log/my_database/improvement_ABC_study_EFG_ABC.log',
+              'log' => '/nfs/pathnfs05/log/my_database/improvement_ABC_study_EFG_ABC.log',
               'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
               'prefix' => '_checked_elsewhere_',
               'module' => 'VertRes::Pipelines::BamImprovement::NonHuman',

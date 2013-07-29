@@ -60,7 +60,7 @@ is_deeply(
             'error_correct'     => 0,
             'sga_exec'          => '/software/pathogen/external/apps/usr/bin/sga',
             'optimiser_exec'    => '/software/pathogen/external/apps/usr/bin/spades.py',
-            'primers_file'      => '/nfs/pathnfs01/conf/primers/virus_primers',
+            'primers_file'      => '/nfs/pathnfs05/conf/primers/virus_primers',
             'remove_primers'    => 0,
             'normalise'         => 0
         },
@@ -71,7 +71,7 @@ is_deeply(
             'stored'             => 1
         },
         'root'   => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
-        'log'    => '/nfs/pathnfs01/log/my_database/assembly_Abc_def_ghi123_spades.log',
+        'log'    => '/nfs/pathnfs05/log/my_database/assembly_Abc_def_ghi123_spades.log',
         'limit'  => 100,
         'module' => 'VertRes::Pipelines::Assembly',
         'prefix' => '_assembly_'

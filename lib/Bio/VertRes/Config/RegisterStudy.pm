@@ -20,7 +20,7 @@ with 'Bio::VertRes::Config::Pipelines::Roles::RootDatabaseLookup';
 
 has 'database'            => ( is => 'ro', isa => 'Str', required => 1 );
 has 'study_name'          => ( is => 'ro', isa => 'Str', required => 1 );
-has 'config_base'         => ( is => 'ro', isa => 'Str', default => '/nfs/pathnfs01/conf' );
+has 'config_base'         => ( is => 'ro', isa => 'Str', default => '/nfs/pathnfs05/conf' );
 
 has 'study_file_name'    => ( is => 'ro', isa => 'Str', lazy    => 1, builder => '_build_study_file_name' );
 

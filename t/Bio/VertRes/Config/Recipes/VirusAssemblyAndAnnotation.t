@@ -54,7 +54,7 @@ is_deeply($input_config_file,{
               'error_correct' => 1,
               'assembler_exec' => '/software/pathogen/external/apps/usr/bin/spades.py',
               'dont_wait' => 0,
-              'primers_file' => '/nfs/pathnfs01/conf/primers/virus_primers',
+              'primers_file' => '/nfs/pathnfs05/conf/primers/virus_primers',
               'assembler' => 'spades',
               'seq_pipeline_root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
               'normalise' => 1,
@@ -77,7 +77,7 @@ is_deeply($input_config_file,{
                                  'stored' => 1
                                },
   'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
-  'log' => '/nfs/pathnfs01/log/my_database/assembly_ABC_study_EFG_spades.log',
+  'log' => '/nfs/pathnfs05/log/my_database/assembly_ABC_study_EFG_spades.log',
   'limit' => 100,
   'module' => 'VertRes::Pipelines::Assembly',
   'prefix' => '_assembly_'
@@ -125,7 +125,7 @@ is_deeply($input_config_file,{
                                  'annotated' => 0
                                },
   'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
-  'log' => '/nfs/pathnfs01/log/my_database/annotate_assembly_ABC_study_EFG_spades.log',
+  'log' => '/nfs/pathnfs05/log/my_database/annotate_assembly_ABC_study_EFG_spades.log',
   'limit' => 100,
   'module' => 'VertRes::Pipelines::AnnotateAssembly',
   'prefix' => '_annotate_'

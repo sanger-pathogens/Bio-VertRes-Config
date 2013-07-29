@@ -15,7 +15,7 @@ use Bio::VertRes::Config::MultipleTopLevelFiles;
 use Bio::VertRes::Config::CommandLine::StudyNameSearch;
 
 has 'database'                       => ( is => 'rw', isa => 'Str',  required => 1 );
-has 'config_base'                    => ( is => 'ro', isa => 'Str',  default  => '/nfs/pathnfs01/conf' );
+has 'config_base'                    => ( is => 'ro', isa => 'Str',  default  => '/nfs/pathnfs05/conf' );
 has 'overwrite_existing_config_file' => ( is => 'ro', isa => 'Bool', default  => 0 );
 has 'limits'                         => ( is => 'ro', isa => 'HashRef', default => sub { {} });
 

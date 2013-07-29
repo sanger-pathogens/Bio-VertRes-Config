@@ -62,7 +62,7 @@ is_deeply(
                                              'annotated' => 0
                                            },
               'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
-              'log' => '/nfs/pathnfs01/log/my_database/annotate_assembly_Abc_def_ghi123_velvet.log',
+              'log' => '/nfs/pathnfs05/log/my_database/annotate_assembly_Abc_def_ghi123_velvet.log',
               'limit' => 100,
               'module' => 'VertRes::Pipelines::AnnotateAssembly',
               'prefix' => '_annotate_'

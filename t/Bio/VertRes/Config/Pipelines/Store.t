@@ -49,7 +49,7 @@ is_deeply(
             'stored' => 0
         },
         'root'   => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
-        'log'    => '/nfs/pathnfs01/log/my_database/stored_logfile.log',
+        'log'    => '/nfs/pathnfs05/log/my_database/stored_logfile.log',
         'limit'  => 100,
         'module' => 'VertRes::Pipelines::StoreLane',
         'prefix' => '_'

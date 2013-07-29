@@ -71,7 +71,7 @@ is_deeply(
             'gcdepth_R'         => '/software/pathogen/external/apps/usr/local/gcdepth/gcdepth.R',
             'snps'              => '/lustre/scratch108/pathogen/pathpipe/usr/share/mousehapmap.snps.bin'
         },
-        'log'    => '/nfs/pathnfs01/log/my_database/qc_ABC_study_EFG.log',
+        'log'    => '/nfs/pathnfs05/log/my_database/qc_ABC_study_EFG.log',
         'root'   => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
         'prefix' => '_',
         'module' => 'VertRes::Pipelines::TrackQC_Fastq'

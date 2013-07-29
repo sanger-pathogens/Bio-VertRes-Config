@@ -79,7 +79,7 @@ is_deeply($input_config_file,{
                                'ABC\ study\(\ EFG\ \)'
                              ]
               },
-  'log' => '/nfs/pathnfs01/log/my_database/qc_ABC_study_EFG.log',
+  'log' => '/nfs/pathnfs05/log/my_database/qc_ABC_study_EFG.log',
   'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
   'prefix' => '_',
   'module' => 'VertRes::Pipelines::TrackQC_Fastq'
@@ -112,7 +112,7 @@ is_deeply($input_config_file,{
               'error_correct' => 0,
               'assembler_exec' => '/software/pathogen/external/apps/usr/bin/velvet',
               'dont_wait' => 0,
-              'primers_file' => '/nfs/pathnfs01/conf/primers/virus_primers',
+              'primers_file' => '/nfs/pathnfs05/conf/primers/virus_primers',
               'assembler' => 'velvet',
               'seq_pipeline_root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
               'normalise' => 0,
@@ -135,7 +135,7 @@ is_deeply($input_config_file,{
                                  'stored' => 1
                                },
   'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
-  'log' => '/nfs/pathnfs01/log/my_database/assembly_ABC_study_EFG_velvet.log',
+  'log' => '/nfs/pathnfs05/log/my_database/assembly_ABC_study_EFG_velvet.log',
   'limit' => 100,
   'module' => 'VertRes::Pipelines::Assembly',
   'prefix' => '_assembly_'
@@ -183,7 +183,7 @@ is_deeply($input_config_file,{
                                  'annotated' => 0
                                },
   'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
-  'log' => '/nfs/pathnfs01/log/my_database/annotate_assembly_ABC_study_EFG_velvet.log',
+  'log' => '/nfs/pathnfs05/log/my_database/annotate_assembly_ABC_study_EFG_velvet.log',
   'limit' => 100,
   'module' => 'VertRes::Pipelines::AnnotateAssembly',
   'prefix' => '_annotate_'
@@ -254,7 +254,7 @@ is_deeply($input_config_file,{
                                'Dog'
                              ]
               },
-  'log' => '/nfs/pathnfs01/log/my_database/qc_ABC_study_EFG_Cat_Dog.log',
+  'log' => '/nfs/pathnfs05/log/my_database/qc_ABC_study_EFG_Cat_Dog.log',
   'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
   'prefix' => '_',
   'module' => 'VertRes::Pipelines::TrackQC_Fastq'
@@ -301,7 +301,7 @@ is_deeply($input_config_file,{
               'error_correct' => 0,
               'assembler_exec' => '/software/pathogen/external/apps/usr/bin/spades.py',
               'dont_wait' => 0,
-              'primers_file' => '/nfs/pathnfs01/conf/primers/virus_primers',
+              'primers_file' => '/nfs/pathnfs05/conf/primers/virus_primers',
               'assembler' => 'spades',
               'seq_pipeline_root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
               'normalise' => 0,
@@ -324,7 +324,7 @@ is_deeply($input_config_file,{
                                  'stored' => 1
                                },
   'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
-  'log' => '/nfs/pathnfs01/log/my_database/assembly_ABC_study_EFG_spades.log',
+  'log' => '/nfs/pathnfs05/log/my_database/assembly_ABC_study_EFG_spades.log',
   'limit' => 100,
   'module' => 'VertRes::Pipelines::Assembly',
   'prefix' => '_assembly_'
@@ -393,7 +393,7 @@ is_deeply($input_config_file,{
                              ],
 
               },
-  'log' => '/nfs/pathnfs01/log/prokaryotes/qc_DDD.log',
+  'log' => '/nfs/pathnfs05/log/prokaryotes/qc_DDD.log',
   'root' => '/lustre/scratch108/pathogen/pathpipe/prokaryotes/seq-pipelines',
   'prefix' => '_',
   'module' => 'VertRes::Pipelines::TrackQC_Fastq'

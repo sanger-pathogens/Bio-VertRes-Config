@@ -74,7 +74,7 @@ is_deeply(
                                              'import' => 1
                                            },
               'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
-              'log' => '/nfs/pathnfs01/log/my_database/snps_ABC_study_EFG_ABC.log',
+              'log' => '/nfs/pathnfs05/log/my_database/snps_ABC_study_EFG_ABC.log',
               'module' => 'VertRes::Pipelines::SNPs',
               'prefix' => '_checked_elsewhere_',
               'limits' => {

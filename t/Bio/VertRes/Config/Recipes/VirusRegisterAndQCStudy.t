@@ -80,7 +80,7 @@ is_deeply($input_config_file,{
                                'ABC\ study\(\ EFG\ \)'
                              ]
               },
-  'log' => '/nfs/pathnfs01/log/my_database/qc_ABC_study_EFG.log',
+  'log' => '/nfs/pathnfs05/log/my_database/qc_ABC_study_EFG.log',
   'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
   'prefix' => '_',
   'module' => 'VertRes::Pipelines::TrackQC_Fastq'
@@ -151,7 +151,7 @@ is_deeply($input_config_file,{
                                'Dog'
                              ]
               },
-  'log' => '/nfs/pathnfs01/log/my_database/qc_ABC_study_EFG_Cat_Dog.log',
+  'log' => '/nfs/pathnfs05/log/my_database/qc_ABC_study_EFG_Cat_Dog.log',
   'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
   'prefix' => '_',
   'module' => 'VertRes::Pipelines::TrackQC_Fastq'
@@ -238,7 +238,7 @@ is_deeply($input_config_file,{
                              ],
 
               },
-  'log' => '/nfs/pathnfs01/log/viruses/qc_DDD.log',
+  'log' => '/nfs/pathnfs05/log/viruses/qc_DDD.log',
   'root' => '/lustre/scratch108/pathogen/pathpipe/viruses/seq-pipelines',
   'prefix' => '_',
   'module' => 'VertRes::Pipelines::TrackQC_Fastq'

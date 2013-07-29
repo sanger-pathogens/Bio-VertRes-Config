@@ -18,7 +18,7 @@ has 'args'        => ( is => 'ro', isa => 'ArrayRef', required => 1 );
 has 'script_name' => ( is => 'ro', isa => 'Str',      required => 1 );
 
 has 'database'    => ( is => 'rw', isa => 'Str', default => 'pathogen_prok_track' );
-has 'config_base' => ( is => 'rw', isa => 'Str', default => '/nfs/pathnfs01/conf' );
+has 'config_base' => ( is => 'rw', isa => 'Str', default => '/nfs/pathnfs05/conf' );
 has 'reference_lookup_file' =>
   ( is => 'rw', isa => 'Str', default => '/lustre/scratch108/pathogen/pathpipe/refs/refs.index' );
 has 'reference'                      => ( is => 'rw', isa => 'Maybe[Str]', );

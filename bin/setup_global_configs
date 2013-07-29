@@ -31,7 +31,7 @@ GetOptions(
     'h|help'                           => \$help,
 );
 
-$config_base           ||= '/nfs/pathnfs01/conf';
+$config_base           ||= '/nfs/pathnfs05/conf';
 $overwrite_existing_config_file ||= 0;
 $regeneration_log_file ||= join('/',($config_base,'command_line.log'));
 

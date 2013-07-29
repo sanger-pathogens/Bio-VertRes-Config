@@ -46,7 +46,7 @@ is_deeply(
             },
             'dont_wait' => 0
         },
-        'log'    => '/nfs/pathnfs01/log/my_database/import_logfile.log',
+        'log'    => '/nfs/pathnfs05/log/my_database/import_logfile.log',
         'root'   => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
         'prefix' => '_',
         'module' => 'VertRes::Pipelines::Import_iRODS_fastq'

@@ -71,7 +71,7 @@ is_deeply(
                           '454_mapper_exe' => '/software/pathogen/external/apps/usr/local/ssaha2/ssaha2',
                           'ignore_mapped_status' => 1
                         },
-              'log' => '/nfs/pathnfs01/log/my_database/mapping_ABC_study_EFG_ABC_ssaha.log',
+              'log' => '/nfs/pathnfs05/log/my_database/mapping_ABC_study_EFG_ABC_ssaha.log',
               'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
               'prefix' => '_checked_elsewhere_',
               'dont_use_get_lanes' => 1,

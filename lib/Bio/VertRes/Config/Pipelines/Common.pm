@@ -28,7 +28,7 @@ has 'toplevel_action'     => ( is => 'ro', isa => 'Str',                        
 has 'overwrite_existing_config_file' => ( is => 'ro', isa => 'Bool', default => 0 );
 
 has 'log' => ( is => 'ro', isa => 'Str', lazy => 1, builder => '_build_log' );
-has 'log_base'      => ( is => 'ro', isa => 'Str', default => '/nfs/pathnfs01/log' );
+has 'log_base'      => ( is => 'ro', isa => 'Str', default => '/nfs/pathnfs05/log' );
 has 'log_file_name' => ( is => 'ro', isa => 'Str', default => 'logfile.log' );
 
 has 'config' => ( is => 'ro', isa => 'Str', lazy => 1, builder => '_build_config' );

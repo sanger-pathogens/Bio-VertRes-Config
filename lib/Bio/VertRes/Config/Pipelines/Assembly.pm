@@ -38,7 +38,7 @@ has '_error_correct'       => ( is => 'ro', isa => 'Bool', default => 0 );
 has '_sga_exec'            => ( is => 'ro', isa => 'Str', default => '/software/pathogen/external/apps/usr/bin/sga' );
 has '_normalise'           => ( is => 'ro', isa => 'Bool', default => 0 );
 has '_post_contig_filtering' => ( is => 'ro', isa => 'Int', default => 300 );
-has '_primers_file'        => ( is => 'ro', isa => 'Str',  default => '/nfs/pathnfs01/conf/primers/virus_primers' );
+has '_primers_file'        => ( is => 'ro', isa => 'Str',  default => '/nfs/pathnfs05/conf/primers/virus_primers' );
 has '_remove_primers'      => ( is => 'ro', isa => 'Bool', default => 0 );
 
 

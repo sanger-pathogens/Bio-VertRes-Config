@@ -73,7 +73,7 @@ is_deeply(
                           'slx_mapper' => 'smalt',
                           'ignore_mapped_status' => 1
                         },
-              'log' => '/nfs/pathnfs01/log/my_database/mapping_ABC_study_EFG_ABC_smalt.log',
+              'log' => '/nfs/pathnfs05/log/my_database/mapping_ABC_study_EFG_ABC_smalt.log',
               'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
               'prefix' => '_checked_elsewhere_',
               'dont_use_get_lanes' => 1,
