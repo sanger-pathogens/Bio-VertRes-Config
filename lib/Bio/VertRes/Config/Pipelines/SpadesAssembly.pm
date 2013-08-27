@@ -22,6 +22,16 @@ has '_assembler'           => ( is => 'ro', isa => 'Str',  default => 'spades' )
 has '_assembler_exec'      => ( is => 'ro', isa => 'Str',  default => '/software/pathogen/external/apps/usr/bin/spades.py' );
 has '_optimiser_exec'      => ( is => 'ro', isa => 'Str',  default => '/software/pathogen/external/apps/usr/bin/spades.py' );
 has '_max_threads'         => ( is => 'ro', isa => 'Int',  default => 2 );
+has '_single_cell'         => ( is => 'ro', isa => 'Bool',  default => 0 );
+
+override 'to_hash' => sub {
+    my ($self) = @_;
+    my $output_hash = super();
+
+    $output_hash->{data}{single_cell} = $self->_single_cell;
+
+    return $output_hash;
+};
 
 __PACKAGE__->meta->make_immutable;
 no Moose;

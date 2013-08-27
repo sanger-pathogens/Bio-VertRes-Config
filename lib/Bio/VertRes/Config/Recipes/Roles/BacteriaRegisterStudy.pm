@@ -25,7 +25,7 @@ use Bio::VertRes::Config::Pipelines::AnnotateAssembly;
 use Bio::VertRes::Config::RegisterStudy;
 
 # Register all the studies passed in the project limits array
-after 'create' => sub { 
+after 'create' => sub {
   my ($self) = @_;
   
   if(defined($self->limits->{project}))
@@ -33,8 +33,8 @@ after 'create' => sub {
     for my $study_name ( @{$self->limits->{project}} )
     {
       my $pipeline = Bio::VertRes::Config::RegisterStudy->new(
-        database    => $self->database, 
-        study_name  => $study_name, 
+        database    => $self->database,
+        study_name  => $study_name,
         config_base => $self->config_base
       );
       $pipeline->register_study_name();
@@ -71,8 +71,28 @@ sub add_bacteria_velvet_assembly_config
           limits                         => $self->limits,
           _error_correct                 => $self->_error_correct,
           _remove_primers                => $self->_remove_primers,
-          _pipeline_version              => $self->_pipeline_version, 
-          _normalise                     => $self->_normalise 
+          _pipeline_version              => $self->_pipeline_version,
+          _normalise                     => $self->_normalise
+      )
+  );
+  return ;
+}
+
+sub add_bacteria_spades_single_cell_assembly_config
+{
+  my ($self, $pipeline_configs_array) = @_;
+  push(
+      @{$pipeline_configs_array},
+      Bio::VertRes::Config::Pipelines::SpadesAssembly->new(
+          database                       => $self->database,
+          config_base                    => $self->config_base,
+          overwrite_existing_config_file => $self->overwrite_existing_config_file,
+          limits                         => $self->limits,
+          _error_correct                 => $self->_error_correct,
+          _remove_primers                => $self->_remove_primers,
+          _pipeline_version              => $self->_pipeline_version,
+          _normalise                     => $self->_normalise,
+          _single_cell                   => $self->_single_cell,
       )
   );
   return ;
@@ -90,8 +110,8 @@ sub add_bacteria_spades_assembly_config
           limits                         => $self->limits,
           _error_correct                 => $self->_error_correct,
           _remove_primers                => $self->_remove_primers,
-          _pipeline_version              => $self->_pipeline_version, 
-          _normalise                     => $self->_normalise 
+          _pipeline_version              => $self->_pipeline_version,
+          _normalise                     => $self->_normalise
       )
   );
   return ;

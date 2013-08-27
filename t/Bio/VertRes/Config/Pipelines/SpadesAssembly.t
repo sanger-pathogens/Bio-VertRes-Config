@@ -62,7 +62,8 @@ is_deeply(
             'optimiser_exec'    => '/software/pathogen/external/apps/usr/bin/spades.py',
             'primers_file'      => '/nfs/pathnfs05/conf/primers/virus_primers',
             'remove_primers'    => 0,
-            'normalise'         => 0
+            'normalise'         => 0,
+            'single_cell'       => 0
         },
         'max_lanes_to_search'     => 200,
         'vrtrack_processed_flags' => {
