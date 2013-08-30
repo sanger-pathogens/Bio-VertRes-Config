@@ -22,7 +22,10 @@ after 'create' => sub {
 
     Bio::VertRes::Config::Recipes::Global->new(
         database                       => $self->database,
+        database_connect_file          => $self->database_connect_file,
         config_base                    => $self->config_base,
+        root_base                      => $self->root_base,
+        log_base                       => $self->log_base,        
         overwrite_existing_config_file => $self->overwrite_existing_config_file
     )->create;
 

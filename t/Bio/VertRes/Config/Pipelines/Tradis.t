@@ -19,9 +19,12 @@ ok(
     (
         $obj = Bio::VertRes::Config::Pipelines::Tradis->new(
             database              => 'my_database',
+            database_connect_file => 't/data/database_connection_details',
             reference_lookup_file => 't/data/refs.index',
             reference             => 'ABC',
             limits                => { project => ['ABC study( EFG )'] },
+            root_base             => '/path/to/root',
+            log_base              => '/path/to/log',
             config_base           => $destination_directory
         )
     ),
@@ -48,10 +51,10 @@ is_deeply(
                                            },
               'db' => {
                         'database' => 'my_database',
-                        'password' => undef,
-                        'user' => 'root',
-                        'port' => 3306,
-                        'host' => 'localhost'
+                        'password' => 'some_password',
+                        'user' => 'some_user',
+                        'port' => 1234,
+                        'host' => 'some_hostname'
                       },
               'data' => {
                           'annotation_file' => '/path/to/ABC.gff',
@@ -60,17 +63,17 @@ is_deeply(
                           'intergenic_regions' => 1,
                           'db' => {
                                     'database' => 'my_database',
-                                    'password' => undef,
-                                    'user' => 'root',
-                                    'port' => 3306,
-                                    'host' => 'localhost'
+                                    'password' => 'some_password',
+                                    'user' => 'some_user',
+                                    'port' => 1234,
+                                    'host' => 'some_hostname'
                                   },
                           'dont_wait' => 0,
                           'mapping_quality' => 10,
                           'sequencing_file_suffix' => 'markdup.bam'
                         },
-              'log' => '/nfs/pathnfs05/log/my_database/rna_seq_ABC_study_EFG_ABC.log',
-              'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
+              'log' => '/path/to/log/my_database/rna_seq_ABC_study_EFG_ABC.log',
+              'root' => '/path/to/root/my_database/seq-pipelines',
               'prefix' => '_checked_elsewhere_',
               'module' => 'VertRes::Pipelines::RNASeqExpression'
             },

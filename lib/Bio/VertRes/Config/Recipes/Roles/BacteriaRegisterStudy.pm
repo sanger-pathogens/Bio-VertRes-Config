@@ -49,7 +49,10 @@ sub add_bacteria_qc_config
       @{$pipeline_configs_array},
       Bio::VertRes::Config::Pipelines::QC->new(
           database                       => $self->database,
+          database_connect_file          => $self->database_connect_file,
           config_base                    => $self->config_base,
+          root_base                      => $self->root_base,
+          log_base                       => $self->log_base,
           overwrite_existing_config_file => $self->overwrite_existing_config_file,
           limits                         => $self->limits,
           reference                      => $self->reference,
@@ -66,7 +69,10 @@ sub add_bacteria_velvet_assembly_config
       @{$pipeline_configs_array},
       Bio::VertRes::Config::Pipelines::VelvetAssembly->new(
           database                       => $self->database,
+          database_connect_file          => $self->database_connect_file,
           config_base                    => $self->config_base,
+          root_base                      => $self->root_base,
+          log_base                       => $self->log_base,
           overwrite_existing_config_file => $self->overwrite_existing_config_file,
           limits                         => $self->limits,
           _error_correct                 => $self->_error_correct,
@@ -85,7 +91,10 @@ sub add_bacteria_spades_single_cell_assembly_config
       @{$pipeline_configs_array},
       Bio::VertRes::Config::Pipelines::SpadesAssembly->new(
           database                       => $self->database,
+          database_connect_file          => $self->database_connect_file,
           config_base                    => $self->config_base,
+          root_base                      => $self->root_base,
+          log_base                       => $self->log_base,
           overwrite_existing_config_file => $self->overwrite_existing_config_file,
           limits                         => $self->limits,
           _error_correct                 => $self->_error_correct,
@@ -105,7 +114,10 @@ sub add_bacteria_spades_assembly_config
       @{$pipeline_configs_array},
       Bio::VertRes::Config::Pipelines::SpadesAssembly->new(
           database                       => $self->database,
+          database_connect_file          => $self->database_connect_file,
           config_base                    => $self->config_base,
+          root_base                      => $self->root_base,
+          log_base                       => $self->log_base,
           overwrite_existing_config_file => $self->overwrite_existing_config_file,
           limits                         => $self->limits,
           _error_correct                 => $self->_error_correct,
@@ -124,6 +136,9 @@ sub add_bacteria_annotate_config
       @{$pipeline_configs_array},
       Bio::VertRes::Config::Pipelines::AnnotateAssembly->new(
           database                       => $self->database,
+          database_connect_file          => $self->database_connect_file,
+          root_base                      => $self->root_base,
+          log_base                       => $self->log_base,
           config_base                    => $self->config_base,
           overwrite_existing_config_file => $self->overwrite_existing_config_file,
           limits                         => $self->limits,

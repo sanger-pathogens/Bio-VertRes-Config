@@ -18,9 +18,12 @@ ok(
     (
         $obj = Bio::VertRes::Config::Pipelines::Bowtie2Mapping->new(
             database              => 'my_database',
+            database_connect_file => 't/data/database_connection_details',
             reference_lookup_file => 't/data/refs.index',
             reference             => 'ABC',
             limits                => { project => ['ABC study( EFG )'] },
+            root_base             => '/path/to/root',
+            log_base              => '/path/to/log',
             config_base           => $destination_directory
         )
     ),
@@ -48,10 +51,10 @@ is_deeply(
                                            },
               'db' => {
                         'database' => 'my_database',
-                        'password' => undef,
-                        'user' => 'root',
-                        'port' => 3306,
-                        'host' => 'localhost'
+                        'password' => 'some_password',
+                        'user' => 'some_user',
+                        'port' => 1234,
+                        'host' => 'some_hostname'
                       },
               'data' => {
                           'do_recalibration' => 0,
@@ -59,10 +62,10 @@ is_deeply(
                           'get_genome_coverage' => 1,
                           'db' => {
                                     'database' => 'my_database',
-                                    'password' => undef,
-                                    'user' => 'root',
-                                    'port' => 3306,
-                                    'host' => 'localhost'
+                                    'password' => 'some_password',
+                                    'user' => 'some_user',
+                                    'port' => 1234,
+                                    'host' => 'some_hostname'
                                   },
                           'dont_wait' => 0,
                           'assembly_name' => 'ABC',
@@ -74,8 +77,8 @@ is_deeply(
                           'slx_mapper' => 'bowtie2',
                           'ignore_mapped_status' => 1
                         },
-              'log' => '/nfs/pathnfs05/log/my_database/mapping_ABC_study_EFG_ABC_bowtie2.log',
-              'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
+              'log' => '/path/to/log/my_database/mapping_ABC_study_EFG_ABC_bowtie2.log',
+              'root' => '/path/to/root/my_database/seq-pipelines',
               'prefix' => '_checked_elsewhere_',
               'dont_use_get_lanes' => 1,
               'module' => 'VertRes::Pipelines::Mapping'

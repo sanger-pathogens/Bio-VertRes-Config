@@ -19,9 +19,12 @@ ok(
     (
         $obj = Bio::VertRes::Config::Pipelines::BamImprovement->new(
             database              => 'my_database',
+            database_connect_file => 't/data/database_connection_details',
             reference_lookup_file => 't/data/refs.index',
             reference             => 'ABC',
             limits                => { project => ['ABC study( EFG )'] },
+            root_base   => '/path/to/root',
+            log_base    => '/path/to/log',
             config_base           => $destination_directory
         )
     ),
@@ -50,19 +53,19 @@ is_deeply(
                                            },
               'db' => {
                         'database' => 'my_database',
-                        'password' => undef,
-                        'user' => 'root',
-                        'port' => 3306,
-                        'host' => 'localhost'
+                        'password' => 'some_password',
+                        'user' => 'some_user',
+                        'port' => 1234,
+                        'host' => 'some_hostname'
                       },
               'data' => {
                           'reference' => '/path/to/ABC.fa',
                           'db' => {
                                     'database' => 'my_database',
-                                    'password' => undef,
-                                    'user' => 'root',
-                                    'port' => 3306,
-                                    'host' => 'localhost'
+                                    'password' => 'some_password',
+                                    'user' => 'some_user',
+                                    'port' => 1234,
+                                    'host' => 'some_hostname'
                                   },
                           'dont_wait' => 0,
                           'keep_original_bam_files' => 0,
@@ -70,8 +73,8 @@ is_deeply(
                           'assembly_name' => 'ABC',
                           'ignore_bam_improvement_status' => 1
                         },
-              'log' => '/nfs/pathnfs05/log/my_database/improvement_ABC_study_EFG_ABC.log',
-              'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
+              'log' => '/path/to/log/my_database/improvement_ABC_study_EFG_ABC.log',
+              'root' => '/path/to/root/my_database/seq-pipelines',
               'prefix' => '_checked_elsewhere_',
               'module' => 'VertRes::Pipelines::BamImprovement::NonHuman',
             },

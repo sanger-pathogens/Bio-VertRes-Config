@@ -62,6 +62,12 @@ virus_assembly_and_annotation -t study -i 1234 -assembler spades
 # Register and QC a study in named database specifying location of configs
 virus_assembly_and_annotation -t study -i 1234  -d my_database -c /path/to/my/configs
 
+# Assemble and annotate a study in named database specifying root and log base directories
+virus_assembly_and_annotation -t study -i 1234  -d my_database -root /path/to/root -log /path/to/log
+
+# Assemble and annotate a study in named database specifying a file with database connection details 
+virus_assembly_and_annotation -t study -i 1234  -d my_database -db_file /path/to/connect/file
+
 # This help message
 virus_assembly_and_annotation -h
 

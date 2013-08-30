@@ -19,9 +19,12 @@ ok(
     (
         $obj = Bio::VertRes::Config::Pipelines::SnpCalling->new(
             database              => 'my_database',
+            database_connect_file => 't/data/database_connection_details',
             reference_lookup_file => 't/data/refs.index',
             reference             => 'ABC',
             limits                => { project => ['ABC study( EFG )'] },
+            root_base             => '/path/to/root',
+            log_base              => '/path/to/log',
             config_base           => $destination_directory
         )
     ),
@@ -38,19 +41,19 @@ is_deeply(
     {
               'db' => {
                         'database' => 'my_database',
-                        'password' => undef,
-                        'user' => 'root',
-                        'port' => 3306,
-                        'host' => 'localhost'
+                        'password' => 'some_password',
+                        'user' => 'some_user',
+                        'port' => 1234,
+                        'host' => 'some_hostname'
                       },
               'data' => {
                           'bsub_opts_long' => '-q normal -M3500000 -R \'select[type==X86_64 && mem>3500] rusage[mem=3500,thouio=1,tmp=16000]\'',
                           'db' => {
                                     'database' => 'my_database',
-                                    'password' => undef,
-                                    'user' => 'root',
-                                    'port' => 3306,
-                                    'host' => 'localhost'
+                                    'password' => 'some_password',
+                                    'user' => 'some_user',
+                                    'port' => 1234,
+                                    'host' => 'some_hostname'
                                   },
                           'split_size_mpileup' => 300000000,
                           'task' => 'pseudo_genome,mpileup,update_db,cleanup',
@@ -73,8 +76,8 @@ is_deeply(
                                              'mapped' => 1,
                                              'import' => 1
                                            },
-              'root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
-              'log' => '/nfs/pathnfs05/log/my_database/snps_ABC_study_EFG_ABC.log',
+              'root' => '/path/to/root/my_database/seq-pipelines',
+              'log' => '/path/to/log/my_database/snps_ABC_study_EFG_ABC.log',
               'module' => 'VertRes::Pipelines::SNPs',
               'prefix' => '_checked_elsewhere_',
               'limits' => {
@@ -97,12 +100,15 @@ ok(
     (
         $obj = Bio::VertRes::Config::Pipelines::SnpCalling->new(
             database              => 'my_database',
+            database_connect_file => 't/data/database_connection_details',
             reference_lookup_file => 't/data/refs.index',
             reference             => 'ABC',
             limits                => { project => ['ABC study( EFG )'] },
             _pseudo_genome        => 0,
             run_after_bam_improvement => 1,
-            config_base         => '/tmp'
+            root_base             => '/path/to/root',
+            log_base              => '/path/to/log',
+            config_base           => '/tmp'
             
         )
     ),

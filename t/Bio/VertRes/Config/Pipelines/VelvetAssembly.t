@@ -17,7 +17,10 @@ ok(
     (
         my $obj = Bio::VertRes::Config::Pipelines::VelvetAssembly->new(
             database    => 'my_database',
+            database_connect_file => 't/data/database_connection_details',
             limits      => {project => ['Abc def (ghi123)']},
+            root_base   => '/path/to/root',
+            log_base    => '/path/to/log',
             config_base => $destination_directory
         )
     ),
@@ -35,24 +38,24 @@ is_deeply(
         'max_failures' => 3,
         'db'           => {
             'database' => 'my_database',
-            'password' => undef,
-            'user'     => 'root',
-            'port'     => 3306,
-            'host'     => 'localhost'
+            'password' => 'some_password',
+            'user'     => 'some_user',
+            'port'     => 1234,
+            'host'     => 'some_hostname'
         },
         'data' => {
             'genome_size' => 10000000,
             'db'          => {
                 'database' => 'my_database',
-                'password' => undef,
-                'user'     => 'root',
-                'port'     => 3306,
-                'host'     => 'localhost'
+                'password' => 'some_password',
+                'user'     => 'some_user',
+                'port'     => 1234,
+                'host'     => 'some_hostname'
             },
             'assembler_exec'    => '/software/pathogen/external/apps/usr/bin/velvet',
             'dont_wait'         => 0,
             'assembler'         => 'velvet',
-            'seq_pipeline_root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
+            'seq_pipeline_root' => '/path/to/root/my_database/seq-pipelines',
             'tmp_directory'     => '/lustre/scratch108/pathogen/pathpipe/tmp',
             'max_threads'       => 2,
             'pipeline_version'  => 2.1,
@@ -70,8 +73,8 @@ is_deeply(
             'rna_seq_expression' => 0,
             'stored'             => 1
         },
-        'root'   => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
-        'log'    => '/nfs/pathnfs05/log/my_database/assembly_Abc_def_ghi123_velvet.log',
+        'root'   => '/path/to/root/my_database/seq-pipelines',
+        'log'    => '/path/to/log/my_database/assembly_Abc_def_ghi123_velvet.log',
         'limit'  => 100,
         'module' => 'VertRes::Pipelines::Assembly',
         'prefix' => '_assembly_'
@@ -92,12 +95,15 @@ ok(
     (
         $obj = Bio::VertRes::Config::Pipelines::VelvetAssembly->new(
             database              => 'my_database',
+            database_connect_file => 't/data/database_connection_details',
             limits                => {
                 project     => [ 'study 1',  'study 2' ],
                 sample      => [ 'sample 1', 'sample 2' ],
                 species     => ['species 1'],
                 other_stuff => ['some other stuff']
             },
+            root_base           => '/path/to/root',
+            log_base            => '/path/to/log',
             config_base         => '/path/to/config_base'
         )
     ),

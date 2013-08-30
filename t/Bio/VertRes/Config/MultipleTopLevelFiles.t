@@ -24,27 +24,47 @@ my $destination_directory = $destination_directory_obj->dirname();
 
 # Create a few config objects for testing
 my @pipeline_configs;
-push(@pipeline_configs, Bio::VertRes::Config::Pipelines::Import->new(database => 'my_database', config_base => $destination_directory));
-push(@pipeline_configs, Bio::VertRes::Config::Pipelines::Store->new(database => 'my_database', config_base => $destination_directory));
+push(@pipeline_configs, Bio::VertRes::Config::Pipelines::Import->new(
+    database              => 'my_database',
+    database_connect_file => 't/data/database_connection_details',
+    root_base             => '/path/to/root',
+    log_base              => '/path/to/log',
+    config_base           => $destination_directory
+));
+push(@pipeline_configs, Bio::VertRes::Config::Pipelines::Store->new(
+    database              => 'my_database',
+    database_connect_file => 't/data/database_connection_details',
+    root_base             => '/path/to/root',
+    log_base              => '/path/to/log',
+    config_base => $destination_directory));
 push(@pipeline_configs, Bio::VertRes::Config::Pipelines::BwaMapping->new(
     database              => 'my_database',
+    database_connect_file => 't/data/database_connection_details',
     reference_lookup_file => 't/data/refs.index',
     reference             => 'ABC',
     limits                => { project => ['ABC study( EFG )'] },
+    root_base             => '/path/to/root',
+    log_base              => '/path/to/log',
     config_base           => $destination_directory
 ));
 push(@pipeline_configs, Bio::VertRes::Config::Pipelines::SmaltMapping->new(
     database              => 'my_database',
+    database_connect_file => 't/data/database_connection_details',
     reference_lookup_file => 't/data/refs.index',
     reference             => 'ABC',
     limits                => { project => ['ABC study( EFG )'] },
+    root_base             => '/path/to/root',
+    log_base              => '/path/to/log',
     config_base           => $destination_directory
 ));
 push(@pipeline_configs, Bio::VertRes::Config::Pipelines::SnpCalling->new(
     database              => 'my_database',
+    database_connect_file => 't/data/database_connection_details',
     reference_lookup_file => 't/data/refs.index',
     reference             => 'ABC',
     limits                => { project => ['XYZ study( EFG )'] },
+    root_base             => '/path/to/root',
+    log_base              => '/path/to/log',
     config_base           => $destination_directory
 ));
 

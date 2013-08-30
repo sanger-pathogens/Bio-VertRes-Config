@@ -28,7 +28,7 @@ has 'toplevel_action'     => ( is => 'ro', isa => 'Str',                        
 has 'overwrite_existing_config_file' => ( is => 'ro', isa => 'Bool', default => 0 );
 
 has 'log' => ( is => 'ro', isa => 'Str', lazy => 1, builder => '_build_log' );
-has 'log_base'      => ( is => 'ro', isa => 'Str', default => '/nfs/pathnfs05/log' );
+has 'log_base'      => ( is => 'ro', isa => 'Str', required => 1 );
 has 'log_file_name' => ( is => 'ro', isa => 'Str', default => 'logfile.log' );
 
 has 'config' => ( is => 'ro', isa => 'Str', lazy => 1, builder => '_build_config' );
@@ -36,7 +36,7 @@ has 'config_base'      => ( is => 'ro', isa => 'Str', required => 1 );
 has 'config_file_name' => ( is => 'ro', isa => 'Str', default  => 'global.conf' );
 
 has 'root' => ( is => 'ro', isa => 'Str', lazy => 1, builder => '_build_root' );
-has 'root_base'            => ( is => 'ro', isa => 'Str', default => '/lustre/scratch108/pathogen/pathpipe' );
+has 'root_base'            => ( is => 'ro', isa => 'Str', required => 1 );
 has 'root_pipeline_suffix' => ( is => 'ro', isa => 'Str', default => 'seq-pipelines' );
 
 has 'database' => ( is => 'ro', isa => 'Str',        required => 1 );
@@ -45,8 +45,7 @@ has 'port'     => ( is => 'ro', isa => 'Int',        lazy     => 1, builder => '
 has 'user'     => ( is => 'ro', isa => 'Str',        lazy     => 1, builder => '_build_user' );
 has 'password' => ( is => 'ro', isa => 'Maybe[Str]', lazy     => 1, builder => '_build_password' );
 
-has '_database_connection_details_file' =>
-  ( is => 'ro', isa => 'Str', default => '/software/pathogen/config/database_connection_details' );
+has 'database_connect_file' => ( is => 'ro', isa => 'Str', required => 1 );
 has '_database_connection_details' =>
   ( is => 'ro', isa => 'Maybe[HashRef]', lazy => 1, builder => '_build__database_connection_details' );
 
@@ -102,8 +101,8 @@ sub _build_password {
 sub _build__database_connection_details {
     my ($self) = @_;
     my $connection_details;
-    if ( -f $self->_database_connection_details_file ) {
-        my $text = read_file( $self->_database_connection_details_file );
+    if ( -f $self->database_connect_file ) {
+        my $text = read_file( $self->database_connect_file );
         $connection_details = eval($text);
     }
     return $connection_details;

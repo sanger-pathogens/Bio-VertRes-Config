@@ -17,8 +17,11 @@ my $destination_directory = $destination_directory_obj->dirname();
 ok(
     (
         my $obj = Bio::VertRes::Config::Pipelines::Store->new(
-            database => 'my_database',
-            config_base           => $destination_directory
+            database    => 'my_database',
+            database_connect_file => 't/data/database_connection_details',
+            root_base   => '/path/to/root',
+            log_base    => '/path/to/log',
+            config_base => $destination_directory
         )
     ),
     'initialise store config'
@@ -29,18 +32,18 @@ is_deeply(
     {
         'db' => {
             'database' => 'my_database',
-            'password' => undef,
-            'user'     => 'root',
-            'port'     => 3306,
-            'host'     => 'localhost'
+            'password' => 'some_password',
+            'user'     => 'some_user',
+            'port'     => 1234,
+            'host'     => 'some_hostname'
         },
         'data' => {
             'db' => {
                 'database' => 'my_database',
-                'password' => undef,
-                'user'     => 'root',
-                'port'     => 3306,
-                'host'     => 'localhost'
+                'password' => 'some_password',
+                'user'     => 'some_user',
+                'port'     => 1234,
+                'host'     => 'some_hostname'
             },
             'dont_wait' => 0
         },
@@ -48,8 +51,8 @@ is_deeply(
             'qc'     => 1,
             'stored' => 0
         },
-        'root'   => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
-        'log'    => '/nfs/pathnfs05/log/my_database/stored_logfile.log',
+        'root'   => '/path/to/root/my_database/seq-pipelines',
+        'log'    => '/path/to/log/my_database/stored_logfile.log',
         'limit'  => 100,
         'module' => 'VertRes::Pipelines::StoreLane',
         'prefix' => '_'

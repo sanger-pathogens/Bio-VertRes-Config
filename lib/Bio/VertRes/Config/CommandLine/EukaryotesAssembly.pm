@@ -43,23 +43,29 @@ sub register_and_qc_usage_text {
 Usage: eukaryote_assembly [options]
 Pipeline to run assembly and annotation. Study must be registered and QC'd separately first
 
-# Register and QC a study
+# Assemble a study
 eukaryote_assembly -t study -i 1234 
 
-# Register and QC a single lane
+# Assemble a single lane
 eukaryote_assembly -t lane -i 1234_5#6 
 
-# Register and QC a file of lanes
+# Assemble a file of lanes
 eukaryote_assembly -t file -i file_of_lanes 
 
-# Register and QC a single species in a study
+# Assemble a single species in a study
 eukaryote_assembly -t study -i 1234  -s "Staphylococcus aureus"
 
-# Register and QC a study assembling with SPAdes
+# Assemble a study assembling with SPAdes
 eukaryote_assembly -t study -i 1234 -assembler spades
 
-# Register and QC a study in named database specifying location of configs
+# Assemble a study in named database specifying location of configs
 eukaryote_assembly -t study -i 1234  -d my_database -c /path/to/my/configs
+
+# Assemble a study in named database specifying root and log base directories
+eukaryote_assembly -t study -i 1234  -d my_database -root /path/to/root -log /path/to/log
+
+# Assemble a study in named database specifying a file with database connection details
+eukaryote_assembly -t study -i 1234  -d my_database -db_file /path/to/connect/file
 
 # This help message
 eukaryote_assembly -h

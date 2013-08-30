@@ -38,6 +38,9 @@ override '_pipeline_configs' => sub {
         Bio::VertRes::Config::Pipelines::Bowtie2Mapping->new(
             database                       => $self->database,
             config_base                    => $self->config_base,
+            database_connect_file          => $self->database_connect_file,
+            root_base                      => $self->root_base,
+            log_base                       => $self->log_base,
             overwrite_existing_config_file => $self->overwrite_existing_config_file,
             limits                         => $self->limits,
             reference                      => $self->reference,

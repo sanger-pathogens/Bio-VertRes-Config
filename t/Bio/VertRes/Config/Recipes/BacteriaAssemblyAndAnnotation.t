@@ -19,6 +19,7 @@ ok(
             my $obj = Bio::VertRes::Config::Recipes::BacteriaAssemblyAndAnnotation->new(
             database    => 'my_database',
             config_base => $destination_directory,
+            database_connect_file => 't/data/database_connection_details',
             limits      => { project => ['ABC study( EFG )'] },
         )
     ),
@@ -35,20 +36,20 @@ is_deeply($input_config_file,{
   'max_failures' => 3,
   'db' => {
             'database' => 'my_database',
-            'password' => undef,
-            'user' => 'root',
-            'port' => 3306,
-            'host' => 'localhost'
+            'password' => 'some_password',
+            'user' => 'some_user',
+            'port' => 1234,
+            'host' => 'some_hostname'
           },
   'data' => {
               'remove_primers' => 0,
               'genome_size' => 10000000,
               'db' => {
                         'database' => 'my_database',
-                        'password' => undef,
-                        'user' => 'root',
-                        'port' => 3306,
-                        'host' => 'localhost'
+                        'password' => 'some_password',
+                        'user' => 'some_user',
+                        'port' => 1234,
+                        'host' => 'some_hostname'
                       },
               'error_correct' => 0,
               'assembler_exec' => '/software/pathogen/external/apps/usr/bin/velvet',
@@ -91,18 +92,18 @@ is_deeply($input_config_file,{
   'max_failures' => 3,
   'db' => {
             'database' => 'my_database',
-            'password' => undef,
-            'user' => 'root',
-            'port' => 3306,
-            'host' => 'localhost'
+            'password' => 'some_password',
+            'user' => 'some_user',
+            'port' => 1234,
+            'host' => 'some_hostname'
           },
   'data' => {
               'db' => {
                         'database' => 'my_database',
-                        'password' => undef,
-                        'user' => 'root',
-                        'port' => 3306,
-                        'host' => 'localhost'
+                        'password' => 'some_password',
+                        'user' => 'some_user',
+                        'port' => 1234,
+                        'host' => 'some_hostname'
                       },
               'annotation_tool' => 'Prokka',
               'dont_wait' => 0,

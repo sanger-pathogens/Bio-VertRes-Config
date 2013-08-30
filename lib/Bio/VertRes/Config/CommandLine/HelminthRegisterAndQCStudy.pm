@@ -63,6 +63,12 @@ helminth_register_and_qc_study -t study -i 1234 -r "Caenorhabditis_elegans_WS226
 # Register and QC a study in named database specifying location of configs
 helminth_register_and_qc_study -t study -i 1234 -r "Caenorhabditis_elegans_WS226" -d my_database -c /path/to/my/configs
 
+# Register and QC a study in named database specifying root and log base directories
+helminth_register_and_qc_study -t study -i 1234 -r "Caenorhabditis_elegans_WS226" -d my_database -root /path/to/root -log /path/to/log
+
+# Register and QC a study in named database specifying a file with database connection details 
+helminth_register_and_qc_study -t study -i 1234 -r "Caenorhabditis_elegans_WS226" -d my_database -db_file /path/to/connect/file
+
 # This help message
 helminth_register_and_qc_study -h
 

@@ -94,6 +94,15 @@ virus_mapping -t study -i 1234 -r "Influenzavirus_A_H1N1" --smalt_index_k 13 --s
 # Set orientation of mate pairs for smalt ('pe', 'mp' or 'pp')
 virus_mapping -t study -i 1234 -r "Influenzavirus_A_H1N1" --smalt_mapper_l pp
 
+# Map a study in named database specifying location of configs
+virus_mapping -t study -i 1234 -r "Influenzavirus_A_H1N1" -d my_database -c /path/to/my/configs
+
+# Map a study in named database specifying root and log base directories
+virus_mapping -t study -i 1234 -r "Influenzavirus_A_H1N1" -d my_database -root /path/to/root -log /path/to/log
+
+# Map a study in named database specifying a file with database connection details
+virus_mapping -t study -i 1234 -r "Influenzavirus_A_H1N1" -d my_database -db_file /path/to/connect/file
+
 # This help message
 virus_mapping -h
 

@@ -87,6 +87,15 @@ bacteria_rna_seq_expression -t study -i 1234 -r "Staphylococcus_aureus_subsp_aur
 # Use a different mapper. Available are bwa/stampy/smalt/ssaha2/bowtie2/tophat. The default is bwa and ssaha2 is only for 454 data.
 bacteria_rna_seq_expression -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMRSA15_v1" -m smalt
 
+# Run over a study in a named database specifying location of configs
+bacteria_rna_seq_expression -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMRSA15_v1" -d my_database -c /path/to/my/configs
+
+# Run over a study in named database specifying root and log base directories
+bacteria_rna_seq_expression -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMRSA15_v1" -d my_database -root /path/to/root -log /path/to/log
+
+# Run over a study in named database specifying a file with database connection details 
+bacteria_rna_seq_expression -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMRSA15_v1" -d my_database -db_file /path/to/connect/file
+
 # This help message
 bacteria_rna_seq_expression -h
 

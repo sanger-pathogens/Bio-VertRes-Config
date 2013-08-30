@@ -82,6 +82,15 @@ virus_snp_calling -t study -i 1234 -r "Influenzavirus_A_H1N1" -s "Influenzavirus
 # Use a different mapper. Available are bwa/stampy/smalt/ssaha2/bowtie2. The default is smalt and ssaha2 is only for 454 data.
 virus_snp_calling -t study -i 1234 -r "Influenzavirus_A_H1N1" -m bwa
 
+# Map and SNP call a study in named database specifying location of configs
+virus_snp_calling -t study -i 1234 -r "Influenzavirus_A_H1N1" -d my_database -c /path/to/my/configs
+
+# Map and SNP call a study in named database specifying root and log base directories
+virus_snp_calling -t study -i 1234 -r "Influenzavirus_A_H1N1" -d my_database -root /path/to/root -log /path/to/log
+
+# Map and SNP call a study in named database specifying a file with database connection details
+virus_snp_calling -t study -i 1234 -r "Influenzavirus_A_H1N1" -d my_database -db_file /path/to/connect/file
+
 # This help message
 virus_snp_calling -h
 

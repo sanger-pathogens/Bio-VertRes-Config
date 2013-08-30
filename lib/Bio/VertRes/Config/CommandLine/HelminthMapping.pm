@@ -94,6 +94,15 @@ helminth_mapping -t study -i 1234 -r "Leishmania_donovani_21Apr2011" --smalt_ind
 # Set orientation of mate pairs for smalt ('pe', 'mp' or 'pp')
 helminth_mapping -t study -i 1234 -r "Leishmania_donovani_21Apr2011" --smalt_mapper_l pp
 
+# Map a study in named database specifying location of configs
+helminth_mapping -t study -i 1234 -r "Leishmania_donovani_21Apr2011" -d my_database -c /path/to/my/configs
+
+# Map a study in named database specifying root and log base directories
+helminth_mapping -t study -i 1234 -r "Leishmania_donovani_21Apr2011" -d my_database -root /path/to/root -log /path/to/log
+
+# Map a study in named database specifying a file with database connection details
+helminth_mapping -t study -i 1234 -r "Leishmania_donovani_21Apr2011" -d my_database -db_file /path/to/connect/file
+
 # This help message
 helminth_mapping -h
 

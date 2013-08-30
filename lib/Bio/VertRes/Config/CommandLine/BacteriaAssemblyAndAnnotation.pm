@@ -44,23 +44,29 @@ Usage: bacteria_assembly_and_annotation [options]
 Pipeline to run assembly and annotation. Study must be registered and QC'd separately first
 
 
-# Register and QC a study
+# Assemble and annotate a study
 bacteria_assembly_and_annotation -t study -i 1234 
 
-# Register and QC a single lane
+# Assemble and annotate a single lane
 bacteria_assembly_and_annotation -t lane -i 1234_5#6 
 
-# Register and QC a file of lanes
+# Assemble and annotate a file of lanes
 bacteria_assembly_and_annotation -t file -i file_of_lanes 
 
-# Register and QC a single species in a study
+# Assemble and annotate a single species in a study
 bacteria_assembly_and_annotation -t study -i 1234  -s "Staphylococcus aureus"
 
-# Register and QC a study assembling with SPAdes
+# Assemble and annotate a study assembling with SPAdes
 bacteria_assembly_and_annotation -t study -i 1234 -assembler spades
 
-# Register and QC a study in named database specifying location of configs
+# Assemble and annotate a study in named database specifying location of configs
 bacteria_assembly_and_annotation -t study -i 1234  -d my_database -c /path/to/my/configs
+
+# Assemble and annotate a study in named database specifying root and log base directories
+bacteria_assembly_and_annotation -t study -i 1234  -d my_database -root /path/to/root -log /path/to/log
+
+# Assemble and annotate a study in named database specifying a file with database connection details 
+bacteria_assembly_and_annotation -t study -i 1234  -d my_database -db_file /path/to/connect/file
 
 # This help message
 bacteria_assembly_and_annotation -h

@@ -17,8 +17,11 @@ my $destination_directory = $destination_directory_obj->dirname();
 ok(
     (
         my $obj = Bio::VertRes::Config::Pipelines::Import->new(
-            database => 'my_database',
-            config_base           => $destination_directory
+            database    => 'my_database',
+            database_connect_file => 't/data/database_connection_details',
+            root_base   => '/path/to/root',
+            log_base    => '/path/to/log',
+            config_base => $destination_directory
         )
     ),
     'initialise import config'
@@ -30,24 +33,24 @@ is_deeply(
         'mpsa_limit' => 500,
         'db'         => {
             'database' => 'my_database',
-            'password' => undef,
-            'user'     => 'root',
-            'port'     => 3306,
-            'host'     => 'localhost'
+            'password' => 'some_password',
+            'user'     => 'some_user',
+            'port'     => 1234,
+            'host'     => 'some_hostname'
         },
         'data' => {
             'exit_on_errors' => 0,
             'db'             => {
                 'database' => 'my_database',
-                'password' => undef,
-                'user'     => 'root',
-                'port'     => 3306,
-                'host'     => 'localhost'
+                'password' => 'some_password',
+                'user'     => 'some_user',
+                'port'     => 1234,
+                'host'     => 'some_hostname'
             },
             'dont_wait' => 0
         },
-        'log'    => '/nfs/pathnfs05/log/my_database/import_logfile.log',
-        'root'   => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
+        'log'    => '/path/to/log/my_database/import_logfile.log',
+        'root'   => '/path/to/root/my_database/seq-pipelines',
         'prefix' => '_',
         'module' => 'VertRes::Pipelines::Import_iRODS_fastq'
     },

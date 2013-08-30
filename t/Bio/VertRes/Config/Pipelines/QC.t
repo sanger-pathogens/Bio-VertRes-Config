@@ -20,9 +20,12 @@ ok(
     (
         $obj = Bio::VertRes::Config::Pipelines::QC->new(
             database              => 'my_database',
+            database_connect_file => 't/data/database_connection_details',
             reference_lookup_file => 't/data/refs.index',
             reference             => 'ABC',
             limits                => { project => ['ABC study( EFG )'] },
+            root_base             => '/path/to/root',
+            log_base              => '/path/to/log',
             config_base           => $destination_directory
         )
     ),
@@ -38,19 +41,19 @@ is_deeply(
         'max_failures' => 3,
         'db'           => {
             'database' => 'my_database',
-            'password' => undef,
-            'user'     => 'root',
-            'port'     => 3306,
-            'host'     => 'localhost'
+            'password' => 'some_password',
+            'user'     => 'some_user',
+            'port'     => 1234,
+            'host'     => 'some_hostname'
         },
         'data' => {
             'chr_regex' => '.*',
             'db'        => {
                 'database' => 'my_database',
-                'password' => undef,
-                'user'     => 'root',
-                'port'     => 3306,
-                'host'     => 'localhost'
+                'password' => 'some_password',
+                'user'     => 'some_user',
+                'port'     => 1234,
+                'host'     => 'some_hostname'
             },
             'glf'               => '/software/pathogen/external/apps/usr/bin/glf',
             'mapper'            => 'bwa',
@@ -71,8 +74,8 @@ is_deeply(
             'gcdepth_R'         => '/software/pathogen/external/apps/usr/local/gcdepth/gcdepth.R',
             'snps'              => '/lustre/scratch108/pathogen/pathpipe/usr/share/mousehapmap.snps.bin'
         },
-        'log'    => '/nfs/pathnfs05/log/my_database/qc_ABC_study_EFG.log',
-        'root'   => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
+        'log'    => '/path/to/log/my_database/qc_ABC_study_EFG.log',
+        'root'   => '/path/to/root/my_database/seq-pipelines',
         'prefix' => '_',
         'module' => 'VertRes::Pipelines::TrackQC_Fastq'
     },
@@ -92,6 +95,7 @@ ok(
     (
         $obj = Bio::VertRes::Config::Pipelines::QC->new(
             database              => 'my_database',
+            database_connect_file => 't/data/database_connection_details',
             reference_lookup_file => 't/data/refs.index',
             reference             => 'ABC',
             limits                => {
@@ -100,6 +104,8 @@ ok(
                 species     => ['species 1'],
                 other_stuff => ['some other stuff']
             },
+            root_base           => '/path/to/root',
+            log_base            => '/path/to/log',
             config_base         => '/tmp'
         )
     ),

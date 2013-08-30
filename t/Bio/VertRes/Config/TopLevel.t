@@ -28,16 +28,22 @@ my $destination_directory = $destination_directory_obj->dirname();
 my @pipeline_configs;
 push(@pipeline_configs, Bio::VertRes::Config::Pipelines::BwaMapping->new(
     database              => 'my_database',
+    database_connect_file => 't/data/database_connection_details',
     reference_lookup_file => 't/data/refs.index',
     reference             => 'ABC',
     limits                => { project => ['ABC study( EFG )'] },
+    root_base             => '/path/to/root',
+    log_base              => '/path/to/log',
     config_base           => $destination_directory
 ));
 push(@pipeline_configs, Bio::VertRes::Config::Pipelines::SmaltMapping->new(
     database              => 'my_database',
+    database_connect_file => 't/data/database_connection_details',
     reference_lookup_file => 't/data/refs.index',
     reference             => 'ABC',
     limits                => { project => ['ABC study( EFG )'] },
+    root_base             => '/path/to/root',
+    log_base              => '/path/to/log',
     config_base           => $destination_directory
 ));
 
@@ -78,9 +84,12 @@ is_deeply(\@mapping_rows , ["__VRTrack_Mapping__ $destination_directory/my_datab
 @pipeline_configs = ();
 push(@pipeline_configs, Bio::VertRes::Config::Pipelines::StampyMapping->new(
     database              => 'my_database',
+    database_connect_file => 't/data/database_connection_details',
     reference_lookup_file => 't/data/refs.index',
     reference             => 'ABC',
     limits                => { project => ['Another study'] },
+    root_base             => '/path/to/root',
+    log_base              => '/path/to/log',
     config_base           => $destination_directory
 ));
 ok((my $obj_append = Bio::VertRes::Config::TopLevel->new(

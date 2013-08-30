@@ -95,6 +95,15 @@ eukaryote_rna_seq_expression -t study -i 1234 -r "Leishmania_donovani_21Apr2011"
 # Mapping defaults to '-r 0 -x -y 0.8'
 eukaryote_rna_seq_expression -t study -i 1234 -r "Leishmania_donovani_21Apr2011" --smalt_index_k 13 --smalt_index_s 2 --smalt_mapper_r 0 --smalt_mapper_y 0.8 --smalt_mapper_x
 
+# Run over a study in a named database specifying location of configs
+eukaryote_rna_seq_expression -t study -i 1234 -r "Leishmania_donovani_21Apr2011" -d my_database -c /path/to/my/configs
+
+# Run over a study in named database specifying root and log base directories
+eukaryote_rna_seq_expression -t study -i 1234 -r "Leishmania_donovani_21Apr2011" -d my_database -root /path/to/root -log /path/to/log
+
+# Run over a study in named database specifying a file with database connection details 
+eukaryote_rna_seq_expression -t study -i 1234 -r "Leishmania_donovani_21Apr2011" -d my_database -db_file /path/to/connect/file
+
 # This help message
 eukaryote_rna_seq_expression -h
 

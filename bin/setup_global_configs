@@ -21,19 +21,25 @@ use Bio::VertRes::Config::Recipes::Global;
 
 my $log_params = Bio::VertRes::Config::CommandLine::LogParameters->new( args => \@ARGV, script_name => $0 );
 
-my ( $database, $config_base, $overwrite_existing_config_file,$regeneration_log_file, $help );
+my ( $database, $database_connect_file, $config_base, $root_base, $log_base, $overwrite_existing_config_file,$regeneration_log_file, $help );
 
 GetOptions(
     'd|database=s'                     => \$database,
+    'db_file:s'                        => \$database_connect_file,
     'c|config_base=s'                  => \$config_base,
+    'root_base=s'                      => \$root_base,
+    'log_base=s'                       => \$log_base,
     'o|overwrite_existing_config_file' => \$overwrite_existing_config_file,
     'b|regeneration_log_file=s' => \$regeneration_log_file,
     'h|help'                           => \$help,
 );
 
 $config_base           ||= '/nfs/pathnfs05/conf';
+$root_base             ||= '/lustre/scratch108/pathogen/pathpipe';
+$log_base              ||= '/nfs/pathnfs05/log';
 $overwrite_existing_config_file ||= 0;
 $regeneration_log_file ||= join('/',($config_base,'command_line.log'));
+$database_connect_file = '/software/pathogen/config/database_connection_details' unless defined $database_connect_file;
 
 $log_params->log_file($regeneration_log_file);
 $log_params->create();
@@ -42,7 +48,17 @@ $log_params->create();
 Usage: setup_global_configs [options]
 Setup global config files and directory structure for a database.
 
+# Setup global configs
 setup_global_configs -d pathogen_abc_track
+
+# Setup global configs specifying location of configs
+setup_global_configs -d pathogen_abc_track -c /path/to/my/configs
+
+# Setup global configs specifying root and log base directories
+setup_global_configs -d pathogen_abc_track -root /path/to/root -log /path/to/log
+
+# Setup global configs specifying a file with database connection details
+setup_global_configs -d pathogen_abc_track-db_file -db_file /path/to/connect/file
 
 # This help message
 setup_global_configs -h
@@ -51,7 +67,10 @@ USAGE
 
 my %parameters = (
     database                       => $database,
+    database_connect_file          => $database_connect_file,
     config_base                    => $config_base,
+    root_base                      => $root_base,
+    log_base                       => $log_base,
     overwrite_existing_config_file => $overwrite_existing_config_file
 );
 

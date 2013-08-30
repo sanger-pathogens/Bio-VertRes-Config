@@ -80,6 +80,15 @@ bacteria_snp_calling -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMR
 # Use a different mapper. Available are bwa/stampy/smalt/ssaha2/bowtie2. The default is smalt and ssaha2 is only for 454 data.
 bacteria_snp_calling -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMRSA15_v1" -m bwa
 
+# Map and SNP call a study in named database specifying location of configs
+bacteria_snp_calling -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMRSA15_v1" -d my_database -c /path/to/my/configs
+
+# Map and SNP call a study in named database specifying root and log base directories
+bacteria_snp_calling -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMRSA15_v1" -d my_database -root /path/to/root -log /path/to/log
+
+# Map and SNP call a study in named database specifying a file with database connection details
+bacteria_snp_calling -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMRSA15_v1" -d my_database -db_file /path/to/connect/file
+
 # This help message
 bacteria_snp_calling -h
 

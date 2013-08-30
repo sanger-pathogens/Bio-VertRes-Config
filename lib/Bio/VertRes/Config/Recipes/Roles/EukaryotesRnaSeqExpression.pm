@@ -24,7 +24,10 @@ sub add_eukaryotes_rna_seq_expression_config
       @{$pipeline_configs_array},
       Bio::VertRes::Config::Pipelines::RnaSeqExpression->new(
           database                       => $self->database,
+          database_connect_file          => $self->database_connect_file,
           config_base                    => $self->config_base,
+          root_base                      => $self->root_base,
+          log_base                       => $self->log_base,
           overwrite_existing_config_file => $self->overwrite_existing_config_file,
           limits                         => $self->limits,
           reference                      => $self->reference,

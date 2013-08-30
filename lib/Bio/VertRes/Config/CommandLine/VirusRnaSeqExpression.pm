@@ -90,6 +90,15 @@ virus_rna_seq_expression -t study -i 1234 -r "Influenzavirus_A_H1N1" -s "Influen
 # Use a different mapper. Available are bwa/stampy/smalt/ssaha2/bowtie2/tophat. The default is smalt and ssaha2 is only for 454 data.
 virus_rna_seq_expression -t study -i 1234 -r "Influenzavirus_A_H1N1" -m bwa
 
+# Run over a study in a named database specifying location of configs
+virus_rna_seq_expression -t study -i 1234 -r "Influenzavirus_A_H1N1" -d my_database -c /path/to/my/configs
+
+# Run over a study in named database specifying root and log base directories
+virus_rna_seq_expression -t study -i 1234 -r "Influenzavirus_A_H1N1" -d my_database -root /path/to/root -log /path/to/log
+
+# Run over a study in named database specifying a file with database connection details 
+virus_rna_seq_expression -t study -i 1234 -r "Influenzavirus_A_H1N1" -d my_database -db_file /path/to/connect/file
+
 # This help message
 virus_rna_seq_expression -h
 

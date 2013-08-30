@@ -68,6 +68,12 @@ virus_register_and_qc_study -t study -i 1234 -r "Norovirus_Hu_Pune_PC52_2007_Ind
 # Register and QC a study in named database specifying location of configs
 virus_register_and_qc_study -t study -i 1234 -r "Norovirus_Hu_Pune_PC52_2007_India_v2" -d my_database -c /path/to/my/configs
 
+# Register and QC a study in named database specifying root and log base directories
+virus_register_and_qc_study -t study -i 1234 -r "Norovirus_Hu_Pune_PC52_2007_India_v2" -d my_database -root /path/to/root -log /path/to/log
+
+# Register and QC a study in named database specifying a file with database connection details 
+virus_register_and_qc_study -t study -i 1234 -r "Norovirus_Hu_Pune_PC52_2007_India_v2" -d my_database -db_file /path/to/connect/file
+
 # This help message
 virus_register_and_qc_study -h
 

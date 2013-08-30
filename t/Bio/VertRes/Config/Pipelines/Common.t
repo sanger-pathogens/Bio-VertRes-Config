@@ -22,6 +22,9 @@ ok(
             pipeline_short_name => 'new_pipeline',
             module              => 'Bio::Example',
             toplevel_action     => '__VRTrack_Action__',
+            root_base           => '/path/to/root',
+            log_base            => '/path/to/log',
+            database_connect_file => 't/data/database_connection_details',
             config_base         => $destination_directory
         )
     ),
@@ -33,23 +36,23 @@ is_deeply(
     {
         'db' => {
             'database' => 'my_database',
-            'password' => undef,
-            'user'     => 'root',
-            'port'     => 3306,
-            'host'     => 'localhost'
+            'password' => 'some_password',
+            'user'     => 'some_user',
+            'port'     => 1234,
+            'host'     => 'some_hostname'
         },
         'data' => {
             'db' => {
                 'database' => 'my_database',
-                'password' => undef,
-                'user'     => 'root',
-                'port'     => 3306,
-                'host'     => 'localhost'
+                'password' => 'some_password',
+                'user'     => 'some_user',
+                'port'     => 1234,
+                'host'     => 'some_hostname'
             },
             'dont_wait' => 0
         },
-        'log'    => '/nfs/pathnfs05/log/my_database/new_pipeline_logfile.log',
-        'root'   => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
+        'log'    => '/path/to/log/my_database/new_pipeline_logfile.log',
+        'root'   => '/path/to/root/my_database/seq-pipelines',
         'prefix' => '_',
         'module' => 'Bio::Example'
     },
@@ -71,23 +74,23 @@ is_deeply(
     {
         'db' => {
             'database' => 'my_database',
-            'password' => undef,
-            'user'     => 'root',
-            'port'     => 3306,
-            'host'     => 'localhost'
+            'password' => 'some_password',
+            'user'     => 'some_user',
+            'port'     => 1234,
+            'host'     => 'some_hostname'
         },
         'data' => {
             'db' => {
                 'database' => 'my_database',
-                'password' => undef,
-                'user'     => 'root',
-                'port'     => 3306,
-                'host'     => 'localhost'
+                'password' => 'some_password',
+                'user'     => 'some_user',
+                'port'     => 1234,
+                'host'     => 'some_hostname'
             },
             'dont_wait' => 0
         },
-        'log'    => '/nfs/pathnfs05/log/my_database/new_pipeline_logfile.log',
-        'root'   => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
+        'log'    => '/path/to/log/my_database/new_pipeline_logfile.log',
+        'root'   => '/path/to/root/my_database/seq-pipelines',
         'prefix' => '_',
         'module' => 'Bio::Example'
     },
@@ -101,6 +104,9 @@ ok(
             pipeline_short_name => 'new_pipeline',
             module              => 'Bio::Example',
             toplevel_action     => '__VRTrack_Action__',
+            root_base           => '/path/to/root',
+            log_base            => '/path/to/log',
+            database_connect_file => 't/data/database_connection_details',
             config_base         => $destination_directory
         )
     ),
@@ -108,49 +114,6 @@ ok(
 );
 is_deeply(
     $obj_non_standard->to_hash,
-    {
-        'db' => {
-            'database' => 'pathogen_prok_track',
-            'password' => undef,
-            'user'     => 'root',
-            'port'     => 3306,
-            'host'     => 'localhost'
-        },
-        'data' => {
-            'db' => {
-                'database' => 'pathogen_prok_track',
-                'password' => undef,
-                'user'     => 'root',
-                'port'     => 3306,
-                'host'     => 'localhost'
-            },
-            'dont_wait' => 0
-        },
-        'log'    => '/nfs/pathnfs05/log/prokaryotes/new_pipeline_logfile.log',
-        'root'   => '/lustre/scratch108/pathogen/pathpipe/prokaryotes/seq-pipelines',
-        'prefix' => '_',
-        'module' => 'Bio::Example'
-    },
-    'output hash has translated db name in root path'
-);
-
-
-ok(
-    (
-        my $obj_database_connection_file = Bio::VertRes::Config::Pipelines::Common->new(
-            database            => 'pathogen_prok_track',
-            pipeline_short_name => 'new_pipeline',
-            module              => 'Bio::Example',
-            toplevel_action     => '__VRTrack_Action__',
-            _database_connection_details_file => 't/data/database_connection_details',
-            config_base         => $destination_directory
-        )
-    ),
-    'initialise common config with a specified database connection details file'
-);
-
-is_deeply(
-    $obj_database_connection_file->to_hash,
     {
         'db' => {
             'database' => 'pathogen_prok_track',
@@ -169,12 +132,57 @@ is_deeply(
             },
             'dont_wait' => 0
         },
-        'log'    => '/nfs/pathnfs05/log/prokaryotes/new_pipeline_logfile.log',
-        'root'   => '/lustre/scratch108/pathogen/pathpipe/prokaryotes/seq-pipelines',
+        'log'    => '/path/to/log/prokaryotes/new_pipeline_logfile.log',
+        'root'   => '/path/to/root/prokaryotes/seq-pipelines',
         'prefix' => '_',
         'module' => 'Bio::Example'
     },
-    'output hash with a specified database connection details file'
+    'output hash has translated db name in root path'
+);
+
+
+ok(
+    (
+        my $obj_database_connection_file = Bio::VertRes::Config::Pipelines::Common->new(
+            database            => 'pathogen_prok_track',
+            pipeline_short_name => 'new_pipeline',
+            module              => 'Bio::Example',
+            toplevel_action     => '__VRTrack_Action__',
+            database_connect_file => '',
+            root_base           => '/path/to/root',
+            log_base            => '/path/to/log',
+            config_base         => $destination_directory
+        )
+    ),
+    'initialise common config without a specified database connection details file'
+);
+
+is_deeply(
+    $obj_database_connection_file->to_hash,
+    {
+        'db' => {
+            'database' => 'pathogen_prok_track',
+            'password' => undef,
+            'user'     => 'root',
+            'port'     => 3306,
+            'host'     => 'localhost'
+        },
+        'data' => {
+            'db' => {
+                'database' => 'pathogen_prok_track',
+                'password' => undef,
+                'user'     => 'root',
+                'port'     => 3306,
+                'host'     => 'localhost'
+            },
+            'dont_wait' => 0
+        },
+        'log'    => '/path/to/log/prokaryotes/new_pipeline_logfile.log',
+        'root'   => '/path/to/root/prokaryotes/seq-pipelines',
+        'prefix' => '_',
+        'module' => 'Bio::Example'
+    },
+    'output hash with default database connection details.'
 );
 
 done_testing();

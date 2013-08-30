@@ -19,6 +19,7 @@ ok(
         my $obj = Bio::VertRes::Config::Recipes::EukaryotesRnaSeqExpressionUsingTophat->new(
             database    => 'my_database',
             config_base => $destination_directory,
+            database_connect_file => 't/data/database_connection_details',
             limits      => { project => ['ABC study( EFG )'] },
             reference_lookup_file => 't/data/refs.index',
             reference             => 'ABC'
@@ -50,20 +51,20 @@ $input_config_file->{prefix} = '_checked_elsewhere_';
 is_deeply($input_config_file,{
   'db' => {
             'database' => 'my_database',
-            'password' => undef,
-            'user' => 'root',
-            'port' => 3306,
-            'host' => 'localhost'
+            'password' => 'some_password',
+            'user' => 'some_user',
+            'port' => 1234,
+            'host' => 'some_hostname'
           },
   'data' => {
               'mark_duplicates' => 0,
               'do_recalibration' => 0,
               'db' => {
                         'database' => 'my_database',
-                        'password' => undef,
-                        'user' => 'root',
-                        'port' => 3306,
-                        'host' => 'localhost'
+                        'password' => 'some_password',
+                        'user' => 'some_user',
+                        'port' => 1234,
+                        'host' => 'some_hostname'
                       },
               'get_genome_coverage' => 1,
               'dont_wait' => 0,
@@ -100,10 +101,10 @@ $input_config_file->{prefix} = '_checked_elsewhere_';
 is_deeply($input_config_file,{
   'db' => {
             'database' => 'my_database',
-            'password' => undef,
-            'user' => 'root',
-            'port' => 3306,
-            'host' => 'localhost'
+            'password' => 'some_password',
+            'user' => 'some_user',
+            'port' => 1234,
+            'host' => 'some_hostname'
           },
   'data' => {
               'protocol' => 'StandardProtocol',
@@ -112,10 +113,10 @@ is_deeply($input_config_file,{
               'ignore_rnaseq_called_status' => 1,
               'db' => {
                         'database' => 'my_database',
-                        'password' => undef,
-                        'user' => 'root',
-                        'port' => 3306,
-                        'host' => 'localhost'
+                        'password' => 'some_password',
+                        'user' => 'some_user',
+                        'port' => 1234,
+                        'host' => 'some_hostname'
                       },
               'dont_wait' => 0,
               'sequencing_file_suffix' => 'markdup.bam',

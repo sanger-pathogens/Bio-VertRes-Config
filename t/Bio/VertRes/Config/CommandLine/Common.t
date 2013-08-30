@@ -24,6 +24,7 @@ is_deeply($mapping_params, {
           'overwrite_existing_config_file' => 0,
           'reference_lookup_file' => '/lustre/scratch108/pathogen/pathpipe/refs/refs.index',
           'database' => 'pathogen_prok_track',
+          'database_connect_file' => '/software/pathogen/config/database_connection_details',
           'limits' => {
                         'project' => [
                                        'ZZZ'
@@ -32,6 +33,8 @@ is_deeply($mapping_params, {
           'mapper_index_params' => '-k 15 -s 4',
           'reference' => 'ABC',
           'additional_mapper_params' => ' -r 1 -y 0.9 -x -l pe',
+          'root_base' => '/lustre/scratch108/pathogen/pathpipe',
+          'log_base'  => '/nfs/pathnfs05/log',
           'config_base' => 'no need to check'
           
         }, 'Mapping parameters include smalt parameters');
@@ -45,6 +48,76 @@ throws_ok(
     qr/Invalid type/,
     'Invalid --smalt_mapper_l throws an error'
 );
+
+@input_args = qw(-t study -i ZZZ -r ABC --root_base /path/to/root --log_base /path/to/log -c);
+push(@input_args, $destination_directory);
+ok( my $user_root = Bio::VertRes::Config::CommandLine::Common->new(args => \@input_args, script_name => 'name_of_script' ), 'initialise commandline common obj with user-defined root and log');
+$mapping_params = $user_root->mapping_parameters;
+$mapping_params->{config_base} = 'no need to check';
+is_deeply($mapping_params, {
+          'protocol' => 'StrandSpecificProtocol',
+          'overwrite_existing_config_file' => 0,
+          'reference_lookup_file' => '/lustre/scratch108/pathogen/pathpipe/refs/refs.index',
+          'database' => 'pathogen_prok_track',
+          'database_connect_file' => '/software/pathogen/config/database_connection_details',
+          'limits' => {
+                        'project' => [
+                                       'ZZZ'
+                                     ]
+                      },
+          'reference' => 'ABC',
+          'root_base' => '/path/to/root',
+          'log_base'  => '/path/to/log',
+          'config_base' => 'no need to check'
+          
+        }, 'Mapping parameters include user-defined root and log');
+
+@input_args = qw(-t study -i ZZZ -r ABC --db_file /user/database/connect/file -c);
+push(@input_args, $destination_directory);
+ok( my $user_dbconnect = Bio::VertRes::Config::CommandLine::Common->new(args => \@input_args, script_name => 'name_of_script' ), 'initialise commandline common obj with user-defined database connect file');
+$mapping_params = $user_dbconnect->mapping_parameters;
+$mapping_params->{config_base} = 'no need to check';
+is_deeply($mapping_params, {
+          'protocol' => 'StrandSpecificProtocol',
+          'overwrite_existing_config_file' => 0,
+          'reference_lookup_file' => '/lustre/scratch108/pathogen/pathpipe/refs/refs.index',
+          'database' => 'pathogen_prok_track',
+          'database_connect_file' => '/user/database/connect/file',
+          'limits' => {
+                        'project' => [
+                                       'ZZZ'
+                                     ]
+                      },
+          'reference' => 'ABC',
+          'root_base' => '/lustre/scratch108/pathogen/pathpipe',
+          'log_base'  => '/nfs/pathnfs05/log',
+          'config_base' => 'no need to check'
+          
+        }, 'Mapping parameters include user-defined database connect file');
+
+@input_args = qw(-t study -i ZZZ -r ABC --db_file -c);
+push(@input_args, $destination_directory);
+ok( $user_dbconnect = Bio::VertRes::Config::CommandLine::Common->new(args => \@input_args, script_name => 'name_of_script' ), 'initialise commandline common obj with user-defined database connect file set to empty string');
+$mapping_params = $user_dbconnect->mapping_parameters;
+$mapping_params->{config_base} = 'no need to check';
+is_deeply($mapping_params, {
+          'protocol' => 'StrandSpecificProtocol',
+          'overwrite_existing_config_file' => 0,
+          'reference_lookup_file' => '/lustre/scratch108/pathogen/pathpipe/refs/refs.index',
+          'database' => 'pathogen_prok_track',
+          'database_connect_file' => '',
+          'limits' => {
+                        'project' => [
+                                       'ZZZ'
+                                     ]
+                      },
+          'reference' => 'ABC',
+          'root_base' => '/lustre/scratch108/pathogen/pathpipe',
+          'log_base'  => '/nfs/pathnfs05/log',
+          'config_base' => 'no need to check'
+          
+        }, 'Mapping parameters include user-defined database connect file set empty string');
+
 
 done_testing();
 
