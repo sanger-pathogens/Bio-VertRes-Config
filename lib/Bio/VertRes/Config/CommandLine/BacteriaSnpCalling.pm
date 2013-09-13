@@ -38,6 +38,7 @@ sub run {
         Bio::VertRes::Config::Recipes::BacteriaSnpCallingUsingBowtie2->new( $self->mapping_parameters )->create();
     }
     else {
+        $self->smalt_mapper_r(-1) unless defined $self->smalt_mapper_r;
         Bio::VertRes::Config::Recipes::BacteriaSnpCallingUsingSmalt->new( $self->mapping_parameters)->create();
     }
 
@@ -76,6 +77,9 @@ bacteria_snp_calling -t file -i file_of_lanes -r "Staphylococcus_aureus_subsp_au
 
 # Map and SNP call a single species in a study
 bacteria_snp_calling -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMRSA15_v1" -s "Staphylococcus aureus"
+
+# Map and SNP call specifying smalt -r parameter (defaults to -1)
+bacteria_snp_calling -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMRSA15_v1" -s "Staphylococcus aureus" -smalt_mapper_r 0
 
 # Use a different mapper. Available are bwa/stampy/smalt/ssaha2/bowtie2. The default is smalt and ssaha2 is only for 454 data.
 bacteria_snp_calling -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMRSA15_v1" -m bwa
