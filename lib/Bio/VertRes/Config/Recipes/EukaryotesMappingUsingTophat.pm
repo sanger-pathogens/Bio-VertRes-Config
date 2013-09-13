@@ -23,6 +23,8 @@ with 'Bio::VertRes::Config::Recipes::Roles::Reference';
 with 'Bio::VertRes::Config::Recipes::Roles::CreateGlobal';
 with 'Bio::VertRes::Config::Recipes::Roles::EukaryotesMapping';
 
+has 'additional_mapper_params' => ( is => 'ro', isa => 'Maybe[Str]' );
+
 override '_pipeline_configs' => sub {
     my ($self) = @_;
     my @pipeline_configs;

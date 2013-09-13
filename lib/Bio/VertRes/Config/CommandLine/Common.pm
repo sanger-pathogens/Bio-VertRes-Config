@@ -43,6 +43,9 @@ has 'smalt_mapper_r' => ( is => 'rw', isa => 'Maybe[Int]' );
 has 'smalt_mapper_x' => ( is => 'rw', isa => 'Maybe[Bool]' );
 has 'smalt_mapper_y' => ( is => 'rw', isa => 'Maybe[Num]' );
 has 'smalt_mapper_l' => ( is => 'rw', isa => 'Maybe[Str]' );
+has 'tophat_mapper_I' => ( is => 'rw', isa => 'Maybe[Int]' );
+has 'tophat_mapper_i' => ( is => 'rw', isa => 'Maybe[Int]' );
+has 'tophat_mapper_g' => ( is => 'rw', isa => 'Maybe[Int]' );
 
 # set assembler
 has 'assembler' => ( is => 'rw', isa => 'Maybe[Str]' );
@@ -59,6 +62,7 @@ sub BUILD {
         $regeneration_log_file, $overwrite_existing_config_file, $protocol,
         $smalt_index_k,         $smalt_index_s,                  $smalt_mapper_r,
         $smalt_mapper_y,        $smalt_mapper_x,                 $smalt_mapper_l,
+        $tophat_mapper_I,       $tophat_mapper_i,                $tophat_mapper_g,
         $assembler,             $root_base,                      $log_base,
         $database_connect_file, $help
     );
@@ -83,6 +87,9 @@ sub BUILD {
         'smalt_mapper_y=f'                 => \$smalt_mapper_y,
         'smalt_mapper_x'                   => \$smalt_mapper_x,
         'smalt_mapper_l=s'                 => \$smalt_mapper_l,
+        'tophat_mapper_max_intron=i'       => \$tophat_mapper_I,
+        'tophat_mapper_min_intron=i'       => \$tophat_mapper_i,
+        'tophat_mapper_max_multihit=i'     => \$tophat_mapper_g,
         'assembler=s'                      => \$assembler,
         'root_base=s'                      => \$root_base,
         'log_base=s'                       => \$log_base,
@@ -109,6 +116,9 @@ sub BUILD {
     $self->smalt_mapper_y($smalt_mapper_y)               if ( defined($smalt_mapper_y) );
     $self->smalt_mapper_x($smalt_mapper_x)               if ( defined($smalt_mapper_x) );
     $self->smalt_mapper_l($smalt_mapper_l)               if ( defined($smalt_mapper_l) );
+    $self->tophat_mapper_I($tophat_mapper_I)             if ( defined($tophat_mapper_I) );
+    $self->tophat_mapper_i($tophat_mapper_i)             if ( defined($tophat_mapper_i) );
+    $self->tophat_mapper_g($tophat_mapper_g)             if ( defined($tophat_mapper_g) );
     $self->assembler($assembler)                         if ( defined($assembler) );
     $self->database_connect_file($database_connect_file) if ( defined($database_connect_file) );
 
@@ -162,6 +172,31 @@ sub _construct_smalt_additional_mapper_params
   return $output_param_str;
 }
 
+sub _construct_tophat_additional_mapper_params
+{
+  my ($self) = @_;
+  my $output_param_str = "";
+  if(defined($self->tophat_mapper_I))
+  {
+    $output_param_str = join(' ',($output_param_str,'-I',$self->tophat_mapper_I));
+  }
+  if(defined($self->tophat_mapper_i))
+  {
+    $output_param_str = join(' ',($output_param_str,'-i',$self->tophat_mapper_i));
+  }
+  if(defined($self->tophat_mapper_g))
+  {
+    $output_param_str = join(' ',($output_param_str,'-g',$self->tophat_mapper_g));
+  }
+  
+  if($output_param_str eq "")
+  {
+    return undef;
+  }
+  
+  return $output_param_str;
+}
+
 sub mapping_parameters {
     my ($self) = @_;
     my $limits = Bio::VertRes::Config::CommandLine::ConstructLimits->new(
@@ -190,6 +225,10 @@ sub mapping_parameters {
     if(defined($self->_construct_smalt_additional_mapper_params))
     {
       $mapping_parameters{additional_mapper_params} = $self->_construct_smalt_additional_mapper_params;
+    }
+    if(defined($self->_construct_tophat_additional_mapper_params))
+    {
+      $mapping_parameters{additional_mapper_params} = $self->_construct_tophat_additional_mapper_params;
     }
     
     return \%mapping_parameters;

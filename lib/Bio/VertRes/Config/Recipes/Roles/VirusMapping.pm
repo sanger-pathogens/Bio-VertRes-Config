@@ -98,7 +98,8 @@ sub add_virus_tophat_mapping_config
         overwrite_existing_config_file => $self->overwrite_existing_config_file,
         limits                         => $self->limits,
         reference                      => $self->reference,
-        reference_lookup_file          => $self->reference_lookup_file
+        reference_lookup_file          => $self->reference_lookup_file,
+        additional_mapper_params       => $self->additional_mapper_params
           )
       );
   return ;

@@ -22,7 +22,8 @@ ok(
             database_connect_file => 't/data/database_connection_details',
             limits      => { project => ['ABC study( EFG )'] },
             reference_lookup_file => 't/data/refs.index',
-            reference             => 'ABC'
+            reference             => 'ABC',
+            additional_mapper_params => ' -I 10000 -i 70 -g 1'
         )
     ),
     'initalise creating files'
@@ -75,7 +76,8 @@ is_deeply($input_config_file,{
               'do_cleanup' => 1,
               'ignore_mapped_status' => 1,
               'slx_mapper' => 'tophat',
-              'slx_mapper_exe' => '/software/pathogen/external/apps/usr/local/tophat-2.0.8b.Linux_x86_64/tophat'
+              'slx_mapper_exe' => '/software/pathogen/external/apps/usr/local/tophat-2.0.8b.Linux_x86_64/tophat',
+              'additional_mapper_params' => ' -I 10000 -i 70 -g 1'
             },
   'limits' => {
                 'project' => [

@@ -131,6 +131,15 @@ my %scripts_and_expected_files = (
          'eukaryotes/mapping/mapping_ZZZ_ABC_smalt.conf', 'eukaryotes/qc/qc_ZZZ.conf',
          'eukaryotes/rna_seq/rna_seq_ZZZ_ABC.conf',        'eukaryotes/stored/stored_global.conf',
      ],
+     '-t study -i ZZZ -r ABC --tophat_mapper_max_intron 10000 --tophat_mapper_min_intron 70 --tophat_mapper_max_multihit 1' =>  [
+         'command_line.log',
+         'eukaryotes/eukaryotes.ilm.studies',
+         'eukaryotes/eukaryotes_import_pipeline.conf',     'eukaryotes/eukaryotes_mapping_pipeline.conf',
+         'eukaryotes/eukaryotes_qc_pipeline.conf',         'eukaryotes/eukaryotes_rna_seq_pipeline.conf',
+         'eukaryotes/eukaryotes_stored_pipeline.conf',     'eukaryotes/import/import_global.conf',
+         'eukaryotes/mapping/mapping_ZZZ_ABC_tophat.conf', 'eukaryotes/qc/qc_ZZZ.conf',
+         'eukaryotes/rna_seq/rna_seq_ZZZ_ABC.conf',        'eukaryotes/stored/stored_global.conf',
+     ],
      
     '-a ABC ' => ['command_line.log'],
 

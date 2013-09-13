@@ -49,6 +49,30 @@ throws_ok(
     'Invalid --smalt_mapper_l throws an error'
 );
 
+@input_args = qw(-t study -i ZZZ -r ABC -m tophat --tophat_mapper_max_intron 50000 --tophat_mapper_min_intron 70 --tophat_mapper_max_multihit 20 -c);
+push(@input_args, $destination_directory);
+ok( my $obj_tophat = Bio::VertRes::Config::CommandLine::Common->new(args => \@input_args, script_name => 'name_of_script' ), 'initialise commandline common obj');
+$mapping_params = $obj_tophat->mapping_parameters;
+$mapping_params->{config_base} = 'no need to check';
+is_deeply($mapping_params, {
+          'protocol' => 'StrandSpecificProtocol',
+          'overwrite_existing_config_file' => 0,
+          'reference_lookup_file' => '/lustre/scratch108/pathogen/pathpipe/refs/refs.index',
+          'database' => 'pathogen_prok_track',
+          'database_connect_file' => '/software/pathogen/config/database_connection_details',
+          'limits' => {
+                        'project' => [
+                                       'ZZZ'
+                                     ]
+                      },
+          'reference' => 'ABC',
+          'additional_mapper_params' => ' -I 50000 -i 70 -g 20',
+          'root_base' => '/lustre/scratch108/pathogen/pathpipe',
+          'log_base'  => '/nfs/pathnfs05/log',
+          'config_base' => 'no need to check'
+          
+        }, 'Mapping parameters include tophat parameters');
+
 @input_args = qw(-t study -i ZZZ -r ABC --root_base /path/to/root --log_base /path/to/log -c);
 push(@input_args, $destination_directory);
 ok( my $user_root = Bio::VertRes::Config::CommandLine::Common->new(args => \@input_args, script_name => 'name_of_script' ), 'initialise commandline common obj with user-defined root and log');

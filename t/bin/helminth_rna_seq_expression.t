@@ -131,6 +131,15 @@ my %scripts_and_expected_files = (
          'helminths/mapping/mapping_ZZZ_ABC_smalt.conf', 'helminths/qc/qc_ZZZ.conf',
          'helminths/rna_seq/rna_seq_ZZZ_ABC.conf',        'helminths/stored/stored_global.conf',
      ],
+     '-t study -i ZZZ -r ABC --tophat_mapper_max_intron 10000 --tophat_mapper_min_intron 70 --tophat_mapper_max_multihit 1' =>   [
+         'command_line.log',
+         'helminths/helminths.ilm.studies',
+         'helminths/helminths_import_pipeline.conf',      'helminths/helminths_mapping_pipeline.conf',
+         'helminths/helminths_qc_pipeline.conf',          'helminths/helminths_rna_seq_pipeline.conf',
+         'helminths/helminths_stored_pipeline.conf',      'helminths/import/import_global.conf',
+         'helminths/mapping/mapping_ZZZ_ABC_tophat.conf', 'helminths/qc/qc_ZZZ.conf',
+         'helminths/rna_seq/rna_seq_ZZZ_ABC.conf',        'helminths/stored/stored_global.conf',
+     ],
      
      
     '-a ABC ' => ['command_line.log'],

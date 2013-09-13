@@ -28,6 +28,7 @@ with 'Bio::VertRes::Config::Recipes::Roles::CreateGlobal';
 with 'Bio::VertRes::Config::Recipes::Roles::BacteriaRnaSeqExpression';
 
 has 'protocol'  => ( is => 'ro', isa => 'Str',  default => 'StrandSpecificProtocol' );
+has 'additional_mapper_params' => ( is => 'ro', isa => 'Maybe[Str]' );
 
 override '_pipeline_configs' => sub {
     my ($self) = @_;
@@ -46,7 +47,8 @@ override '_pipeline_configs' => sub {
             overwrite_existing_config_file => $self->overwrite_existing_config_file,
             limits                         => $self->limits,
             reference                      => $self->reference,
-            reference_lookup_file          => $self->reference_lookup_file
+            reference_lookup_file          => $self->reference_lookup_file,
+            additional_mapper_params       => $self->additional_mapper_params
         )
     );
     
