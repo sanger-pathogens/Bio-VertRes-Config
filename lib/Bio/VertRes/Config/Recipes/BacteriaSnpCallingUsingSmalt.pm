@@ -29,7 +29,7 @@ with 'Bio::VertRes::Config::Recipes::Roles::Reference';
 with 'Bio::VertRes::Config::Recipes::Roles::CreateGlobal';
 with 'Bio::VertRes::Config::Recipes::Roles::BacteriaSnpCalling';
 
-has 'additional_mapper_params' => ( is => 'ro', isa => 'Maybe[Str]' );
+has 'additional_mapper_params' => ( is => 'ro', isa => 'Maybe[Str]', default => '-r -1' );
 has 'mapper_index_params'      => ( is => 'ro', isa => 'Maybe[Str]' );
 
 override '_pipeline_configs' => sub {
