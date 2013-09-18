@@ -37,7 +37,7 @@ has 'reference_lookup_file' =>  ( is => 'ro', isa => 'Str', required => 1 );
 has 'toplevel_action'       => ( is => 'ro', isa => 'Str', default => '__VRTrack_SNPs__' );
 has 'run_after_bam_improvement' => ( is => 'ro', isa => 'Bool', default => 0);
 
-has '_max_lanes'     => ( is => 'ro', isa => 'Int',  default => 30 );
+has '_max_lanes'     => ( is => 'ro', isa => 'Int',  default => 300 );
 has '_pseudo_genome' => ( is => 'ro', isa => 'Bool', default => 1 );
 has '_bam_suffix'    => ( is => 'ro', isa => 'Str',  default => 'markdup.bam' );
 
@@ -56,7 +56,7 @@ has '_bsub_opts_mpileup' =>
 has '_split_size_mpileup'       => ( is => 'ro', isa => 'Int', default => 300000000 );
 has '_tmp_dir'                  => ( is => 'ro', isa => 'Str', default => '/lustre/scratch108/pathogen/tmp' );
 has '_mpileup_cmd'              => ( is => 'ro', isa => 'Str', default => 'samtools mpileup -d 1000 -DSug ' );
-has '_max_jobs'                 => ( is => 'ro', isa => 'Int', default => 10 );
+has '_max_jobs'                 => ( is => 'ro', isa => 'Int', default => 100 );
 has '_fai_chr_regex'            => ( is => 'ro', isa => 'Str', default => '[\w\.\#]+' );
 has '_fa_ref'                   => ( is => 'ro', isa => 'Str', lazy    => 1, builder => '_build__fa_ref' );
 has '_fai_ref'                  => ( is => 'ro', isa => 'Str', lazy    => 1, builder => '_build__fai_ref' );

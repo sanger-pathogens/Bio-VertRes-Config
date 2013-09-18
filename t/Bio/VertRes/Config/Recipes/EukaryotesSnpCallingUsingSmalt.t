@@ -128,11 +128,11 @@ is_deeply($input_config_file,{
               'bsub_opts_mpileup' => '-q normal -R \'select[type==X86_64] rusage[thouio=1]\'',
               'fai_chr_regex' => '[\w\.\#]+',
               'fai_ref' => '/path/to/ABC.fa.fai',
-              'max_jobs' => 10,
+              'max_jobs' => 100,
               'bam_suffix' => 'markdup.bam',
               'fa_ref' => '/path/to/ABC.fa'
             },
-  'max_lanes' => 30,
+  'max_lanes' => 300,
   'limits' => {
                 'project' => [
                                'ABC\ study\(\ EFG\ \)'

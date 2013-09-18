@@ -65,11 +65,11 @@ is_deeply(
                           'fai_ref' => '/path/to/ABC.fa.fai',
                           'fai_chr_regex' => '[\w\.\#]+',
                           'bsub_opts_mpileup' => '-q normal -R \'select[type==X86_64] rusage[thouio=1]\'',
-                          'max_jobs' => 10,
+                          'max_jobs' => 100,
                           'bam_suffix' => 'markdup.bam',
                           'fa_ref' => '/path/to/ABC.fa'
                         },
-              'max_lanes' => 30,
+              'max_lanes' => 300,
               'vrtrack_processed_flags' => {
                                              'qc' => 1,
                                              'stored' => 1,
