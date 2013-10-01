@@ -43,7 +43,7 @@ is_deeply($input_config_file,{
             'host' => 'some_hostname'
           },
   'data' => {
-              'remove_primers' => 0,
+              'remove_primers' => 1,
               'genome_size' => 10000000,
               'db' => {
                         'database' => 'my_database',
@@ -55,7 +55,7 @@ is_deeply($input_config_file,{
               'error_correct' => 1,
               'assembler_exec' => '/software/pathogen/external/apps/usr/bin/velvet',
               'dont_wait' => 0,
-              'primers_file' => '/nfs/pathnfs05/conf/primers/virus_primers',
+              'primers_file' => '/lustre/scratch108/pathogen/pathpipe/usr/share/solexa-adapters.quasr',
               'assembler' => 'velvet',
               'seq_pipeline_root' => '/lustre/scratch108/pathogen/pathpipe/my_database/seq-pipelines',
               'normalise' => 0,
