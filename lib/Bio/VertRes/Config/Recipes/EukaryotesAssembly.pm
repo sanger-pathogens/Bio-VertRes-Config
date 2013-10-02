@@ -20,9 +20,10 @@ with 'Bio::VertRes::Config::Recipes::Roles::EukaryotesRegisterStudy';
 has 'assembler'            => ( is => 'ro', isa => 'Str',  default => 'velvet' );
 has '_error_correct'       => ( is => 'ro', isa => 'Bool', default => 1 );
 has '_remove_primers'      => ( is => 'ro', isa => 'Bool', default => 1 );
-has '_pipeline_version'    => ( is => 'ro', isa => 'Num',  default => 4.0 );
+has '_pipeline_version'    => ( is => 'ro', isa => 'Num',  default => 4.1 );
 has '_normalise'           => ( is => 'ro', isa => 'Bool', default => 0 );
 has '_primers_file'        => ( is => 'ro', isa => 'Str',  default => '/lustre/scratch108/pathogen/pathpipe/usr/share/solexa-adapters.quasr' );
+has '_max_threads'         => ( is => 'ro', isa => 'Int',  default => 6 );
 
 override '_pipeline_configs' => sub {
     my ($self) = @_;
