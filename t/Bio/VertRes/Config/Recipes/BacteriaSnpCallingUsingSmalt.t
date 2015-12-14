@@ -206,6 +206,7 @@ is_deeply($input_config_file,{
               'ignore_mapped_status' => 1,
               'slx_mapper' => 'smalt',
               'slx_mapper_exe' => '/software/pathogen/external/apps/usr/local/smalt-0.7.4/smalt_x86_64',
+              'additional_mapper_params' => '-r -1',
             },
   'limits' => {
                 'project' => [

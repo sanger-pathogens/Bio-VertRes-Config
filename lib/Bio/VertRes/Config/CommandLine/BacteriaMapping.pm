@@ -85,13 +85,16 @@ bacteria_mapping -t file -i file_of_lanes -r "Staphylococcus_aureus_subsp_aureus
 # Map a single species in a study
 bacteria_mapping -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMRSA15_v1" -s "Staphylococcus aureus"
 
+# Map and SNP call specifying smalt -r parameter (defaults to -1)
+bacteria_snp_calling -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMRSA15_v1" -s "Staphylococcus aureus" -smalt_mapper_r 0
+
 # Use a different mapper. Available are bwa/stampy/smalt/ssaha2/bowtie2/tophat. The default is smalt and ssaha2 is only for 454 data.
 bacteria_mapping -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMRSA15_v1" -m bwa
 
 # Vary the parameters for smalt
 # Index defaults to '-k 13 -s 4'
-# Mapping defaults to '-r 0 -x -y 0.8'
-bacteria_mapping -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMRSA15_v1" --smalt_index_k 13 --smalt_index_s 4 --smalt_mapper_r 0 --smalt_mapper_y 0.8 --smalt_mapper_x
+# Mapping defaults to '-r -1 -x -y 0.8'
+bacteria_mapping -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMRSA15_v1" --smalt_index_k 13 --smalt_index_s 4 --smalt_mapper_r -1 --smalt_mapper_y 0.8 --smalt_mapper_x
 
 # Set orientation of mate pairs for smalt ('pe', 'mp' or 'pp')
 bacteria_mapping -t study -i 1234 -r "Staphylococcus_aureus_subsp_aureus_EMRSA15_v1" --smalt_mapper_l pp
