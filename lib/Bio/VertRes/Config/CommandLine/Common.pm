@@ -284,6 +284,7 @@ sub mapping_parameters {
     my $limits = Bio::VertRes::Config::CommandLine::ConstructLimits->new(
         input_type => $self->type,
         input_id   => $self->id,
+        database_connect_file          => $self->database_connect_file,
         species    => $self->species
     )->limits_hash;
 
