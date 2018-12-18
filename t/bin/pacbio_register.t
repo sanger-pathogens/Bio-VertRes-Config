@@ -50,6 +50,10 @@ mock_execute_script_and_check_output_ignore_regex( $script_name, \%scripts_and_e
         'pathogen_pacbio_track/assembly/assembly_ZZZ_hgap.conf',
         't/data/expected/assembly_ZZZ_hgap_circularise.conf'
     ],
+     '-t study -i ZZZ --genome_size 2000000' => [
+        'pathogen_pacbio_track/assembly/assembly_ZZZ_hgap.conf',
+        't/data/expected/assembly_ZZZ_hgap_genome_size.conf'
+    ],
     '-t study -i ZZZ' => [
         'pathogen_pacbio_track/annotate_assembly/annotate_assembly_ZZZ_pacbio.conf',
         't/data/expected/annotate_assembly_ZZZ_pacbio.conf'

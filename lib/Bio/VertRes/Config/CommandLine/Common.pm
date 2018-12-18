@@ -76,6 +76,9 @@ has 'kraken_db' => ( is => 'rw', isa => 'Str', default => '/lustre/scratch118/in
 has 'iva_insert_size' => (is => 'rw', isa => 'Int', default => 800);
 has 'iva_strand_bias' => (is => 'rw', isa => 'Num', default => 0);
 
+# genome size
+has 'genome_size'  => ( is => 'rw', isa => 'Int', default => 4500000 );
+
 # circularisation
 has 'circularise'  => ( is => 'rw', isa => 'Bool', default => 1 );
 
@@ -110,7 +113,8 @@ sub BUILD {
         $test_mode,						 $iva_qc,
         $kraken_db,	                     $iva_insert_size,
         $iva_strand_bias,				 $no_circularise,
-	    $spades_opts,                    $no_annotation
+	    $spades_opts,                    $no_annotation,
+        $genome_size
     );
 
     GetOptionsFromArray(
@@ -148,6 +152,7 @@ sub BUILD {
         'kraken_db=s'                    => \$kraken_db,
         'iva_insert_size=i'              => \$iva_insert_size,
         'iva_strand_bias=f'              => \$iva_strand_bias,
+        'genome_size=i'                  => \$genome_size,
         'no_circularise'		       	 => \$no_circularise,
         'no_annotation'                  => \$no_annotation,
         'h|help'                         => \$help
@@ -190,6 +195,9 @@ sub BUILD {
     $self->kraken_db($kraken_db) if ( defined($kraken_db) ) ;
     $self->iva_insert_size($iva_insert_size) if ( defined($iva_insert_size) );
     $self->iva_strand_bias($iva_strand_bias) if ( defined($iva_strand_bias) );
+
+    # genome_size
+    $self->genome_size($genome_size) if ( defined($genome_size) );
     
     # circularise
     $self->circularise(0) if ( defined($no_circularise) );

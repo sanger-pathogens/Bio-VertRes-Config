@@ -53,23 +53,24 @@ sub _build__pipeline_version {
     my $self = shift;
     my %subversions = %{ $self->_subversions };
 
-    my $version = '7' . $subversions{$self->_flag};
+    my $version = '8' . $subversions{$self->_flag};
     $self->_pipeline_version($version);
 }
 
 
 override 'to_hash' => sub {
-    my ($self) = @_;
-    my $output_hash = super();
+  my ($self) = @_;
+  my $output_hash = super();
 
 	$output_hash->{data}{module} = $self->module;
 	$output_hash->{data}{pipeline_version} = $self->_pipeline_version;
-    $output_hash->{data}{queue} = $self->_queue;
-    $output_hash->{data}{memory} = $self->_memory;
-    $output_hash->{data}{target_coverage} = $self->_target_coverage;
-    $output_hash->{data}{no_bsub} = $self->_no_bsub;
-    $output_hash->{data}{circularise} = $self->circularise;
-    $output_hash->{data}{threads} = $self->_threads;
+  $output_hash->{data}{queue} = $self->_queue;
+  $output_hash->{data}{memory} = $self->_memory;
+  $output_hash->{data}{target_coverage} = $self->_target_coverage;
+  $output_hash->{data}{no_bsub} = $self->_no_bsub;
+  $output_hash->{data}{genome_size} = $self->_genome_size;
+  $output_hash->{data}{circularise} = $self->circularise;
+  $output_hash->{data}{threads} = $self->_threads;
 
     return $output_hash;
 };

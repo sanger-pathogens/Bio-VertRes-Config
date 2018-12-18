@@ -55,6 +55,7 @@ sub add_hgap_assembly_config
           _target_coverage			     => $self->_target_coverage,
           _no_bsub						 => $self->_no_bsub,
           circularise					 => $self->circularise,
+          _genome_size         => $self->_genome_size,
  
       )
   );

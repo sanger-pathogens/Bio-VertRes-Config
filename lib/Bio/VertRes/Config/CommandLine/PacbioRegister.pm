@@ -18,13 +18,14 @@ has 'database'  => ( is => 'rw', isa => 'Str', default => 'pathogen_pacbio_track
 sub run {
     my ($self) = @_;
     
-     (($self->type && $self->id)  && !$self->help ) or die $self->usage_text;
+    (($self->type && $self->id)  && !$self->help ) or die $self->usage_text;
 
     (!$self->help) or die $self->usage_text;
 
     #return if(handle_reference_inputs_or_exit( $self->reference_lookup_file, $self->available_references, $self->reference ) == 1);
     
     my %mapping_parameters = %{$self->mapping_parameters};
+    $mapping_parameters{'_genome_size'} = $self->genome_size if defined ($self->genome_size);
     $mapping_parameters{'circularise'} = $self->circularise if defined ($self->circularise);
     $mapping_parameters{'annotate'} = $self->annotate if defined ($self->annotate);
     Bio::VertRes::Config::Recipes::PacbioRegister->new( \%mapping_parameters )->create();
@@ -74,6 +75,7 @@ Required:
   -i        STR Study name, study ID, lane, file of lanes
 
 Options:
+  --genome_size     Genome size [default=4500000]
   --no_circularise  Do not circularise
   --no_annotation   Do not annotate assembly
   -h                Print this message and exit
