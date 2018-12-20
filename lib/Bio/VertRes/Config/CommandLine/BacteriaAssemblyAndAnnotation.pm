@@ -52,7 +52,7 @@ Required:
 Options:
   -s            STR Limit to a single species name (e.g. 'Staphylococcus aureus')	 
   --assembler   STR Set a different assembler (spades/velvet/iva) [velvet]
-  --spades_opts STR Modify parameters sent to SPAdes [--careful --cov-cutoff auto]
+  --spades_opts STR Modify parameters sent to SPAdes. Only --careful and --cov-cutoff auto are available. Default is none.
   -d            STR Specify a database [pathogen_prok_track]
   -c            STR Base directory to config files [/nfs/pathnfs05/conf]
   --root        STR Base directory for the pipelines [/lustre/scratch118/infgen/pathogen/pathpipe]
