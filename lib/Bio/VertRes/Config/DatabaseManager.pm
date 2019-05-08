@@ -51,20 +51,22 @@ sub build_database_handle {
 
 sub get_study_name_from_ssid {
   my ($self, $ssid) = @_;
-  my $sql = "select name from study where id_study_lims = '".$ssid."' ";
   my $dbh = $self->build_database_handle;
-  my @study_names = $dbh->selectrow_array($sql );
+  my $sth = $dbh->prepare("select name from study where id_study_lims = ?");
+  $sth->execute($ssid);
+  my @study_names = $sth->fetchrow_array;
   return @study_names;
 }
 
 sub get_data_access_groups {
   my ($self, $study_name) = @_;
   my @data_access_groups;
-  my $sql = "select data_access_group from study where name = '".$study_name."' ";
   eval { my $dbh = $self->build_database_handle; };
   if ( !$@ ) {
     my $dbh = $self->build_database_handle;
-    my $dag_string = $dbh->selectrow_array( $sql );
+    my $sth = $dbh->prepare("select data_access_group from study where name = ?");
+    $sth->execute($study_name);
+    my $dag_string = $sth->fetchrow_array;
     @data_access_groups = split(' ', $dag_string) if defined $dag_string && $dag_string ne '';
   }
 
