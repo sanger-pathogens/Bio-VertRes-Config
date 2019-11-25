@@ -78,7 +78,6 @@ sub add_bacteria_velvet_assembly_config
           _error_correct                 => $self->_error_correct,
           _remove_primers                => $self->_remove_primers,
           _normalise                     => $self->_normalise,
-          _vrtrack_processed_flags       => $self->_vrtrack_processed_flags,
           iva_qc						 => $self->iva_qc,
           kraken_db				     => $self->kraken_db,
       )

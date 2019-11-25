@@ -61,8 +61,7 @@ is_deeply(
                         },
               'max_lanes_to_search' => 10000,
               'vrtrack_processed_flags' => {
-                                             'assembled' => 1,
-                                             'annotated' => 0
+                                             'assembled' => 1
                                            },
               'root' => '/path/to/root/my_database/seq-pipelines',
               'log' => '/path/to/log/my_database/annotate_assembly_Abc_def_ghi123_velvet.log',
