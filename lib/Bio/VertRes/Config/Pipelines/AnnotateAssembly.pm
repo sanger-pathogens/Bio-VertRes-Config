@@ -55,16 +55,7 @@ override 'to_hash' => sub {
     $output_hash->{limit}                   = $self->_limit;
     $output_hash->{max_lanes_to_search}     = $self->_max_lanes_to_search;
     $output_hash->{max_failures}            = $self->_max_failures;
-    
-    if($self->_assembler eq 'velvet')
-    {
-        $output_hash->{vrtrack_processed_flags} = { assembled => 1, annotated => 0 };
-    }
-    else
-    {
-    	$output_hash->{vrtrack_processed_flags} = { assembled => 1};
-    }
-    
+    $output_hash->{vrtrack_processed_flags} = { assembled => 1};
     $output_hash->{limits}                  = $self->_escaped_limits;
 
     $output_hash->{data}{tmp_directory}     = $self->_tmp_directory;
