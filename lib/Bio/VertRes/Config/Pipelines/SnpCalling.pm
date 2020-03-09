@@ -45,15 +45,15 @@ has '_bam_suffix'    => ( is => 'ro', isa => 'Str',  default => 'markdup.bam' );
 has '_bsub_opts' => (
     is      => 'ro',
     isa     => 'Str',
-    default => "-q normal -M3500000 -R 'select[type==X86_64 && mem>3500] rusage[mem=3500,thouio=1,tmp=16000]'"
+    default => "-q normal -M3500000 -R 'select[type==X86_64 && mem>3500] rusage[mem=3500,tmp=16000]'"
 );
 has '_bsub_opts_long' => (
     is      => 'ro',
     isa     => 'Str',
-    default => "-q normal -M3500000 -R 'select[type==X86_64 && mem>3500] rusage[mem=3500,thouio=1,tmp=16000]'"
+    default => "-q normal -M3500000 -R 'select[type==X86_64 && mem>3500] rusage[mem=3500,tmp=16000]'"
 );
 has '_bsub_opts_mpileup' =>
-  ( is => 'ro', isa => 'Str', default => "-q normal -R 'select[type==X86_64] rusage[thouio=1]'" );
+  ( is => 'ro', isa => 'Str', default => "-q normal -R 'select[type==X86_64]'" );
 has '_split_size_mpileup'       => ( is => 'ro', isa => 'Int', default => 300000000 );
 has '_tmp_dir'                  => ( is => 'ro', isa => 'Str', default => '/lustre/scratch118/infgen/pathogen/tmp' );
 has '_mpileup_cmd'              => ( is => 'ro', isa => 'Str', default => 'samtools mpileup -d 1000 -DSug ' );

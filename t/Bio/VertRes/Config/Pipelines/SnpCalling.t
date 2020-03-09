@@ -47,7 +47,7 @@ is_deeply(
                         'host' => 'some_hostname'
                       },
               'data' => {
-                          'bsub_opts_long' => '-q normal -M3500000 -R \'select[type==X86_64 && mem>3500] rusage[mem=3500,thouio=1,tmp=16000]\'',
+                          'bsub_opts_long' => '-q normal -M3500000 -R \'select[type==X86_64 && mem>3500] rusage[mem=3500,tmp=16000]\'',
                           'db' => {
                                     'database' => 'my_database',
                                     'password' => 'some_password',
@@ -60,11 +60,11 @@ is_deeply(
                           'dont_wait' => 0,
                           'ignore_snp_called_status' => 1,
                           'mpileup_cmd' => 'samtools mpileup -d 1000 -DSug ',
-                          'bsub_opts' => '-q normal -M3500000 -R \'select[type==X86_64 && mem>3500] rusage[mem=3500,thouio=1,tmp=16000]\'',
+                          'bsub_opts' => '-q normal -M3500000 -R \'select[type==X86_64 && mem>3500] rusage[mem=3500,tmp=16000]\'',
                           'tmp_dir' => '/lustre/scratch118/infgen/pathogen/tmp',
                           'fai_ref' => '/path/to/ABC.fa.fai',
                           'fai_chr_regex' => '[\w\.\#]+',
-                          'bsub_opts_mpileup' => '-q normal -R \'select[type==X86_64] rusage[thouio=1]\'',
+                          'bsub_opts_mpileup' => '-q normal -R \'select[type==X86_64]\'',
                           'max_jobs' => 100,
                           'bam_suffix' => 'markdup.bam',
                           'fa_ref' => '/path/to/ABC.fa'
