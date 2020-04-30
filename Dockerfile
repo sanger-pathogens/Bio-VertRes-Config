@@ -5,7 +5,7 @@ LABEL maintainer=path-help@sanger.ac.uk
 
 # install system deps
 RUN apt-get -qq update && \
-	apt-get install --quiet --assume-yes locales git curl cpanminus build-essential libssl-dev libcrypt-ssleay-perl dh-dist-zilla && \
+	apt-get install --quiet --assume-yes libmysqlclient-dev locales git curl cpanminus build-essential libssl-dev libcrypt-ssleay-perl dh-dist-zilla && \
  	apt-get clean
 
 # fix locales
