@@ -21,6 +21,7 @@ COPY . /opt/Bio-VertRes-Config
 WORKDIR /opt/Bio-VertRes-Config
 RUN	dzil authordeps --missing | cpanm --force && \
     cpanm Pod::Elemental::Transformer::List && \
+	cpanm DBD::mysql && \
 	dzil listdeps --missing | cpanm --force && \
 	dzil test && \
 	dzil install
