@@ -1,5 +1,7 @@
 package Bio::VertRes::Config::Utils;
 
+# ABSTRACT: Minor functions available throughout Bio::VertRes::Config
+
 =head1 SYNOPSIS
 
 Just somewhere to keep minor functions (which don't warrant instantiating an object)

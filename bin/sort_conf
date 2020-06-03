@@ -1,5 +1,8 @@
 #!/usr/bin/env perl
 
+# ABSTRACT: Sorts conf files by key
+# PODNAME: sort_conf
+
 =head1 SYNOPSIS
 
 Sorts conf files by key.  Reads conf from STDIN, or conf file name can be
