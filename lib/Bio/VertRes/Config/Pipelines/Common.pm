@@ -19,6 +19,7 @@ use Data::Dumper;
 use File::Basename;
 use File::Path qw(make_path);
 
+use Bio::VertRes::Config::Utils qw(sort_hash_keys);
 use Bio::VertRes::Config::DatabaseManager;
 with 'Bio::VertRes::Config::Pipelines::Roles::RootDatabaseLookup';
 with 'Bio::VertRes::Config::Pipelines::Roles::UnixGroup';
@@ -164,6 +165,8 @@ sub create_config_file {
 
     # dont print out an extra wrapper variable
     $Data::Dumper::Terse = 1;
+    # sort keys in the Dumper output
+    local $Data::Dumper::Sortkeys = sub { [ sort {sort_hash_keys($a,$b)} keys %{$_[0]} ] };
 
     write_text( $self->config, Dumper( $self->to_hash ) );
     chmod $mode, $self->config;
