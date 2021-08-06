@@ -35,7 +35,6 @@ has 'module'              => ( is => 'ro', isa => 'Str', default  => 'VertRes::P
 has 'reference'           => ( is => 'ro', isa => 'Str', required => 1 );
 has 'reference_lookup_file' =>  ( is => 'ro', isa => 'Str', required => 1 );
 has 'toplevel_action'       => ( is => 'ro', isa => 'Str', default => '__VRTrack_RNASeqExpression__' );
-has 'toplevel_admin_approval_required'   => ( is => 'ro', isa => 'Bool', default => 1 );
 
 has '_annotation_file'             => ( is => 'ro', isa => 'Str', lazy => 1, builder => '_build__annotation_file' );
 has '_sequencing_file_suffix'      => ( is => 'ro', isa => 'Str',  default => 'markdup.bam' );
