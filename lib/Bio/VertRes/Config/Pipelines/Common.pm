@@ -30,7 +30,6 @@ has 'octal_permissions'   => ( is => 'ro', isa => 'Num',                        
 has 'pipeline_short_name' => ( is => 'ro', isa => 'Str',                          required => 1 );
 has 'module'              => ( is => 'ro', isa => 'Str',                          required => 1 );
 has 'toplevel_action'     => ( is => 'ro', isa => 'Str',                          required => 1 );
-has 'toplevel_admin_approval_required'   => ( is => 'ro', isa => 'Bool', default => 0 );
 
 has 'overwrite_existing_config_file' => ( is => 'ro', isa => 'Bool', default => 0 );
 
