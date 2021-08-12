@@ -22,9 +22,6 @@ has 'pipeline_short_name' => ( is => 'ro', isa => 'Str', required => 1 );
 has 'database'            => ( is => 'ro', isa => 'Str', required => 1 );
 has 'pipeline_configs'    => ( is => 'ro', isa => 'ArrayRef', required => 1 );
 
-has '_admin_approval_prefix'    => ( is => 'ro', isa => 'Str', default => '#admin_approval_required#' );
-has 'admin_email_needs_to_be_sent'    => ( is => 'rw', isa => 'Bool', default => 0 );
-
 has 'overall_config'                   => ( is => 'ro', isa => 'Str',     lazy    => 1, builder => '_build_overall_config' );
 has 'config_base'              => ( is => 'ro', isa => 'Str',     required => 1 );
 has 'overall_config_file_name'         => ( is => 'ro', isa => 'Str',     lazy    => 1, builder => '_build_overall_config_file_name' );
@@ -66,19 +63,8 @@ sub _build__filenames_to_action {
     
     for my $pipeline_config (@{$self->pipeline_configs})
     {
-      
       next if($preexisting_filenames{$pipeline_config->config});
-
-      # comment out the action if it requires admin approval
-      if($pipeline_config->toplevel_admin_approval_required == 1)
-      {
-        $filenames_to_action{$pipeline_config->config} = $self->_admin_approval_prefix.$pipeline_config->toplevel_action;
-        $self->admin_email_needs_to_be_sent(1);
-      }
-      else
-      {
-        $filenames_to_action{$pipeline_config->config} = $pipeline_config->toplevel_action;
-      }
+      $filenames_to_action{$pipeline_config->config} = $pipeline_config->toplevel_action;
     }
     
     return \%filenames_to_action;

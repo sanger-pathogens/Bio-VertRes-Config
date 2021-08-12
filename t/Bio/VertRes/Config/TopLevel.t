@@ -60,8 +60,8 @@ ok(-e $destination_directory.'/my_database/my_database_mapping_pipeline.conf', '
 my $text = read_text( $destination_directory.'/my_database/my_database_mapping_pipeline.conf' );
 chomp($text);
 my @mapping_rows = sort(split("\n",$text));
-is_deeply(\@mapping_rows , ["#admin_approval_required#__VRTrack_Mapping__ $destination_directory/my_database/mapping/mapping_ABC_study_EFG_ABC_bwa.conf",
-"#admin_approval_required#__VRTrack_Mapping__ $destination_directory/my_database/mapping/mapping_ABC_study_EFG_ABC_smalt.conf"], 'content of mapping toplevel file as expected');
+is_deeply(\@mapping_rows , ["__VRTrack_Mapping__ $destination_directory/my_database/mapping/mapping_ABC_study_EFG_ABC_bwa.conf",
+"__VRTrack_Mapping__ $destination_directory/my_database/mapping/mapping_ABC_study_EFG_ABC_smalt.conf"], 'content of mapping toplevel file as expected');
 
 
 # Running it again should produce the same output
@@ -75,8 +75,8 @@ ok(($obj_rerun->update_or_create()), 'Create the toplevel file thats been rerun'
 $text = read_text( $destination_directory.'/my_database/my_database_mapping_pipeline.conf' );
 chomp($text);
 @mapping_rows = sort(split("\n",$text));
-is_deeply(\@mapping_rows , ["#admin_approval_required#__VRTrack_Mapping__ $destination_directory/my_database/mapping/mapping_ABC_study_EFG_ABC_bwa.conf",
-"#admin_approval_required#__VRTrack_Mapping__ $destination_directory/my_database/mapping/mapping_ABC_study_EFG_ABC_smalt.conf"], 'content of mapping toplevel file as expected, so no duplicates');
+is_deeply(\@mapping_rows , ["__VRTrack_Mapping__ $destination_directory/my_database/mapping/mapping_ABC_study_EFG_ABC_bwa.conf",
+"__VRTrack_Mapping__ $destination_directory/my_database/mapping/mapping_ABC_study_EFG_ABC_smalt.conf"], 'content of mapping toplevel file as expected, so no duplicates');
 
 
 # Append a new mapping
@@ -101,9 +101,9 @@ $text = read_text( $destination_directory.'/my_database/my_database_mapping_pipe
 chomp($text);
 @mapping_rows = sort(split("\n",$text));
 is_deeply(\@mapping_rows , [
-  "#admin_approval_required#__VRTrack_Mapping__ $destination_directory/my_database/mapping/mapping_ABC_study_EFG_ABC_bwa.conf",
-  "#admin_approval_required#__VRTrack_Mapping__ $destination_directory/my_database/mapping/mapping_ABC_study_EFG_ABC_smalt.conf",
-  "#admin_approval_required#__VRTrack_Mapping__ $destination_directory/my_database/mapping/mapping_Another_study_ABC_stampy.conf"
+  "__VRTrack_Mapping__ $destination_directory/my_database/mapping/mapping_ABC_study_EFG_ABC_bwa.conf",
+  "__VRTrack_Mapping__ $destination_directory/my_database/mapping/mapping_ABC_study_EFG_ABC_smalt.conf",
+  "__VRTrack_Mapping__ $destination_directory/my_database/mapping/mapping_Another_study_ABC_stampy.conf"
 ], 'content of mapping toplevel file has the appended row');
 
 

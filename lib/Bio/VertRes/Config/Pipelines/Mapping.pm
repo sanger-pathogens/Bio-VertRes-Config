@@ -36,7 +36,6 @@ has 'module'                => ( is => 'ro', isa => 'Str', default  => 'VertRes:
 has 'reference'             => ( is => 'ro', isa => 'Str', required => 1 );
 has 'reference_lookup_file' => ( is => 'ro', isa => 'Str', required => 1 );
 has 'toplevel_action'       => ( is => 'ro', isa => 'Str', default => '__VRTrack_Mapping__' );
-has 'toplevel_admin_approval_required'   => ( is => 'ro', isa => 'Bool', default => 1 );
 
 has 'slx_mapper'            => ( is => 'ro', isa => 'Str', required => 1 );
 has 'slx_mapper_exe'        => ( is => 'ro', isa => 'Str', required => 1 );
