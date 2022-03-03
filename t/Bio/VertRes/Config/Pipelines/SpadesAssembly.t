@@ -82,7 +82,7 @@ is_deeply(
         },
         'root'   => '/path/to/root/my_database/seq-pipelines',
         'log'    => '/path/to/log/my_database/assembly_Abc_def_ghi123_spades.log',
-        'limit'  => 1000,
+        'limit'  => 100000,
         'module' => 'VertRes::Pipelines::Assembly',
 	    'umask' => 23,
 	    'octal_permissions' => 488,
