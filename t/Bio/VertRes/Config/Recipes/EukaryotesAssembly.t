@@ -80,7 +80,7 @@ is_deeply($input_config_file,{
                                },
   'root' => '/lustre/scratch118/infgen/pathogen/pathpipe/my_database/seq-pipelines',
   'log' => '/nfs/pathnfs05/log/my_database/assembly_ABC_study_EFG_velvet.log',
-  'limit' => 1000,
+  'limit' => 100000,
   'module' => 'VertRes::Pipelines::Assembly',
   'umask' => 23,
   'octal_permissions' => 488,
