@@ -1,3 +1,6 @@
+# THIS REPOSITORY IS NO LONGER SUPPORTED AND ARCHIVED.
+
+
 # Bio-VertRes-Config
 Generate config files for the pathogen pipelines
 
@@ -46,7 +49,7 @@ Bio-VertRes-Config contains scripts for generating config files for the pathogen
 * **setup_global_configs** - Create config scripts and overall strucutre for the global configs
 
 ## Installation
-Details for installing Bio-VertRes-Config are provided below. If you encounter an issue when installing Bio-VertRes-Config please contact your local system administrator. If you encounter a bug please log it [here](https://github.com/sanger-pathogens/Bio-VertRes-Config/issues) or email us at path-help@sanger.ac.uk.
+Details for installing Bio-VertRes-Config are provided below. If you encounter an issue when installing Bio-VertRes-Config please contact your local system administrator.
 
 ### From Source
 Clone the repository:   
@@ -97,8 +100,6 @@ Options:
   -a            STR Search for available reference matching pattern and exit.
   -h                Print this message and exit
 
-NOTE - If you are uncertain that your request was successful, please do NOT run the command again. Instead, please direct any queries to path-help@sanger.ac.uk.
-
 If you use the results of these pipelines, please acknowledge the pathogen informatics team and include the appropriate citations:
 
 "Robust high throughput prokaryote de novo assembly and improvement pipeline for Illumina data"
@@ -116,5 +117,3 @@ http://mediawiki.internal.sanger.ac.uk/index.php/Pathogen_Informatics_Automated_
 ## License
 Bio-VertRes-Config is free software, licensed under [GPLv3](https://github.com/sanger-pathogens/Bio-VertRes-Config/blob/master/software-license).
 
-## Feedback/Issues
-Please report any issues to the [issues page](https://github.com/sanger-pathogens/Bio-VertRes-Config/issues) or email path-help@sanger.ac.uk.
